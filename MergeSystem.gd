@@ -31,7 +31,7 @@ func _process(delta):
 	if Input.is_action_just_released("inv_grab"):
 		release(cursor_pos)
 	if artifact_held != null:
-		artifact_held.global_position = cursor_pos + artifact_offset
+		artifact_held.global_position = cursor_pos + artifact_offset #artifact follows the mouse
 
 #CHECK grab_item method -> method in containers (we expect grid and inv queue)
 #grab functionality: 
@@ -43,7 +43,7 @@ func grab(cursor_pos):
 			last_container = c
 			last_pos = artifact_held.position
 			artifact_offset = artifact_held.global_position - cursor_pos
-			move_child(artifact_held, get_child_count()) #make item node last in tree so it renders on top
+
 
 
 func release(cursor_pos):

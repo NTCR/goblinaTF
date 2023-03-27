@@ -32,7 +32,8 @@ func insert_artifact(artifact):
 		set_grid_space(g_pos.x, g_pos.y, artifact_size.x, artifact_size.y, true)
 		artifact.position = Vector2(g_pos.x, g_pos.y) * cell_size
 		artifacts.append(artifact) #saves INSTANCE of artifact
-		add_child(artifact)
+		if artifact.get_parent() != self:
+			add_child(artifact)
 		return true	
 	else:
 		return false
