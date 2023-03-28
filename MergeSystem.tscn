@@ -32,7 +32,6 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="InventoryQueue" type="Panel" parent="."]
-visible = false
 self_modulate = Color(1, 1, 0, 1)
 layout_mode = 1
 anchors_preset = 5
