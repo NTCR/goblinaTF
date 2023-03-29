@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1kwe8molgns8"]
+
+[ext_resource type="Script" path="res://merge_system/MergeSystem.gd" id="1_1j0vj"]
+[ext_resource type="Script" path="res://merge_system/InventoryQueue.gd" id="2_nkgah"]
+[ext_resource type="Texture2D" uid="uid://djvrgxkav1c8g" path="res://merge_system/h1kqXb2.png" id="3_g1ed8"]
+[ext_resource type="Script" path="res://merge_system/GridBackPack.gd" id="4_m6cfu"]
+
+[node name="MergeSystem" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 392.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1j0vj")
+
+[node name="InventoryBase" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -336.0
+offset_top = -441.0
+offset_right = 336.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="InventoryQueue" type="Panel" parent="."]
+self_modulate = Color(1, 1, 0, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -337.0
+offset_right = 332.0
+offset_bottom = 204.0
+grow_horizontal = 2
+script = ExtResource("2_nkgah")
+
+[node name="Slot1" type="Panel" parent="InventoryQueue"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.312
+anchor_bottom = 0.5
+offset_top = -84.0
+offset_right = 0.272003
+offset_bottom = 83.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Slot2" type="Panel" parent="InventoryQueue"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.5
+offset_top = -83.0
+offset_right = 108.5
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Slot3" type="Panel" parent="InventoryQueue"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.688
+anchor_top = 0.098
+anchor_right = 1.001
+anchor_bottom = 0.917
+offset_left = -0.272003
+offset_top = 0.00799942
+offset_right = 0.330994
+offset_bottom = -0.0680084
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridBackPack" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.306
+anchor_top = 0.384
+anchor_right = 0.626
+anchor_bottom = 0.773
+offset_left = -0.400024
+offset_top = -0.28801
+offset_right = -0.400085
+offset_bottom = 0.138947
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_g1ed8")
+script = ExtResource("4_m6cfu")

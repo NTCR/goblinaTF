@@ -1,0 +1,60 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://dxrc6ymvx856p"]
+
+[ext_resource type="Texture2D" uid="uid://b505meclnjeg3" path="res://char/cookie0165x2_0084.png" id="1_ca2d6"]
+[ext_resource type="Texture2D" uid="uid://djba5013p0mgm" path="res://char/cookie0165x2_0085.png" id="2_2fe0b"]
+[ext_resource type="Texture2D" uid="uid://r22abixo5nvl" path="res://char/cookie0165x2_0032.png" id="3_u2mff"]
+[ext_resource type="Texture2D" uid="uid://bmd5337bhh1m6" path="res://char/cookie0165x2_0033.png" id="4_0no37"]
+[ext_resource type="Texture2D" uid="uid://xwyvsfo7vxsd" path="res://char/cookie0165x2_0034.png" id="5_nxnbq"]
+[ext_resource type="Texture2D" uid="uid://djvdqpyafwe3d" path="res://char/cookie0165x2_0035.png" id="6_lxjas"]
+[ext_resource type="Texture2D" uid="uid://bjaomvjj18usy" path="res://char/cookie0165x2_0036.png" id="7_olunn"]
+[ext_resource type="Texture2D" uid="uid://dqw02jh4bu2v7" path="res://char/cookie0165x2_0037.png" id="8_t2qq7"]
+[ext_resource type="Texture2D" uid="uid://bb165yr3hfigc" path="res://char/cookie0165x2_0038.png" id="9_xmkvk"]
+[ext_resource type="Texture2D" uid="uid://0c0x5esaox2a" path="res://char/cookie0165x2_0039.png" id="10_80v0c"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ca2d6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2fe0b")
+}],
+"loop": true,
+"name": &"merge_loot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_u2mff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0no37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nxnbq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lxjas")
+}],
+"loop": true,
+"name": &"merge_walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_olunn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_t2qq7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_xmkvk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_80v0c")
+}],
+"loop": true,
+"name": &"runner_walk",
+"speed": 5.0
+}]

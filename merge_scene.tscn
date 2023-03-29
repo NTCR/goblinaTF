@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://8l226jilhct6"]
+
+[ext_resource type="PackedScene" uid="uid://cef86gvjofe7b" path="res://scrolling_bg.tscn" id="1_6v0ew"]
+[ext_resource type="PackedScene" uid="uid://c1kwe8molgns8" path="res://merge_system/MergeSystem.tscn" id="2_5g17f"]
+[ext_resource type="PackedScene" uid="uid://3lkstt0pnjlc" path="res://player.tscn" id="3_m50jv"]
+[ext_resource type="Script" path="res://Spawner.gd" id="4_l7d53"]
+
+[node name="MergeScene" type="Node"]
+
+[node name="ScrollingBG" parent="." instance=ExtResource("1_6v0ew")]
+
+[node name="MergeSystem" parent="." instance=ExtResource("2_5g17f")]
+
+[node name="Player" parent="." instance=ExtResource("3_m50jv")]
+position = Vector2(683, 278)
+
+[node name="Spawner" type="Node" parent="."]
+script = ExtResource("4_l7d53")
+
+[node name="Timer" type="Timer" parent="Spawner"]
+wait_time = 2.0
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="Spawner"]
+position = Vector2(1561, 343)
+
+[connection signal="looted" from="Player" to="MergeSystem" method="_on_player_looted"]
+[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_Spawn_timeout"]
