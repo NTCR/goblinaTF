@@ -10,6 +10,11 @@ signal looted(loot_type)
 func _ready():
 	_animated_sprite.play("merge_walk")
 
+func transition_merge():
+	_animated_sprite.play("spoted")
+
+func enter_runner():
+	_animated_sprite.play("runner_walk")
 
 func _on_body_entered(body):
 	if body.has_meta("type"):

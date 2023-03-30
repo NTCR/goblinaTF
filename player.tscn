@@ -11,7 +11,7 @@ script = ExtResource("1_f8jsn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_yaedn")
-animation = &"merge_loot"
+animation = &"spoted"
 offset = Vector2(0, -100)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -20,6 +20,7 @@ shape = SubResource("RectangleShape2D_mbfgr")
 
 [node name="LootTimer" type="Timer" parent="."]
 wait_time = 0.5
+one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="LootTimer" to="." method="_on_loot_timer_timeout"]

@@ -2,7 +2,7 @@ extends Node
 
 const loot_base = preload("res://loot/LootBase.tscn")
 
-@onready var spawnPoint = $Marker2D
+@onready var spawnPoint = $ItemSpawn
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,4 +22,4 @@ func _on_Spawn_timeout():
 	loot.position = spawnPoint.position
 	var velocity = Vector2(randf_range(-350.0, -550.0), 0.0)
 	loot.linear_velocity = velocity
-	get_tree().current_scene.add_child(loot)
+	add_child(loot)

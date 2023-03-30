@@ -36,3 +36,9 @@ func get_available_slot():
 		if slot.get_child_count() == 0:
 			return slot
 	return null
+	
+func empty_queue():
+	for slot in get_children():
+		if slot.get_child_count() > 0:
+			var artf = slot.get_child(0)
+			artf.queue_free()

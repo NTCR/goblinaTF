@@ -1,9 +1,13 @@
 extends Control
 
+const destroy_effect = preload("res://destroy_particles.tscn")
+
 #ref to each member
 @onready var inv_base = $InventoryBase
 @onready var grid_bkpk = $GridBackPack
 @onready var inv_queue = $InventoryQueue
+
+signal raise_progress(v)
 
 #grab and release vars
 var artifact_held = null
@@ -40,7 +44,7 @@ func release(cursor_pos):
 		return
 	var c = get_container_under_cursor(cursor_pos)
 	if c == null: #I want to return item to original position, but not if it was inventory
-			return_item()
+		return_item()
 	elif c.has_method("insert_artifact"): #insert_artifact method-> method in containers
 		if c.insert_artifact(artifact_held): #si hay espacio
 			artifact_held = null
@@ -58,10 +62,11 @@ func get_container_under_cursor(cursor_pos):
 			return c
 	return null
 
-#debug purpose
+#throw artifact
 func drop_item():
 	artifact_held.queue_free() #deletes item
 	artifact_held = null
+	item_destroyed(get_global_mouse_position())
 
 func return_item(): #will revise code. child order etc.
 	if last_container != grid_bkpk:
@@ -75,4 +80,25 @@ func return_item(): #will revise code. child order etc.
 
 
 func _on_player_looted(loot_type):
-	inv_queue.pickup_item(loot_type)
+	if inv_queue.get_available_slot() != null:
+		inv_queue.pickup_item(loot_type)
+	else:
+		item_destroyed(Vector2(718,358)) #hard coded because only for prototype purposes
+
+func item_destroyed(pos):
+	var tParticle = destroy_effect.instantiate()
+	add_child(tParticle)
+	tParticle.global_position = pos
+	tParticle.emitting = true
+	emit_signal("raise_progress",50)
+	
+func drop_queue():
+	#clean queue
+	inv_queue.empty_queue()
+	#spawn destroy particles
+	for slot in inv_queue.get_children():
+		var tParticle = destroy_effect.instantiate()
+		add_child(tParticle)
+		tParticle.global_position = slot.global_position
+		tParticle.emitting = true
+
