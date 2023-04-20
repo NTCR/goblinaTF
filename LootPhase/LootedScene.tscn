@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://pdacxooe4ioa"]
+
+[ext_resource type="FontFile" uid="uid://b5crpuqkswlg1" path="res://Take Coffee.otf" id="1_fhaux"]
+[ext_resource type="Script" path="res://LootPhase/LootedScene.gd" id="1_k6t3e"]
+
+[node name="LootedScene" type="Node" node_paths=PackedStringArray("grid_box")]
+script = ExtResource("1_k6t3e")
+grid_box = NodePath("GridLoot")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1400.0
+offset_bottom = 1050.0
+color = Color(0.305882, 0.596078, 0.572549, 1)
+metadata/_edit_lock_ = true
+
+[node name="EscapedLabel" type="Label" parent="."]
+offset_left = 320.0
+offset_top = 76.0
+offset_right = 1024.0
+offset_bottom = 210.0
+theme_override_fonts/font = ExtResource("1_fhaux")
+theme_override_font_sizes/font_size = 60
+text = "SAFE AND SOUND!
+
+this is your loot:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="."]
+offset_left = 558.0
+offset_top = 930.0
+offset_right = 848.0
+offset_bottom = 1007.0
+theme_override_fonts/font = ExtResource("1_fhaux")
+theme_override_font_sizes/font_size = 20
+text = "GO TO THE SHOP"
+
+[node name="GridLoot" type="GridContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.051
+anchor_top = 0.305
+anchor_right = 0.949
+anchor_bottom = 0.853
+offset_left = 0.599998
+offset_top = -0.25
+offset_right = -0.600098
+offset_bottom = 0.349976
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 11

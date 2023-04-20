@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://cv56o683vne6d"]
+
+[ext_resource type="Script" path="res://LootPhase/baddie/enemy.gd" id="1_3y4ut"]
+[ext_resource type="Texture2D" uid="uid://c4ufugyvd26r4" path="res://LootPhase/baddie/cookie0165_effect_cookie2_4_01.png" id="2_4fmwo"]
+[ext_resource type="Texture2D" uid="uid://m4wd7jua2fi5" path="res://LootPhase/baddie/cookie0165_effect_cookie2_3_04.png" id="3_kjttt"]
+[ext_resource type="Texture2D" uid="uid://bvkcxeo6dtfps" path="res://LootPhase/baddie/cookie0165_effect_cookie2_3_03.png" id="4_hibwe"]
+[ext_resource type="Texture2D" uid="uid://cl7wcqekhdkkw" path="res://LootPhase/baddie/cookie0165_effect_cookie2_3_02.png" id="5_60oun"]
+[ext_resource type="Texture2D" uid="uid://b4yq78kelltqf" path="res://LootPhase/baddie/cookie0165_effect_cookie2_3_01.png" id="6_p2v55"]
+[ext_resource type="Texture2D" uid="uid://noj6wp45ukup" path="res://LootPhase/baddie/cookie0165_effect_cookie2_1_01.png" id="7_m72ww"]
+[ext_resource type="Texture2D" uid="uid://bs2ucowt6j31u" path="res://LootPhase/baddie/cookie0165_effect_cookie2_1_02.png" id="8_xo6bx"]
+[ext_resource type="Texture2D" uid="uid://ch7lk20o334fu" path="res://LootPhase/baddie/cookie0165_effect_cookie2_2_01.png" id="9_dq3s1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hrjri"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4fmwo")
+}],
+"loop": false,
+"name": &"alert",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kjttt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hibwe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_60oun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_p2v55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_60oun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hibwe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kjttt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_p2v55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_60oun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hibwe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kjttt")
+}],
+"loop": true,
+"name": &"chase",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_m72ww")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xo6bx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_dq3s1")
+}],
+"loop": true,
+"name": &"rest",
+"speed": 3.0
+}]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_3y4ut")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hrjri")
+animation = &"rest"
+offset = Vector2(0, -100)

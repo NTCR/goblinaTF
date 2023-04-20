@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="GoblinaPrototipo"
-run/main_scene="res://merge_system/MergeSystem.tscn"
+run/main_scene="res://LootPhase/merge_system/MergeSystem.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-ArtifactDB="*res://merge_system/ArtifactDB.tscn"
+ArtifactDB="*res://LootPhase/merge_system/ArtifactDB.tscn"
 
 [display]
 

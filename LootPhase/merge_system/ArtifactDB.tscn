@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgsjswyoq53a6"]
+
+[ext_resource type="Script" path="res://LootPhase/merge_system/artifact_db.gd" id="1_h651o"]
+
+[node name="ArtifactDB" type="Node"]
+script = ExtResource("1_h651o")
