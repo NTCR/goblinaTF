@@ -33,7 +33,7 @@ func insert_artifact(artifact):
 		var cType = merge_candidate.get_meta("type")
 		cTier += 1
 		merge_candidate.set_meta("tier",cTier)
-		merge_candidate.texture = load(ArtifactDB.get_artifact(cType)[cTier])
+		merge_candidate.texture = load(LootDB.get_artifact(cType)[cTier])
 		artifact.queue_free()
 		return true
 	else:
@@ -91,7 +91,7 @@ func is_valid_coord(gridX, gridY, sizeX ,sizeY):
 func can_be_merged(artifact, candidate):
 	if candidate == null:
 		return false
-	if candidate.get_meta("tier") == ArtifactDB.MAX_TIER:
+	if candidate.get_meta("tier") == LootDB.MAX_TIER:
 		return false
 	if candidate.get_instance_id() == artifact.get_instance_id():
 		return false

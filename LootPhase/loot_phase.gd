@@ -11,7 +11,7 @@ func _on_merge_system_raise_progress(v):
 #takes steps towards shop scene
 func transition_to_shop():
 	#store loot
-	ArtifactDB.save_loot($MergeSystem.get_total_loot())
+	LootDB.save_loot($MergeSystem.get_total_loot())
 	#disable spawn
 	remove_child($Spawner)
 	#clean queue

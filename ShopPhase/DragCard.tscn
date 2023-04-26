@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://deybyetoj8f6e"]
+
+[ext_resource type="Texture2D" uid="uid://d25g1ixd84l4o" path="res://ShopPhase/IconosEncanto/icono_UNKOWN.png" id="1_r1as1"]
+[ext_resource type="Script" path="res://ShopPhase/DragCard.gd" id="2_qvv8f"]
+
+[node name="DragCard" type="TextureRect"]
+custom_minimum_size = Vector2(128, 128)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1272.0
+offset_bottom = -922.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_r1as1")
+script = ExtResource("2_qvv8f")

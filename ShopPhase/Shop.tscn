@@ -1,0 +1,519 @@
+[gd_scene load_steps=18 format=3 uid="uid://bpnetx730jk4d"]
+
+[ext_resource type="Script" path="res://ShopPhase/Shop.gd" id="1_s046i"]
+[ext_resource type="Texture2D" uid="uid://dspcl7a0owgiv" path="res://ShopPhase/shop_bg.jpg" id="1_xms8n"]
+[ext_resource type="Texture2D" uid="uid://hxxdt6owgm07" path="res://ShopPhase/Assets/pila.png" id="3_dkfvp"]
+[ext_resource type="Script" path="res://ShopPhase/Revelar.gd" id="3_hcr4i"]
+[ext_resource type="FontFile" uid="uid://b5crpuqkswlg1" path="res://Take Coffee.otf" id="4_c8thx"]
+[ext_resource type="Texture2D" uid="uid://q88nn7yhqqfs" path="res://LootPhase/icons/armor-t2.png" id="6_qp8s2"]
+[ext_resource type="Texture2D" uid="uid://f8ywhg84c2xp" path="res://ShopPhase/Assets/plain-arrow.png" id="7_0bgo0"]
+[ext_resource type="Texture2D" uid="uid://ciljgi25tylkd" path="res://ShopPhase/ArtifactImages/fire.png" id="8_sol8r"]
+[ext_resource type="Script" path="res://ShopPhase/Comercio.gd" id="9_7362m"]
+[ext_resource type="Texture2D" uid="uid://drax4cwyskejl" path="res://ShopPhase/Assets/merchant.jpg" id="9_d8dt2"]
+[ext_resource type="Texture2D" uid="uid://bd5qd5tcy80re" path="res://ShopPhase/Assets/bubble_speech.jpg" id="10_65ahg"]
+[ext_resource type="Script" path="res://ShopPhase/DropPanel.gd" id="12_2edj2"]
+[ext_resource type="Texture2D" uid="uid://8kqv0saff7c0" path="res://ShopPhase/ArtifactImages/moderna.png" id="13_kxd75"]
+[ext_resource type="PackedScene" uid="uid://x14dfm17s6n3" path="res://ShopPhase/DropCard.tscn" id="14_ufl5s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d7ha1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5mll"]
+bg_color = Color(0.380392, 0.0392157, 0.454902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vwab"]
+bg_color = Color(0.6, 0.6, 0.6, 0.458824)
+
+[node name="Shop" type="Control" node_paths=PackedStringArray("butt_revelar", "butt_comercio", "butt_tasar", "butt_volver")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s046i")
+butt_revelar = NodePath("BaseUI/HBoxC-bottmenu/ButtRevelar")
+butt_comercio = NodePath("BaseUI/HBoxC-bottmenu/ButtComercio")
+butt_tasar = NodePath("BaseUI/HBoxC-bottmenu/ButtTasar")
+butt_volver = NodePath("BaseUI/HBoxC-bottmenu/ButtVolver")
+
+[node name="BGShop" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1400.0
+offset_bottom = 1048.0
+texture = ExtResource("1_xms8n")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="BaseUI" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxC-topmenu" type="HBoxContainer" parent="BaseUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 35.0
+anchor_bottom = 3.2
+theme_override_constants/separation = 0
+
+[node name="MargCLibro" type="MarginContainer" parent="BaseUI/HBoxC-topmenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
+
+[node name="ButtLibro" type="Button" parent="BaseUI/HBoxC-topmenu/MargCLibro"]
+custom_minimum_size = Vector2(64, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+text = "LIBRO"
+
+[node name="MargCInv" type="MarginContainer" parent="BaseUI/HBoxC-topmenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+
+[node name="ButtInv" type="Button" parent="BaseUI/HBoxC-topmenu/MargCInv"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+focus_mode = 0
+text = "INVENTARIO"
+
+[node name="MargCInfo" type="MarginContainer" parent="BaseUI/HBoxC-topmenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 256
+theme_override_constants/margin_right = 384
+
+[node name="LabelInfo" type="Label" parent="BaseUI/HBoxC-topmenu/MargCInfo"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "INFORMATION
+GOLD
+ZONE"
+horizontal_alignment = 1
+
+[node name="MargCSett" type="MarginContainer" parent="BaseUI/HBoxC-topmenu"]
+layout_mode = 2
+
+[node name="ButtSett" type="Button" parent="BaseUI/HBoxC-topmenu/MargCSett"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+focus_mode = 0
+text = "AJUSTES"
+
+[node name="HBoxC-bottmenu" type="HBoxContainer" parent="BaseUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 22.4
+anchor_right = 35.0
+anchor_bottom = 26.2
+offset_top = -6.10352e-05
+theme_override_constants/separation = 256
+alignment = 1
+
+[node name="ButtRevelar" type="Button" parent="BaseUI/HBoxC-bottmenu"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+text = "REVELAR"
+
+[node name="ButtComercio" type="Button" parent="BaseUI/HBoxC-bottmenu"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+text = "COMERCIO"
+
+[node name="ButtTasar" type="Button" parent="BaseUI/HBoxC-bottmenu"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+text = "TASAR"
+
+[node name="ButtVolver" type="Button" parent="BaseUI/HBoxC-bottmenu"]
+visible = false
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+text = "VOLVER PRINCIPAL"
+
+[node name="Revelar" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_hcr4i")
+
+[node name="RevelarLeft" type="Button" parent="Revelar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.6
+anchor_top = 5.6
+anchor_right = 16.2
+anchor_bottom = 21.8
+offset_top = -1.52588e-05
+offset_bottom = -6.10352e-05
+focus_mode = 0
+theme_override_colors/icon_pressed_color = Color(0.807843, 0.807843, 0.807843, 1)
+icon = ExtResource("3_dkfvp")
+icon_alignment = 1
+
+[node name="TotalLoot" type="Label" parent="Revelar/RevelarLeft"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.431
+anchor_top = -0.062
+anchor_right = 0.554
+offset_left = -0.256012
+offset_top = -0.32
+offset_right = -0.104004
+offset_bottom = -2.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_c8thx")
+theme_override_font_sizes/font_size = 32
+text = "x100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureLoot" type="TextureRect" parent="Revelar"]
+visible = false
+layout_mode = 0
+offset_left = 832.0
+offset_top = 320.0
+offset_right = 960.0
+offset_bottom = 448.0
+texture = ExtResource("6_qp8s2")
+stretch_mode = 2
+
+[node name="TextureArrow" type="TextureRect" parent="Revelar"]
+visible = false
+layout_mode = 0
+offset_left = 976.0
+offset_top = 352.0
+offset_right = 1040.0
+offset_bottom = 416.0
+texture = ExtResource("7_0bgo0")
+expand_mode = 1
+
+[node name="TextureArtifact" type="TextureRect" parent="Revelar"]
+visible = false
+layout_mode = 0
+offset_left = 1088.0
+offset_top = 320.0
+offset_right = 1216.0
+offset_bottom = 448.0
+texture = ExtResource("8_sol8r")
+
+[node name="Panel" type="Panel" parent="Revelar"]
+visible = false
+layout_mode = 0
+offset_left = 832.0
+offset_top = 576.0
+offset_right = 1216.0
+offset_bottom = 704.0
+
+[node name="ArtifactName" type="Label" parent="Revelar/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "ESPADA MUY MOLONA CON UN NOMBRE LARGO"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+uppercase = true
+max_lines_visible = 2
+
+[node name="ButtAddInv" type="Button" parent="Revelar"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 7.0
+anchor_top = 2.2
+anchor_right = 7.0
+anchor_bottom = 2.2
+offset_left = 552.0
+offset_top = 632.0
+offset_right = 936.0
+offset_bottom = 680.0
+focus_mode = 0
+text = "ANADIR AL INVENTARIO"
+
+[node name="Comercio" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+script = ExtResource("9_7362m")
+
+[node name="ComercioLeft" type="TextureRect" parent="Comercio"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 320.0
+offset_right = 384.0
+offset_bottom = 894.0
+texture = ExtResource("9_d8dt2")
+
+[node name="BubbleSpeech" type="TextureRect" parent="Comercio/ComercioLeft"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = -160.0
+offset_right = 448.0
+offset_bottom = 96.0
+texture = ExtResource("10_65ahg")
+expand_mode = 1
+
+[node name="TextInitial" type="Label" parent="Comercio/ComercioLeft/BubbleSpeech"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 232.0
+offset_bottom = 192.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "HI!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="DropPanel" type="Panel" parent="Comercio"]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 192.0
+offset_right = 1280.0
+offset_bottom = 832.0
+script = ExtResource("12_2edj2")
+
+[node name="TextInfo" type="Label" parent="Comercio/DropPanel"]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 640.0
+theme_override_font_sizes/font_size = 32
+text = "ARRASTRA AQUI EL ARTEFACTO CON EL QUE QUIERES COMERCIAR"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="KickPanel" type="Panel" parent="Comercio"]
+visible = false
+layout_mode = 0
+offset_left = 768.0
+offset_top = 192.0
+offset_right = 1280.0
+offset_bottom = 832.0
+
+[node name="TextInfo" type="Label" parent="Comercio/KickPanel"]
+offset_right = 512.0
+offset_bottom = 512.0
+theme_override_font_sizes/font_size = 32
+text = "SEGURO QUE QUIERES HECHAR AL COMERCIANTE?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtYes" type="Button" parent="Comercio/KickPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.8
+anchor_right = 0.5
+anchor_bottom = 1.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+text = "LEAVE"
+
+[node name="ButtNo" type="Button" parent="Comercio/KickPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+text = "STAY"
+
+[node name="ComercioPanel" type="Panel" parent="Comercio"]
+visible = false
+layout_mode = 0
+offset_left = 768.0
+offset_top = 192.0
+offset_right = 1280.0
+offset_bottom = 832.0
+
+[node name="TextureArtifact" type="TextureRect" parent="Comercio/ComercioPanel"]
+layout_mode = 0
+offset_left = 320.0
+offset_right = 512.0
+offset_bottom = 128.0
+texture = ExtResource("13_kxd75")
+
+[node name="TextComercioCon" type="Label" parent="Comercio/ComercioPanel"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 32
+text = "COMERCIANDO CON:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HCDropZone" type="HBoxContainer" parent="Comercio/ComercioPanel"]
+layout_mode = 0
+offset_top = 128.0
+offset_right = 512.0
+offset_bottom = 256.0
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="DropCard1" parent="Comercio/ComercioPanel/HCDropZone" instance=ExtResource("14_ufl5s")]
+visible = false
+layout_mode = 2
+
+[node name="DropCard2" parent="Comercio/ComercioPanel/HCDropZone" instance=ExtResource("14_ufl5s")]
+visible = false
+layout_mode = 2
+
+[node name="DropCard3" parent="Comercio/ComercioPanel/HCDropZone" instance=ExtResource("14_ufl5s")]
+visible = false
+layout_mode = 2
+
+[node name="DropCard4" parent="Comercio/ComercioPanel/HCDropZone" instance=ExtResource("14_ufl5s")]
+visible = false
+layout_mode = 2
+
+[node name="ScrollCCards" type="ScrollContainer" parent="Comercio/ComercioPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.4
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridCCards" type="GridContainer" parent="Comercio/ComercioPanel/ScrollCCards"]
+layout_mode = 2
+columns = 4
+
+[node name="Sold" type="Control" parent="Comercio/ComercioPanel"]
+visible = false
+layout_mode = 1
+anchor_top = 0.4
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextSold" type="Label" parent="Comercio/ComercioPanel/Sold"]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 256.0
+theme_override_font_sizes/font_size = 32
+text = "CONGRATULATIONS! SOLD FOR 100 GOLD"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="ButtSold" type="Button" parent="Comercio/ComercioPanel/Sold"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.667
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.128021
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "PRESS HERE TO CONTINUE"
+
+[node name="Failed" type="Control" parent="Comercio/ComercioPanel"]
+visible = false
+layout_mode = 1
+anchor_top = 0.4
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextFailed" type="Label" parent="Comercio/ComercioPanel/Failed"]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 256.0
+theme_override_font_sizes/font_size = 32
+text = "SOLD THE ARTIFACT AT THE LOWEST PRICE, 10 GOLD. BETTER LUCK NEXT TIME"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="ButtFailed" type="Button" parent="Comercio/ComercioPanel/Failed"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.667
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.128021
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "PRESS HERE TO CONTINUE"
+
+[node name="PacienciaBar" type="ProgressBar" parent="Comercio"]
+visible = false
+layout_mode = 0
+offset_left = 64.0
+offset_top = 264.0
+offset_right = 256.0
+offset_bottom = 291.0
+theme_override_styles/background = SubResource("StyleBoxFlat_d7ha1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_s5mll")
+step = 1.0
+rounded = true
+
+[node name="PacienciaLabel" type="Label" parent="Comercio/PacienciaBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -1.185
+anchor_right = 1.0
+anchor_bottom = -0.222
+offset_top = -0.00499916
+offset_bottom = -0.00599957
+grow_horizontal = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_4vwab")
+text = "PACIENCIA:"
+horizontal_alignment = 1
+
+[node name="TextNoMerchant" type="Label" parent="Comercio"]
+visible = false
+layout_mode = 0
+offset_left = 64.0
+offset_top = 192.0
+offset_right = 1288.0
+offset_bottom = 832.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "THE MERCHANT HAS LEFT... BUT HE WILL BE BACK AFTER YOUR ADVENTURES!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="button_up" from="BaseUI/HBoxC-topmenu/MargCLibro/ButtLibro" to="." method="_on_butt_libro_button_up"]
+[connection signal="button_up" from="BaseUI/HBoxC-topmenu/MargCInv/ButtInv" to="." method="_on_butt_inv_button_up"]
+[connection signal="button_up" from="BaseUI/HBoxC-bottmenu/ButtRevelar" to="." method="_on_butt_revelar_button_up"]
+[connection signal="button_up" from="BaseUI/HBoxC-bottmenu/ButtComercio" to="." method="_on_butt_comercio_button_up"]
+[connection signal="button_up" from="BaseUI/HBoxC-bottmenu/ButtVolver" to="." method="_on_butt_volver_button_up"]
+[connection signal="button_up" from="Revelar/RevelarLeft" to="Revelar" method="_on_revelar_left_button_up"]
+[connection signal="button_up" from="Revelar/ButtAddInv" to="Revelar" method="_on_butt_add_inv_button_up"]
+[connection signal="begin_phase" from="Comercio/DropPanel" to="Comercio" method="_on_drop_panel_begin_phase"]
+[connection signal="button_up" from="Comercio/KickPanel/ButtYes" to="Comercio" method="_on_butt_leave_up"]
+[connection signal="button_up" from="Comercio/KickPanel/ButtNo" to="Comercio" method="_on_butt_stay_up"]
+[connection signal="card_try" from="Comercio/ComercioPanel/HCDropZone/DropCard1" to="Comercio" method="_on_drop_card_1_card_try"]
+[connection signal="card_try" from="Comercio/ComercioPanel/HCDropZone/DropCard2" to="Comercio" method="_on_drop_card_2_card_try"]
+[connection signal="card_try" from="Comercio/ComercioPanel/HCDropZone/DropCard3" to="Comercio" method="_on_drop_card_3_card_try"]
+[connection signal="card_try" from="Comercio/ComercioPanel/HCDropZone/DropCard4" to="Comercio" method="_on_drop_card_4_card_try"]
+[connection signal="button_up" from="Comercio/ComercioPanel/Sold/ButtSold" to="Comercio" method="_on_butt_sold_button_up"]
+[connection signal="button_up" from="Comercio/ComercioPanel/Failed/ButtFailed" to="Comercio" method="_on_butt_failed_button_up"]

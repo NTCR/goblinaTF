@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://d06k4pf48e5gk"]
+
+[ext_resource type="Script" path="res://ShopPhase/InventoryEntry.gd" id="1_gac4a"]
+[ext_resource type="Texture2D" uid="uid://d25g1ixd84l4o" path="res://ShopPhase/IconosEncanto/icono_UNKOWN.png" id="1_y3hkk"]
+
+[node name="InventoryEntry" type="HBoxContainer" node_paths=PackedStringArray("artifact_image", "artifact_name")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -824.0
+offset_bottom = -922.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+script = ExtResource("1_gac4a")
+artifact_image = NodePath("ArtifactIcon")
+artifact_name = NodePath("ArtifactName")
+
+[node name="ArtifactIcon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("1_y3hkk")
+
+[node name="ArtifactName" type="Label" parent="."]
+custom_minimum_size = Vector2(448, 128)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "NOMBRE MAS LARGO DE LO HABITUAL"
+vertical_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 1
+uppercase = true

@@ -11,7 +11,7 @@ func pickup_item(artifact_type):
 	var artifact = artifact_base.instantiate()
 	artifact.set_meta("type", artifact_type)
 	artifact.set_meta("tier",1)
-	artifact.texture = load(ArtifactDB.get_artifact(artifact_type)[1]) #metadata del item es un dictionary
+	artifact.texture = load(LootDB.get_artifact(artifact_type)[1]) #metadata del item es un dictionary
 	var availableSlot = get_available_slot()
 	if availableSlot == null: #old code, already checked by calling code
 		print("queue is full!")
