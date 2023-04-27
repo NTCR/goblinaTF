@@ -3,6 +3,7 @@ extends Node
 const loot_reward = preload("res://LootPhase/loot/LootReward.tscn")
 
 @export var grid_box : GridContainer
+@export var next_scene : PackedScene
 
 func _ready():
 	var loot = LootDB.load_loot()
@@ -14,3 +15,7 @@ func _ready():
 				reward.apply_texture(LootDB.get_artifact(type)[tier])
 				reward.apply_count(loot[type][tier])
 				grid_box.add_child(reward)
+
+
+func _on_butt_shop_up():
+	get_tree().change_scene_to_file(next_scene.resource_path)

@@ -8,15 +8,21 @@ func _ready():
 	var all_artifactsid = ArtifactDB.ARTIFACTS.keys()
 	for artifact_id in all_artifactsid:
 		var entry = entry_base.instantiate()
-		var artifact_info = ArtifactDB.ARTIFACTS[artifact_id]
-		entry.set_artifactimage(artifact_info["asset"])
-		entry.set_artifactname(artifact_info["name"])
-		entry.set_artifactdesc(artifact_info["desc"])
-		var icon_paths = []
-		for charm in artifact_info["charm"]:
-			icon_paths.append(ArtifactDB.get_cardicon(charm))
-		entry.set_artifactcharms(icon_paths)
-		entry.set_meta("type", artifact_info["type"])
+		if ArtifactDB.is_artifactdiscovered(artifact_id):
+			var artifact_info = ArtifactDB.ARTIFACTS[artifact_id]
+			entry.set_artifactimage(artifact_info["asset"])
+			entry.set_artifactname(artifact_info["name"])
+			entry.set_artifactdesc(artifact_info["desc"])
+			var icon_paths = []
+			for charm_id in artifact_info["charm"]:
+				if ArtifactDB.is_artifactcharmdiscovered(artifact_id,charm_id):
+					icon_paths.append(ArtifactDB.get_cardicon(charm_id))
+				else:
+					icon_paths.append(ArtifactDB.get_cardicon(""))
+			entry.set_artifactcharms(icon_paths)
+			if ArtifactDB.is_artifactcomplete(artifact_id):
+				entry.set_artifactcharm(artifact_info["unlocked"])
+		entry.set_meta("type",ArtifactDB.ARTIFACTS[artifact_id]["type"])
 		entries_node.add_child(entry)
 
 

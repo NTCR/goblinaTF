@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d25g1ixd84l4o"
-path="res://.godot/imported/icono_UNKOWN.png-e80306cf4c49939dfd5fb68b503b06a3.ctex"
+path="res://.godot/imported/UNKOWN.png-853d2ee505eaf8bfa5859dbcbde4bbe7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ShopPhase/IconosEncanto/icono_UNKOWN.png"
-dest_files=["res://.godot/imported/icono_UNKOWN.png-e80306cf4c49939dfd5fb68b503b06a3.ctex"]
+source_file="res://ShopPhase/IconosEncanto/UNKOWN.png"
+dest_files=["res://.godot/imported/UNKOWN.png-853d2ee505eaf8bfa5859dbcbde4bbe7.ctex"]
 
 [params]
 

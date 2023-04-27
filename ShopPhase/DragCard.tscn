@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://deybyetoj8f6e"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="Texture2D" uid="uid://d25g1ixd84l4o" path="res://ShopPhase/IconosEncanto/icono_UNKOWN.png" id="1_r1as1"]
+[ext_resource type="Texture2D" uid="uid://d25g1ixd84l4o" path="res://ShopPhase/IconosEncanto/UNKOWN.png" id="1_r1as1"]
 [ext_resource type="Script" path="res://ShopPhase/DragCard.gd" id="2_qvv8f"]
 
 [node name="DragCard" type="TextureRect"]

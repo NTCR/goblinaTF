@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://de3v87ttvgu61"]
+[gd_scene load_steps=4 format=3 uid="uid://dggq1roxcs3k4"]
 
-[ext_resource type="Texture2D" uid="uid://d25g1ixd84l4o" path="res://ShopPhase/IconosEncanto/icono_UNKOWN.png" id="1_jn86k"]
 [ext_resource type="Script" path="res://ShopPhase/LibroEntry.gd" id="1_pyjjf"]
 [ext_resource type="Texture2D" uid="uid://ujhjaege8b8t" path="res://ShopPhase/IconosEncanto/novalue.png" id="2_gfspd"]
+[ext_resource type="Texture2D" uid="uid://d25g1ixd84l4o" path="res://ShopPhase/IconosEncanto/UNKOWN.png" id="2_uheuv"]
 
-[node name="LibroEntry" type="HBoxContainer" node_paths=PackedStringArray("artifact_image", "artifact_name", "artifact_desc")]
+[node name="LibroEntry" type="HBoxContainer" node_paths=PackedStringArray("artifact_image", "artifact_name", "artifact_desc", "artifact_charm")]
 anchors_preset = -1
 anchor_right = 0.64
 anchor_bottom = 0.122
@@ -16,35 +16,40 @@ theme_override_constants/separation = 0
 script = ExtResource("1_pyjjf")
 artifact_image = NodePath("ArtifactIcon")
 artifact_name = NodePath("HCInfoArtifact/Nombre")
-artifact_desc = NodePath("HCInfoArtifact/Desc")
+artifact_desc = NodePath("HCInfoArtifact/Description")
+artifact_charm = NodePath("Encanto")
 
 [node name="ArtifactIcon" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture = ExtResource("1_jn86k")
+texture = ExtResource("2_uheuv")
 
 [node name="HCInfoArtifact" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="Nombre" type="Label" parent="HCInfoArtifact"]
-custom_minimum_size = Vector2(512, 64)
+custom_minimum_size = Vector2(320, 64)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 32
-text = "NOMBRE"
+text = "???"
 uppercase = true
 
-[node name="Desc" type="Label" parent="HCInfoArtifact"]
-custom_minimum_size = Vector2(512, 0)
+[node name="Description" type="Label" parent="HCInfoArtifact"]
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
-size_flags_vertical = 1
 theme_override_font_sizes/font_size = 16
-text = "Descripcion"
+text = "?????????????????"
 autowrap_mode = 2
 max_lines_visible = 2
-visible_characters = 0
-visible_ratio = 0.0
+
+[node name="Encanto" type="Label" parent="."]
+custom_minimum_size = Vector2(192, 128)
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 2

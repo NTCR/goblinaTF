@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d06k4pf48e5gk"]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://ShopPhase/InventoryEntry.gd" id="1_gac4a"]
-[ext_resource type="Texture2D" uid="uid://d25g1ixd84l4o" path="res://ShopPhase/IconosEncanto/icono_UNKOWN.png" id="1_y3hkk"]
+[ext_resource type="Texture2D" uid="uid://d25g1ixd84l4o" path="res://ShopPhase/IconosEncanto/UNKOWN.png" id="1_y3hkk"]
 
 [node name="InventoryEntry" type="HBoxContainer" node_paths=PackedStringArray("artifact_image", "artifact_name")]
 anchors_preset = 15

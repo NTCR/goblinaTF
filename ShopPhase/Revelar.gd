@@ -1,9 +1,6 @@
 extends Control
 
-var curr_artifact
-
 func _ready():
-	LootDB.save_loot(generate_loot()) #DEBUGGGING. MUST CHANGE
 	update_lootcount()
 
 func current_menu():
@@ -13,9 +10,8 @@ func leave_menu():
 	self.visible=false
 	return true
 
-
 func _on_revelar_left_button_up():
-	var firstq = LootDB.get_firstelementloot()
+	var firstq = LootDB.get_firstelementloot() #missleading name
 	if firstq == null:
 		#no hay loot
 		return
@@ -25,14 +21,11 @@ func _on_revelar_left_button_up():
 	$Panel/ArtifactName.text = ArtifactDB.ARTIFACTS[reward_artifact]["name"]
 	update_lootcount()
 	reveal_state()
-	curr_artifact = reward_artifact
+	ArtifactDB.discover_artifact(reward_artifact)
+	ArtifactDB.inventory.append(reward_artifact)
 
-func _on_butt_add_inv_button_up():
-	ArtifactDB.inventory.append(curr_artifact)
-	curr_artifact = null
+func _on_butt_continue_up():
 	initial_state()
-	print(ArtifactDB.inventory)
-	
 	
 func initial_state():
 	$TextureLoot.visible = false
@@ -40,7 +33,7 @@ func initial_state():
 	$TextureArtifact.visible = false
 	$Panel.visible = false
 	$RevelarLeft.disabled = false
-	$ButtAddInv.visible = false
+	$ButtContinue.visible = false
 	
 func reveal_state():
 	$TextureLoot.visible = true
@@ -48,17 +41,8 @@ func reveal_state():
 	$TextureArtifact.visible = true
 	$Panel.visible = true
 	$RevelarLeft.disabled = true
-	$ButtAddInv.visible = true
+	$ButtContinue.visible = true
 	
 func update_lootcount():
 	$RevelarLeft/TotalLoot.text = "x" + str(LootDB.get_nloot())
-	
-	
-#debug purposes
-func generate_loot():
-	var loot = {
-		"sword" : {1:1,2:1,4:1},
-		"armor" : {1:1,2:2},
-		"potato" : {1:4,2:2,3:1}
-	}
-	return loot
+

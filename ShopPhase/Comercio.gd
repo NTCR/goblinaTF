@@ -92,6 +92,7 @@ func _card_try(charm_id):
 		print("YES")
 		_merchant_reaction(":D")
 		#unlock charm
+		ArtifactDB.discover_artifactcharm(curr_artifact,charm_id)
 		_good_card(charm_id)
 	elif charm_id in ArtifactDB.ARTIFACTS[curr_artifact]["properties"]:
 		_merchant_reaction("OK.")
