@@ -127,4 +127,10 @@ func is_artifactcomplete(artifact_id):
 		if !LIBRO_PROGRESS[artifact_id][_charm]:
 			return false
 	return true
-	
+
+func is_gamecompleted():
+	for artifact_id in ARTIFACTS.keys():
+		for charm in ARTIFACTS[artifact_id]["charm"]:
+			if !LIBRO_PROGRESS[artifact_id][charm]:
+				return false
+	return true

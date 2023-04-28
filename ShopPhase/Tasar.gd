@@ -1,6 +1,6 @@
 extends Control
 
-const entry_base = preload("res://ShopPhase/LibroEntry.tscn")
+const entry_base = preload("res://ShopPhase/Submenus/LibroEntry.tscn")
 
 var curr_artifact
 var curr_reveal
@@ -36,6 +36,9 @@ func _on_butt_completed_up():
 	_restore_initial_state()
 
 func _on_butt_tasar_up():
+	if ArtifactDB.curr_gold < _calculate_price():
+		_restore_initial_state()
+		return
 	$TasarPanel/Valid/ContenedorLibroEntry.get_child(0).queue_free()
 	$TasarPanel/Valid.visible = false
 	$TasarPanel/Reveal.visible = true
@@ -55,7 +58,6 @@ func _restore_initial_state():
 	$TasarPanel/Completado.visible = false
 	$TasarPanel/Valid.visible = false
 	$TasarPanel/Reveal.visible = false
-	$TasarPanel/NoGold.visible= false
 	curr_artifact = null
 	curr_reveal = null
 

@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://cw7r5myuk3el3"]
+[gd_scene load_steps=11 format=3 uid="uid://cw7r5myuk3el3"]
 
 [ext_resource type="Script" path="res://LootPhase/loot_phase.gd" id="1_igp8s"]
-[ext_resource type="PackedScene" uid="uid://pdacxooe4ioa" path="res://LootPhase/LootedScene.tscn" id="2_kgp45"]
 [ext_resource type="PackedScene" uid="uid://som8pbdbh3jo" path="res://LootPhase/bg/ScrollingBG.tscn" id="2_npnv8"]
 [ext_resource type="PackedScene" uid="uid://clwkacs3a5b4t" path="res://LootPhase/player/Player.tscn" id="3_ljp1j"]
 [ext_resource type="PackedScene" uid="uid://c25ia3feinlyh" path="res://LootPhase/merge_system/MergeSystem.tscn" id="4_bnegk"]
@@ -211,7 +210,6 @@ _data = {
 
 [node name="LootPhase" type="Node"]
 script = ExtResource("1_igp8s")
-nextScene = ExtResource("2_kgp45")
 
 [node name="ScrollingBG" parent="." instance=ExtResource("2_npnv8")]
 

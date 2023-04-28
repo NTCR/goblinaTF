@@ -3,6 +3,7 @@ extends Control
 func _ready():
 	update_lootcount()
 
+
 func current_menu():
 	self.visible=true
 

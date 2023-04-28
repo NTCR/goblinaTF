@@ -1,8 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://bpnetx730jk4d"]
+[gd_scene load_steps=21 format=3 uid="uid://bpnetx730jk4d"]
 
 [ext_resource type="Script" path="res://ShopPhase/Shop.gd" id="1_s046i"]
 [ext_resource type="Texture2D" uid="uid://dspcl7a0owgiv" path="res://ShopPhase/shop_bg.jpg" id="1_xms8n"]
-[ext_resource type="PackedScene" uid="uid://cw7r5myuk3el3" path="res://LootPhase/LootPhase.tscn" id="2_pjafp"]
 [ext_resource type="Texture2D" uid="uid://hxxdt6owgm07" path="res://ShopPhase/Assets/pila.png" id="3_dkfvp"]
 [ext_resource type="Script" path="res://ShopPhase/Revelar.gd" id="3_hcr4i"]
 [ext_resource type="FontFile" uid="uid://b5crpuqkswlg1" path="res://Take Coffee.otf" id="4_c8thx"]
@@ -35,7 +34,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s046i")
-next_scene = ExtResource("2_pjafp")
 butt_revelar = NodePath("BaseUI/HBoxC-bottmenu/ButtRevelar")
 butt_comercio = NodePath("BaseUI/HBoxC-bottmenu/ButtComercio")
 butt_tasar = NodePath("BaseUI/HBoxC-bottmenu/ButtTasar")
@@ -730,6 +728,7 @@ stretch_mode = 0
 [connection signal="button_up" from="BaseUI/HBoxC-bottmenu/ButtVolver" to="." method="_on_butt_volver_button_up"]
 [connection signal="button_up" from="Revelar/RevelarLeft" to="Revelar" method="_on_revelar_left_button_up"]
 [connection signal="button_up" from="Revelar/ButtContinue" to="Revelar" method="_on_butt_continue_up"]
+[connection signal="game_over" from="Comercio" to="." method="_on_comercio_game_over"]
 [connection signal="begin_phase" from="Comercio/DropPanel" to="Comercio" method="_on_drop_panel_begin_phase"]
 [connection signal="button_up" from="Comercio/KickPanel/ButtYes" to="Comercio" method="_on_butt_leave_up"]
 [connection signal="button_up" from="Comercio/KickPanel/ButtNo" to="Comercio" method="_on_butt_stay_up"]

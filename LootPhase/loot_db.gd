@@ -5,6 +5,7 @@ const LOOT_PATH = "res://LootPhase/loot/"
 const TYPES = ["sword","armor","potato"]
 const MAX_TIER = 4
 var loot = {}
+#1key tipo 2key tier value nobtained
 
 #dictionary with loot artifacts
 const ARTIFACTS = {

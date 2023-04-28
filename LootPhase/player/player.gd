@@ -1,7 +1,6 @@
 extends Area2D
 
 @onready var _animated_sprite = $AnimatedSprite2D
-@onready var _collision_shape = $CollisionShape2D
 @onready var _loot_timer = $LootTimer
 
 #informs merge system of looting

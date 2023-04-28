@@ -17,10 +17,10 @@ func make_free():
 	card_texture.texture = null
 	free_slot = true
 
-func _can_drop_data(at_position, data):
+func _can_drop_data(_at_position, data):
 	#data es un artefacto id
 	if ArtifactDB.CHARMS.has(data) and free_slot:
 		return true
 
-func _drop_data(at_position, data):
+func _drop_data(_at_position, data):
 	emit_signal("card_try",data)

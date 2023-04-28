@@ -1,7 +1,5 @@
 extends Node
 
-@export var nextScene : PackedScene
-
 #called by merge system. raises progress
 func _on_merge_system_raise_progress(v):
 	$ProgressBar.value += v
@@ -20,4 +18,4 @@ func transition_to_shop():
 	$TransitionMerge.play("fade_out")
 
 func change_lootedScene():
-	get_tree().change_scene_to_file(nextScene.resource_path)
+	get_tree().change_scene_to_file("res://LootPhase/LootedScene.tscn")

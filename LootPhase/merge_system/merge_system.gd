@@ -18,7 +18,7 @@ var last_container = null #so we can return the artifact to its original contain
 var last_pos = Vector2()
 
 #called every frame: check if mouse in merge zone. enables grab and release
-func _process(delta):
+func _process(_delta):
 	var cursor_pos = get_global_mouse_position()
 	if Input.is_action_just_pressed("inv_grab"):
 		grab(cursor_pos)

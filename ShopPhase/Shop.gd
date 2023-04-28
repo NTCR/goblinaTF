@@ -1,8 +1,9 @@
 extends Control
 
-const book_asset = preload("res://ShopPhase/LibroSubMenu.tscn")
-const inv_asset = preload("res://ShopPhase/InventorySubMenu.tscn")
-@export var next_scene : PackedScene
+const book_asset = preload("res://ShopPhase/Submenus/LibroSubMenu.tscn")
+const inv_asset = preload("res://ShopPhase/Submenus/InventorySubMenu.tscn")
+var loot_scene = "res://LootPhase/LootPhase.tscn"
+var end_scene = "res://EndScreen.tscn"
 @export var butt_revelar  : Button
 @export var butt_comercio : Button
 @export var butt_tasar  : Button
@@ -86,4 +87,8 @@ func show_libro():
 
 
 func _on_butt_door_up():
-	get_tree().change_scene_to_file(next_scene.resource_path)
+	get_tree().change_scene_to_file(loot_scene)
+
+
+func _on_comercio_game_over():
+	get_tree().change_scene_to_file(end_scene)

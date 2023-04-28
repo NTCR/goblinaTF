@@ -8,6 +8,8 @@ var merchant_left = false
 
 const card_base = preload("res://ShopPhase/DragCard.tscn")
 
+signal game_over()
+
 func current_menu():
 	self.visible=true
 	
@@ -46,6 +48,10 @@ func _on_drop_panel_begin_phase(artifact_id):
 		$ComercioPanel/ScrollCCards/GridCCards.add_child(card_instance)
 
 func _artifact_sold():
+	#check if game completed
+	if ArtifactDB.is_gamecompleted():
+		emit_signal("game_over")
+		return
 	#get rid of card
 	for card in $ComercioPanel/ScrollCCards/GridCCards.get_children():
 		card.queue_free()

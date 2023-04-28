@@ -18,7 +18,7 @@ func disable_drag():
 	disabled = true
 	modulate.a = 0.5
 
-func _get_drag_data(at_position):
+func _get_drag_data(_at_position):
 	if disabled:
 		return
 	var preview = drag.instantiate()

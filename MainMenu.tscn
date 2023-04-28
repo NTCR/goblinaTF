@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cp6d5un8ii7x5"]
+[gd_scene load_steps=6 format=3 uid="uid://cp6d5un8ii7x5"]
 
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_m2kbk"]
 [ext_resource type="FontFile" uid="uid://b5crpuqkswlg1" path="res://Take Coffee.otf" id="1_wxoju"]
-[ext_resource type="PackedScene" uid="uid://cw7r5myuk3el3" path="res://LootPhase/LootPhase.tscn" id="2_4v7rh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbw05"]
 bg_color = Color(0, 0, 0, 0.352941)
@@ -27,12 +26,12 @@ corner_radius_bottom_left = 20
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_m2kbk")
-nextScene = ExtResource("2_4v7rh")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1400.0
 offset_bottom = 1048.0
 color = Color(0, 0.580392, 0.337255, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_right = 1400.0
