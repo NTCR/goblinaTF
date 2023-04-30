@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="GoblinaPrototipo"
-run/main_scene="res://MainMenu.tscn"
+run/main_scene="res://general_phase/main_menu.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-LootDB="*res://LootPhase/LootDB.tscn"
-ArtifactDB="*res://ShopPhase/ArtifactDB.tscn"
+LootDB="*res://loot_phase/loot_db.tscn"
+ArtifactDB="*res://shop_phase/ArtifactDB.tscn"
 
 [display]
 

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqy37tv54q4f5"]
+
+[ext_resource type="Script" path="res://loot_phase/player/player.gd" id="1_jqr46"]
+[ext_resource type="SpriteFrames" path="res://loot_phase/player/player_animations.tres" id="2_34igi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mbfgr"]
+size = Vector2(112, 156)
+
+[node name="Player" type="Area2D" node_paths=PackedStringArray("animated_sprite", "loot_timer")]
+script = ExtResource("1_jqr46")
+animated_sprite = NodePath("AnimatedSprite2D")
+loot_timer = NodePath("LootTimer")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_34igi")
+animation = &"merge_walk"
+offset = Vector2(0, -100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-22, 12)
+shape = SubResource("RectangleShape2D_mbfgr")
+
+[node name="LootTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="LootTimer" to="." method="_on_loot_timer_timeout"]

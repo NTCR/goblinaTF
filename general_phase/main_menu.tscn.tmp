@@ -1,0 +1,109 @@
+[gd_scene load_steps=7 format=3 uid="uid://wt5sbtcyjlvl"]
+
+[ext_resource type="Script" path="res://general_phase/main_menu.gd" id="1_fxfal"]
+[ext_resource type="FontFile" uid="uid://b5crpuqkswlg1" path="res://Take Coffee.otf" id="2_l2oj4"]
+[ext_resource type="PackedScene" uid="uid://okd0m8ey3dgg" path="res://loot_phase/loot_phase.tscn" id="2_r6erp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbw05"]
+bg_color = Color(0, 0, 0, 0.352941)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehphh"]
+bg_color = Color(0, 0, 0, 0.470588)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lh07s"]
+bg_color = Color(0, 0, 0, 0.588235)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="MainMenu" type="Node"]
+script = ExtResource("1_fxfal")
+next_scene = ExtResource("2_r6erp")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1400.0
+offset_bottom = 1048.0
+color = Color(0, 0.580392, 0.337255, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 1400.0
+offset_bottom = 1048.0
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="GameTitle" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_l2oj4")
+theme_override_font_sizes/font_size = 100
+text = "TIENDA DE GOBLINA"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="VButtContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="CNewG" type="MarginContainer" parent="MarginContainer/VBoxContainer/VButtContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="ButtNewG" type="Button" parent="MarginContainer/VBoxContainer/VButtContainer/CNewG"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_l2oj4")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbw05")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ehphh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lh07s")
+text = "New Game"
+
+[node name="CSett" type="MarginContainer" parent="MarginContainer/VBoxContainer/VButtContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="ButtSett" type="Button" parent="MarginContainer/VBoxContainer/VButtContainer/CSett"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_l2oj4")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbw05")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ehphh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lh07s")
+text = "Settings"
+
+[node name="CFAQ" type="MarginContainer" parent="MarginContainer/VBoxContainer/VButtContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="ButtFAQ" type="Button" parent="MarginContainer/VBoxContainer/VButtContainer/CFAQ"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_l2oj4")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbw05")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ehphh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lh07s")
+text = "Made By"
+
+[connection signal="button_up" from="MarginContainer/VBoxContainer/VButtContainer/CNewG/ButtNewG" to="." method="_on_butt_new_g_button_up"]

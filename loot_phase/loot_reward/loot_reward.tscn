@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://iwieolcktbsx"]
+
+[ext_resource type="Script" path="res://loot_phase/loot_reward/loot_reward.gd" id="1_hemkn"]
+[ext_resource type="Texture2D" uid="uid://c5n6qffhyh2ay" path="res://loot_phase/loot_base/armor.png" id="2_5abdp"]
+[ext_resource type="FontFile" uid="uid://b5crpuqkswlg1" path="res://Take Coffee.otf" id="3_6asxs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgdt2"]
+bg_color = Color(0, 0, 0, 0.266667)
+
+[node name="LootReward" type="PanelContainer" node_paths=PackedStringArray("member_count", "member_texture")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1304.0
+offset_bottom = -866.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vgdt2")
+script = ExtResource("1_hemkn")
+member_count = NodePath("VBoxContainer/Count")
+member_texture = NodePath("VBoxContainer/LootTexture")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="LootTexture" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_5abdp")
+stretch_mode = 2
+
+[node name="Count" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6asxs")
+theme_override_font_sizes/font_size = 40
+text = "x100"
+horizontal_alignment = 2
+vertical_alignment = 2

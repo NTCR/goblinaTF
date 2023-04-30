@@ -1,0 +1,262 @@
+[gd_scene load_steps=12 format=3 uid="uid://okd0m8ey3dgg"]
+
+[ext_resource type="Script" path="res://loot_phase/loot_phase.gd" id="1_7oxu8"]
+[ext_resource type="PackedScene" uid="uid://p7e50ddj3kbe" path="res://loot_phase/looted_screen.tscn" id="2_jfgcw"]
+[ext_resource type="PackedScene" uid="uid://dy74duvr62k3f" path="res://loot_phase/bg/scrolling_bg.tscn" id="2_xd462"]
+[ext_resource type="PackedScene" uid="uid://dqy37tv54q4f5" path="res://loot_phase/player/player.tscn" id="3_gge33"]
+[ext_resource type="PackedScene" uid="uid://dbehx46ulmjfc" path="res://loot_phase/merge_system/merge_system.tscn" id="4_x200y"]
+[ext_resource type="Script" path="res://loot_phase/spawner.gd" id="5_pdxo7"]
+[ext_resource type="PackedScene" uid="uid://t5qsruuurpn7" path="res://loot_phase/enemy/enemy.tscn" id="6_qwwxu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fay25"]
+bg_color = Color(0.619608, 0.298039, 0.792157, 1)
+
+[sub_resource type="Animation" id="Animation_ctl8a"]
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.960784)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../ProgressEndPhase:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Enemy:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Enemy:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1712, 278)]
+}
+
+[sub_resource type="Animation" id="Animation_qtkwf"]
+resource_name = "fade_out"
+length = 12.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.960784), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../ProgressEndPhase:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Enemy:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Enemy:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3, 5.4, 8.3, 9.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1712, 278), Vector2(1200, 278), Vector2(1200, 278), Vector2(1504, 278)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../ScrollingBG")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(5.4, 8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"stop_bg"
+}, {
+"args": [],
+"method": &"inverse_bg"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Player")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(5.4, 8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"transition_merge"
+}, {
+"args": [],
+"method": &"enter_runner"
+}]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Enemy")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(7, 8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_alert"
+}, {
+"args": [],
+"method": &"play_chase"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("..")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(12),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_change_looted_scene"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c4ji5"]
+_data = {
+"RESET": SubResource("Animation_ctl8a"),
+"fade_out": SubResource("Animation_qtkwf")
+}
+
+[node name="LootPhase" type="Node" node_paths=PackedStringArray("merge_system", "spawner", "progress_bar", "animation_transition")]
+script = ExtResource("1_7oxu8")
+merge_system = NodePath("MergeSystem")
+spawner = NodePath("Spawner")
+progress_bar = NodePath("ProgressEndPhase")
+animation_transition = NodePath("TransitionMerge")
+next_scene = ExtResource("2_jfgcw")
+
+[node name="ScrollingBG" parent="." instance=ExtResource("2_xd462")]
+
+[node name="Player" parent="." instance=ExtResource("3_gge33")]
+position = Vector2(683, 278)
+
+[node name="MergeSystem" parent="." instance=ExtResource("4_x200y")]
+modulate = Color(1, 1, 1, 0.960784)
+points_per_artifact = 100
+
+[node name="Spawner" type="Node" parent="." node_paths=PackedStringArray("spawnPoint")]
+script = ExtResource("5_pdxo7")
+spawnPoint = NodePath("ItemSpawn")
+
+[node name="Timer" type="Timer" parent="Spawner"]
+wait_time = 2.0
+autostart = true
+
+[node name="ItemSpawn" type="Marker2D" parent="Spawner"]
+position = Vector2(1561, 343)
+
+[node name="ProgressEndPhase" type="ProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -248.0
+offset_top = 30.0
+offset_right = 248.0
+offset_bottom = 57.0
+grow_horizontal = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_fay25")
+
+[node name="TransitionMerge" type="AnimationPlayer" parent="."]
+root_node = NodePath("../MergeSystem")
+libraries = {
+"": SubResource("AnimationLibrary_c4ji5")
+}
+
+[node name="Enemy" parent="." instance=ExtResource("6_qwwxu")]
+position = Vector2(1712, 278)
+
+[connection signal="looted" from="Player" to="MergeSystem" method="_on_player_looted"]
+[connection signal="loot_dropped" from="MergeSystem" to="." method="_on_merge_system_loot_dropped"]
+[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_Spawn_timeout"]
