@@ -7,6 +7,7 @@ var _grid_height = 0
 var _grid = {}  
 
 func _ready():
+	#initializes GRID
 	var _size = _get_grid_size(self)
 	_grid_width = _size.x
 	_grid_height = _size.y
@@ -15,7 +16,18 @@ func _ready():
 		_grid[_x] = {}
 		for _y in range(_grid_height):
 			_grid[_x][_y] = false
- 
+
+func grab_artifact(_pos):
+	var _artifact = _get_artifact_under_pos(_pos)
+	if _artifact == null:
+		return null
+	var _artifact_pos = _artifact.global_position + Vector2(CELL_SIZE / 2, CELL_SIZE / 2)
+	var _g_pos = _pos_to_grid_coord(_artifact_pos)
+	var _artifact_size = _get_grid_size(_artifact)
+	_set_grid_space(_g_pos.x, _g_pos.y, _artifact_size.x, _artifact_size.y, false)
+	_artifact.move_to_front()
+	return _artifact
+
 func insert_artifact(_artifact):
 	var _artifact_pos = _artifact.global_position + Vector2(CELL_SIZE / 2, CELL_SIZE / 2) #makes interaction smoother
 	var _g_pos = _pos_to_grid_coord(_artifact_pos) #grid coordinates
@@ -35,25 +47,23 @@ func insert_artifact(_artifact):
 		var _c_type = _merge_candidate.get_meta("type")
 		_c_tier += 1
 		_merge_candidate.set_meta("tier",_c_tier)
-		_merge_candidate.texture = load(LootDB.get_loot_bag(_c_type)[_c_tier])
+		_merge_candidate.texture = load(LootDB.get_loot_bag(_c_type,_c_tier))
 		_artifact.queue_free()
 		return true
 	else:
 		return false
- 
-func grab_artifact(_pos):
-	var _artifact = _get_artifact_under_pos(_pos)
-	if _artifact == null:
-		return null
-	var _artifact_pos = _artifact.global_position + Vector2(CELL_SIZE / 2, CELL_SIZE / 2)
-	var _g_pos = _pos_to_grid_coord(_artifact_pos)
-	var _artifact_size = _get_grid_size(_artifact)
-	_set_grid_space(_g_pos.x, _g_pos.y, _artifact_size.x, _artifact_size.y, false)
-	_artifact.move_to_front()
-	return _artifact
+
 
 
 #PRIVATE
+#this methods support grab and drop (insert)
+
+func _get_artifact_under_pos(_pos):
+	for _artifact in get_children():
+		if _artifact.get_global_rect().has_point(_pos):
+			return _artifact
+	return null
+
 #global pos to grid coord
 func _pos_to_grid_coord(_pos):
 	var _local_pos = _pos - get_global_rect().position
@@ -100,9 +110,3 @@ func _set_grid_space(_x, _y, _w, _h, _state):
 		for _j in range(_y, _y + _h):
 			_grid[_i][_j] = _state
 
- 
-func _get_artifact_under_pos(_pos):
-	for _artifact in get_children():
-		if _artifact.get_global_rect().has_point(_pos):
-			return _artifact
-	return null

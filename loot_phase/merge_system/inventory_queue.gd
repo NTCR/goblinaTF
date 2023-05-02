@@ -14,7 +14,7 @@ func pickup_item(_artifact_type):
 	var _artifact = ARTIFACT_BASE.instantiate()
 	_artifact.set_meta("type", _artifact_type)
 	_artifact.set_meta("tier",1)
-	_artifact.texture = load(LootDB.get_loot_bag(_artifact_type)[1]) #metadata del item es un dictionary
+	_artifact.texture = load(LootDB.get_loot_bag(_artifact_type,1)) #metadata del item es un dictionary
 	var _availableSlot = get_available_slot() #already checkd if free slot
 	_artifact.position = Vector2( (_availableSlot.size.x / 2) - (_artifact.texture.get_width()/2),
 			(_availableSlot.size.y/2) - (_artifact.texture.get_height()/2) )

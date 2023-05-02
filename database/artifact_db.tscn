@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://database/artifact_db.gd" id="1_854c1"]
+
+[node name="ArtifactDB" type="Node"]
+script = ExtResource("1_854c1")

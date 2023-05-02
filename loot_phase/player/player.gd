@@ -1,5 +1,4 @@
 extends Area2D
-# Script purpose is mostly animation cycling
 
 # Informs merge system of looting action
 signal looted(loot_type)

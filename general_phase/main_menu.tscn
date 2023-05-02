@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://wt5sbtcyjlvl"]
+[gd_scene load_steps=6 format=3 uid="uid://b2v44vf0evvmh"]
 
 [ext_resource type="Script" path="res://general_phase/main_menu.gd" id="1_fxfal"]
 [ext_resource type="FontFile" uid="uid://b5crpuqkswlg1" path="res://Take Coffee.otf" id="2_l2oj4"]
-[ext_resource type="PackedScene" uid="uid://okd0m8ey3dgg" path="res://loot_phase/loot_phase.tscn" id="2_r6erp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbw05"]
 bg_color = Color(0, 0, 0, 0.352941)
@@ -27,7 +26,7 @@ corner_radius_bottom_left = 20
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_fxfal")
-next_scene = ExtResource("2_r6erp")
+next_scene = "res://loot_phase/loot_phase.tscn"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1400.0

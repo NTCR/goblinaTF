@@ -5,6 +5,7 @@
 
 [node name="LootedScreen" type="Node" node_paths=PackedStringArray("grid_box")]
 script = ExtResource("1_xxhx4")
+shop_scene = "res://shop_phase/shop_phase.tscn"
 grid_box = NodePath("GridLoot")
 
 [node name="ColorRect" type="ColorRect" parent="."]

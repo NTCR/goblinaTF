@@ -23,31 +23,22 @@ var _last_pos = Vector2()
 # Check if mouse in merge zone. Enables grab and release
 func _process(_delta):
 	var _cursor_pos = get_global_mouse_position()
-	if Input.is_action_just_pressed("inv_grab"):
+	if Input.is_action_just_pressed("left_mouse"):
 		_grab(_cursor_pos)
-	if Input.is_action_just_released("inv_grab"):
+	if Input.is_action_just_released("left_mouse"):
 		_release(_cursor_pos)
 	if _artifact_held != null:
 		_artifact_held.global_position = _cursor_pos + _artifact_offset #artifact follows the mouse
 
 # Returns a loot structure
-func get_total_loot():
+func store_loot():
 	var _arr_items = grid_bkpk.get_children()
-	var _output_dict = {}
 	for _item in _arr_items:
 		var _type = _item.get_meta("type")
 		var _tier = _item.get_meta("tier")
-		if _output_dict.has(_type):
-			if _output_dict[_type].has(_tier):
-				_output_dict[_type ][_tier] += 1
-			else:
-				_output_dict[_type][_tier] = 1
-		else:
-			_output_dict[_type] = {}
-			_output_dict[_type][_tier] = 1
-	return _output_dict
+		LootDB.add_to_loot(_type,_tier)
 
-# Called to drop queue
+# Called to drop queue TEMPORAL
 func drop_queue():
 	#clean queue
 	inv_queue.empty_queue()
@@ -87,22 +78,14 @@ func _release(_cursor_pos):
 	else: #c is a container but with no such method
 		_return_item()
 
+# Signal received from player. Generates loot bag in queue
+func _on_player_looted(_loot_type):
+	if inv_queue.get_available_slot() != null:
+		inv_queue.pickup_item(_loot_type)
+	else:
+		_item_destroyed(Vector2(718,358)) #hard coded because only for prototype purposes
 
-#HELPERS
-#ray function
-func _get_container_under_cursor(_cursor_pos):
-	var containers = [grid_bkpk, inv_queue, inv_base] #order matters. sets priority
-	for c in containers:
-		if c.get_global_rect().has_point(_cursor_pos):
-			return c
-	return null
-
-#throw artifact
-func _drop_item():
-	_artifact_held.queue_free() #deletes item
-	_artifact_held = null
-	_item_destroyed(get_global_mouse_position())
-
+#LOOT STATE AFTER RELEASE
 func _return_item(): #will revise code. child order etc.
 	if _last_container != grid_bkpk:
 			_drop_item()
@@ -113,18 +96,23 @@ func _return_item(): #will revise code. child order etc.
 		_last_container.add_child(_artifact_held)
 		_artifact_held = null
 
-func _on_player_looted(_loot_type): #signal received from player
-	if inv_queue.get_available_slot() != null:
-		inv_queue.pickup_item(_loot_type)
-	else:
-		_item_destroyed(Vector2(718,358)) #hard coded because only for prototype purposes
-
+func _drop_item():
+	_artifact_held.queue_free() #deletes item
+	_artifact_held = null
+	_item_destroyed(get_global_mouse_position())
+#HELPERS
+#ray function
+func _get_container_under_cursor(_cursor_pos):
+	var containers = [grid_bkpk, inv_queue, inv_base] #order matters. sets priority
+	for c in containers:
+		if c.get_global_rect().has_point(_cursor_pos):
+			return c
+	return null
+#destroy effect
 func _item_destroyed(_pos):
 	var tParticle = DESTROY_EFFECT.instantiate()
 	add_child(tParticle)
 	tParticle.global_position = _pos
 	tParticle.emitting = true
 	emit_signal("loot_dropped",points_per_artifact)
-	
-
 
