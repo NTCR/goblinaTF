@@ -28,7 +28,7 @@ const LOOT_BAG = {
 }
 
 const LOOT = {
-	TYPES["SWORD"] : LOOT_PATH + "sword.png",
+	TYPES.SWORD : LOOT_PATH + "sword.png",
 	TYPES["ARMOR"] : LOOT_PATH + "armor.png",
 	TYPES["POTATO"] : LOOT_PATH + "potato.png",
 }

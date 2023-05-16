@@ -17,9 +17,7 @@ func _can_drop_data(_at_position, _data):#check if is loot_bag artifact?
 	var _preview_position = _at_position + _data.preview_offset()
 	var _grid_pos = _calculate_grid_coordinates(_preview_position + Vector2(CELL_SIZE / 2, CELL_SIZE / 2)) #makes interaction smoother
 	#check if can be merged
-	if _is_grid_space_merge_candidate(_grid_pos,_data):
-		print("merge!")
-		return false
+	
 	#check if space available 
 	var _loot_size = _data.loot_size()
 	if _is_grid_space_available(_grid_pos, _loot_size):
@@ -45,7 +43,7 @@ func _draw():
 		for _y in range(N_ROWS):
 			draw_rect(Rect2(_x*CELL_SIZE,_y*CELL_SIZE,CELL_SIZE,CELL_SIZE), color_grid, false, 1.0)
 
-func _set_grid_space(_grid_position : Vector2, _grid_size : Vector2, _id : Loot):
+func _set_grid_space(_grid_position : Vector2, _grid_size : Vector2, _id):
 	for _i in range(_grid_position.x, _grid_position.x + _grid_size.x):
 		for _j in range(_grid_position.y, _grid_position.y + _grid_size.y):
 			_grid[ Vector2(_i, _j) ] = _id
@@ -61,13 +59,6 @@ func _is_grid_space_available(_grid_position : Vector2, _grid_size : Vector2) ->
 			if _grid[ Vector2(_i, _j) ]:
 				return false
 	return true
-
-func _is_grid_space_merge_candidate(_grid_position : Vector2, _id):
-	if _grid_position.x < 0 or _grid_position.y < 0:
-		return false
-	if _grid[ Vector2(_grid_position.x, _grid_position.y) ] == null:
-		return false
-	return _grid[ Vector2(_grid_position.x, _grid_position.y) ].is_equal(_id)
 
 func _calculate_grid_coordinates(_local_position : Vector2) -> Vector2:
 	return (_local_position / CELL_SIZE).floor()
