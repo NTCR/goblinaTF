@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://pwm8sh3g5nb0"]
+
+[ext_resource type="Script" path="res://loot_phase/loot_bag.gd" id="1_2q4le"]
+
+[node name="LootBag" type="TextureRect"]
+expand_mode = 1
+script = ExtResource("1_2q4le")
