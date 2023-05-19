@@ -70,6 +70,7 @@ offset_right = 0.288086
 offset_bottom = -0.192078
 
 [node name="Preview" type="TextureRect" parent="Bag"]
+visible = false
 layout_mode = 0
 offset_left = 84.0
 offset_top = 40.0

@@ -5,8 +5,9 @@ const LOOT_TEXTURES = {
 	1 : "res://loot_phase/loot/crate_common.png",
 	2 : "res://loot_phase/loot/crate_uncommon.png",
 	3 : "res://loot_phase/loot/crate_unique.png",
-	4 : "res://loot_phase/loot/crate_epic.png"
+	4 : "res://loot_phase/loot/crate_epic.png",
 	}
+const DIRECTIONS = [Vector2(1,0), Vector2(-1,0), Vector2(0,1), Vector2(0,-1)]
 const CELL_SIZE = 144
 const N_COLUMNS = 5
 const N_ROWS = 4
@@ -21,12 +22,13 @@ func _ready():
 		for _y in range(N_ROWS):
 			_grid[ Vector2(_x,_y) ] = false
 
-func _process(delta):
+func _process(_delta):
 	var _mouse_global_position = get_global_mouse_position()
 	if _loot_held.is_held() and get_global_rect().has_point(_mouse_global_position):
 		var _loot_in_mouse = _is_pos_on_loot(_mouse_global_position)
 		var _grid_pos = _grid_drop_coordinates(_mouse_global_position)
 		var _loot_info : Loot = _loot_held.loot
+		var _candidate_pos = _grid_find_space_available(_grid_pos, _loot_info.size_cells)
 		#if on loot -> mark loot if can merge or swap
 		if _loot_in_mouse:
 			$Preview.position = _grid_coordinates_to_local(_loot_in_mouse.grid_position) + $BagGrid.position
@@ -34,8 +36,8 @@ func _process(delta):
 			$Preview.visible = true
 		#if slot valid -> mark slot candidate
 		#if empty - size held and preview pos
-		elif _grid_is_space_available(_grid_pos, _loot_info.size_cells):
-			$Preview.position = _grid_coordinates_to_local(_grid_pos) + $BagGrid.position
+		elif _grid_is_coordinates_valid(_candidate_pos):
+			$Preview.position = _grid_coordinates_to_local(_candidate_pos) + $BagGrid.position
 			$Preview.size = _loot_info.size_cells * CELL_SIZE
 			$Preview.visible = true
 		#if occupied - size current artifact and its pos
@@ -58,7 +60,6 @@ func _input(_event):
 				var _grid_pos = _grid_calculate_coordinates(_event.global_position)
 				pass
 			elif _loot_held.is_held(): #mouse realeased and loot held
-
 			#drop
 				#mouse on loot
 				#A.merge
@@ -68,7 +69,7 @@ func _input(_event):
 				var _grid_pos = _grid_drop_coordinates(_event.global_position)
 				var _loot_info : Loot = _loot_held.loot
 				var _candidate_pos = _grid_find_space_available(_grid_pos, _loot_info.size_cells)
-				if _grid_is_space_available(_candidate_pos):
+				if _grid_is_coordinates_valid(_candidate_pos):
 					#genero loot bag
 					var _loot_instance : LootBag = LOOT_BAG.instantiate()
 					_loot_instance.texture = load(LOOT_TEXTURES[_loot_info.tier])
@@ -122,47 +123,61 @@ func _grid_set_space(_grid_position : Vector2, _loot_size : Vector2, _state : bo
 		for _j in range(_grid_position.y, _grid_position.y + _loot_size.y):
 			_grid[ Vector2(_i, _j) ] = _state
 
-func _grid_find_space_available(_grid_position : Vector2, _loot_size : Vector2) -> Vector2:
+func _grid_find_space_available(_grid_position : Vector2, _loot_size : Vector2i) -> Vector2:
 	var _final_pos = Vector2(-1,-1)
-	if _grid[ Vector2(_grid_position.x, _grid_position.y) ]:
+	if _grid[ Vector2(_grid_position.x, _grid_position.y) ]: #interaccion merge etc
 		return _final_pos
-	#ha de tener en cuenta direccion objeto
-		#diagonal grid
-		#forma pieza
-	var _direction = _loot_size.x - _loot_size.y
-	if _direction > 0:
-		if _grid_position.x + _loot_size.x > N_COLUMNS or _grid_position.x - _loot_size.x < 0:
-			return Vector(-1,-1)
-		for _x in range(_grid_position.x,_loot_size.x):
-			if _grid[ Vector2(_x, _grid_position.y) ]:
-				return Vector(-1,-1)
-		for _x in range(_loot_size.x,_grid_position.x - _loot_size.x, -1):
-			if _grid[ Vector2(_x, _grid_position.y) ]:
-				return Vector(-1,-1)
-		return _grid_position
-	elif _direction < 0:
-		pass
+	
+	var _directions : Array[int] = [_loot_size.x-1, _loot_size.x-1, _loot_size.y-1, _loot_size.y-1]
+	var _min_size : int = _loot_size.x * _loot_size.y
+	var _path = inventada(_grid_position, [], [], _directions.duplicate(true), _min_size)
+	if _path.size() >= _min_size:
+		#valid
+		#find origin
+		return _grid_path_origin(_path)
 	else:
-		pass
+		return _final_pos
 
+#directions must always be size 4
+func inventada(_grid_position : Vector2, _visited : Array[Vector2], _shortest : Array[Vector2], _directions : Array[int], _min_size : int) \
+		-> Array[Vector2]:
+	#visitados -> current path
+	_visited.append(_grid_position)
+	for _cardinal in range(0,_directions.size()):
+		if _directions[_cardinal] > 0:
+			_directions[_cardinal] -= 1
+			var _next_position = _grid_position + DIRECTIONS[_cardinal]
+			if _check_valid(_next_position, _visited):
+				var _candidate_path = inventada(_next_position, _visited.duplicate(true), _shortest.duplicate(true), _directions.duplicate(true), _min_size)
+				_shortest = _candidate_path
+			else:
+				_directions[_cardinal] = 0
+	#check conditions
+	if _visited.size() >= _min_size:
+		if _shortest.size() < _min_size or _shortest.size() > _visited.size():
+			return _visited
+		else:
+			return _shortest
+	else:
+		return _shortest
 
-	#dict safeguard
-	if _grid_position.x + _loot_size.x > N_COLUMNS or _grid_position.y + _loot_size.y > N_ROWS:
+func _check_valid(_grid_position : Vector2, _visited : Array) -> bool:
+	if _grid_position.x < 0 or _grid_position.y < 0 or _grid_position.x >= N_COLUMNS or _grid_position.y >= N_ROWS:
+			return false
+	if _grid[ Vector2(_grid_position.x, _grid_position.y)]:
 		return false
-	#dict access
-	for _i in range(_grid_position.x, _grid_position.x + _loot_size.x):
-		for _j in range(_grid_position.y, _grid_position.y + _loot_size.y):
-			if _grid[ Vector2(_i, _j) ]:
-				return false
+	if _grid_position in _visited:
+		return false
 	return true
 
-func _grid_test_space_available(_grid_candidate : Vector2, _loot_size : Vector2, _direction : int):
-	pass
+func _grid_path_origin(_path : Array[Vector2]) -> Vector2:
+	var _origin = _path[0]
+	for _pos in _path:
+		if _origin.length() > _pos.length():
+			_origin = _pos
+	return _origin
 
-func fulanito(_grid_candidate : Vector2, _loot_size : Vector2, _direction : Vector2):
-	match(_direction):
-
-func _grid_is_space_available(_grid_position : Vector2) -> bool:
+func _grid_is_coordinates_valid(_grid_position : Vector2) -> bool:
 	return _grid_position != Vector2(-1,-1)
 
 func _grid_calculate_coordinates(_global_position : Vector2) -> Vector2:
