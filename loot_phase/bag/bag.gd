@@ -26,7 +26,7 @@ func _process(_delta):
 	var _mouse_global_position = get_global_mouse_position()
 	if _loot_held.is_held() and get_global_rect().has_point(_mouse_global_position):
 		var _loot_in_mouse = _is_pos_on_loot(_mouse_global_position)
-		var _grid_pos = _grid_drop_coordinates(_mouse_global_position)
+		var _grid_pos = _grid_drop_coordinates(_mouse_global_position, true)
 		var _loot_info : Loot = _loot_held.loot
 		var _candidate_pos = _grid_find_space_available(_grid_pos, _loot_info.size_cells)
 		#if on loot -> mark loot if can merge or swap
@@ -55,9 +55,6 @@ func _input(_event):
 		if get_global_rect().has_point(_event.global_position):
 			if _event.pressed:
 			#grab
-				#NO OFFSET?
-				#var _pos_improved_offset = _event.global_position #+ Vector2(CELL_SIZE / 2, CELL_SIZE / 2)
-				var _grid_pos = _grid_calculate_coordinates(_event.global_position)
 				pass
 			elif _loot_held.is_held(): #mouse realeased and loot held
 			#drop
@@ -130,28 +127,26 @@ func _grid_find_space_available(_grid_position : Vector2, _loot_size : Vector2i)
 	
 	var _directions : Array[int] = [_loot_size.x-1, _loot_size.x-1, _loot_size.y-1, _loot_size.y-1]
 	var _min_size : int = _loot_size.x * _loot_size.y
-	var _path = inventada(_grid_position, [], [], _directions.duplicate(true), _min_size)
+	var _path = _path_recursive_finding(_grid_position, [], [], _directions.duplicate(true), _min_size)
 	if _path.size() >= _min_size:
 		#valid
 		#find origin
-		return _grid_path_origin(_path)
+		return _path_node_closest_origin(_path)
 	else:
 		return _final_pos
 
 #directions must always be size 4
-func inventada(_grid_position : Vector2, _visited : Array[Vector2], _shortest : Array[Vector2], _directions : Array[int], _min_size : int) \
+func _path_recursive_finding(_grid_position : Vector2, _visited : Array[Vector2], _shortest : Array[Vector2], _directions : Array[int], _min_size : int) \
 		-> Array[Vector2]:
 	#visitados -> current path
 	_visited.append(_grid_position)
 	for _cardinal in range(0,_directions.size()):
 		if _directions[_cardinal] > 0:
-			_directions[_cardinal] -= 1
 			var _next_position = _grid_position + DIRECTIONS[_cardinal]
-			if _check_valid(_next_position, _visited):
-				var _candidate_path = inventada(_next_position, _visited.duplicate(true), _shortest.duplicate(true), _directions.duplicate(true), _min_size)
+			if _path_node_check_valid(_next_position, _visited):
+				_directions[_cardinal] -= 1
+				var _candidate_path = _path_recursive_finding(_next_position, _visited.duplicate(true), _shortest.duplicate(true), _directions.duplicate(true), _min_size)
 				_shortest = _candidate_path
-			else:
-				_directions[_cardinal] = 0
 	#check conditions
 	if _visited.size() >= _min_size:
 		if _shortest.size() < _min_size or _shortest.size() > _visited.size():
@@ -161,7 +156,7 @@ func inventada(_grid_position : Vector2, _visited : Array[Vector2], _shortest : 
 	else:
 		return _shortest
 
-func _check_valid(_grid_position : Vector2, _visited : Array) -> bool:
+func _path_node_check_valid(_grid_position : Vector2, _visited : Array) -> bool:
 	if _grid_position.x < 0 or _grid_position.y < 0 or _grid_position.x >= N_COLUMNS or _grid_position.y >= N_ROWS:
 			return false
 	if _grid[ Vector2(_grid_position.x, _grid_position.y)]:
@@ -170,7 +165,7 @@ func _check_valid(_grid_position : Vector2, _visited : Array) -> bool:
 		return false
 	return true
 
-func _grid_path_origin(_path : Array[Vector2]) -> Vector2:
+func _path_node_closest_origin(_path : Array[Vector2]) -> Vector2:
 	var _origin = _path[0]
 	for _pos in _path:
 		if _origin.length() > _pos.length():
@@ -180,16 +175,13 @@ func _grid_path_origin(_path : Array[Vector2]) -> Vector2:
 func _grid_is_coordinates_valid(_grid_position : Vector2) -> bool:
 	return _grid_position != Vector2(-1,-1)
 
-func _grid_calculate_coordinates(_global_position : Vector2) -> Vector2:
-	var _local_position = _global_position - get_global_rect().position
+func _grid_drop_coordinates(_global_position : Vector2, _drop_coordinates : bool = false) -> Vector2:
+	var _local_position = _global_position - get_global_rect().position + Vector2(CELL_SIZE / 2, CELL_SIZE / 2)
+	if _drop_coordinates:#cambiar offset se
+		_local_position -= _loot_held.offset
 	var _snapd_position = _local_position.clamp(_grid_origin_position, _grid_end_position)
 	var _grid_position = _snapd_position - _grid_origin_position
 	return (_grid_position / CELL_SIZE).floor()
-
-func _grid_drop_coordinates(_global_position : Vector2) -> Vector2: #only if loot held
-	var _pos_improved_offset = _global_position - _loot_held.offset \
-						+ Vector2(CELL_SIZE / 2, CELL_SIZE / 2)
-	return _grid_calculate_coordinates(_pos_improved_offset)
 
 func _grid_coordinates_to_local(_grid_position : Vector2) -> Vector2:
 	return _grid_position * CELL_SIZE
