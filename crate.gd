@@ -28,3 +28,18 @@ func _gui_input(_event):
 
 func _exit_tree():
 	loot.free()
+	
+func _test_geometry(_mouse_global_position : Vector2):
+	var _bag_rect = get_global_rect()
+	var _local_position = _mouse_global_position - _bag_rect.position
+	
+	var _point_c = Vector2(0,_bag_rect.size.y)
+	var _point_d =  Vector2(_bag_rect.size.x,0)
+	
+	var _slope = (_point_c.x-_point_d.x)/(_point_c.y-_point_d.y)
+	var _y_intercept = _bag_rect.size.y
+	
+	if _local_position.y <= _slope * _local_position.x + _y_intercept:
+		print("up")
+	else:
+		print("down")
