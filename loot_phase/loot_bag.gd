@@ -10,3 +10,6 @@ func configure_loot(_loot_info : Loot):
 
 func set_grid_pos(_grid_pos : Vector2):
 	grid_position = _grid_pos
+
+func _exit_tree():
+	loot_contained.free()
