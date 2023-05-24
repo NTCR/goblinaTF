@@ -16,6 +16,7 @@ var _grid = {} #state: free or not
 @onready var _grid_end_position : Vector2 = $BagGrid.size
 @onready var _loot_held : Loot_Holder = Loot_Holder.new()
 @onready var _loot_in_bag : Array[LootBag]
+@onready var _preview = $BagGrid/Preview
 
 func _ready():
 	for _x in range(N_COLUMNS):
@@ -25,79 +26,108 @@ func _ready():
 func _process(_delta):
 	var _mouse_global_position = get_global_mouse_position()
 	if _loot_held.is_held() and get_global_rect().has_point(_mouse_global_position):
-		var _loot_in_position = _loot_is_on_global_position(_mouse_global_position)
-		var _grid_pos = _grid_drop_coordinates(_mouse_global_position)
-		var _loot_info : Loot = _loot_held.loot
-		var _candidate_pos = _grid_find_space_available(_grid_pos, _loot_info.size_cells)
-		#if on loot -> mark loot if can merge or swap
+		#is mouse on loot
+		var _loot_in_position := _loot_is_on_global_position(_mouse_global_position)
 		if _loot_in_position:
-			$BagGrid/Preview.position = _grid_coordinates_to_local(_loot_in_position.grid_position)
-			$BagGrid/Preview.size = _loot_in_position.loot_contained.size_cells * CELL_SIZE
-			$BagGrid/Preview.visible = true
-		#if slot valid -> mark slot candidate
-		#if empty - size held and preview pos
-		elif _grid_is_coordinates_valid(_candidate_pos):
-			$BagGrid/Preview.position = _grid_coordinates_to_local(_candidate_pos)
-			$BagGrid/Preview.size = _loot_info.size_cells * CELL_SIZE
-			$BagGrid/Preview.visible = true
-		#if occupied - size current artifact and its pos
-		#if none -> INVALID
+			#CHECK IF CAN MERGE OR CAN SWAP
+			_preview_show(_loot_in_position.grid_position,_loot_in_position.get_loot_size())
+			#SINO INVISIBLE
 		else:
-			$BagGrid/Preview.visible = false
+			#is space available?
+			var _grid_pos = _grid_drop_coordinates(_mouse_global_position)
+			var _loot_size = _loot_held.loot.size_cells
+			var _candidate_pos = _grid_find_space_available(_grid_pos, _loot_size)
+			if _grid_is_coordinates_valid(_candidate_pos):
+				_preview_show(_candidate_pos,_loot_size)
+			else:
+				_preview_hide()
 	else:
-		$BagGrid/Preview.visible = false
-
-func _exit_tree():
-	_loot_held.free()
+		_preview_hide()
 
 func _input(_event):
 	if _event is InputEventMouseButton and _event.button_index == MOUSE_BUTTON_LEFT:
 		var _mouse_global_position = _event.global_position
 		if get_global_rect().has_point(_mouse_global_position):
-			var _loot_in_mouse = _loot_is_on_global_position(_mouse_global_position)
-			if _event.pressed:
-			#grab
-				#hay alguien debajo mouse?
-				if _loot_in_mouse:
-					var _loot_size = _loot_in_mouse.loot_contained.size_cells
-					var _loot_tier = _loot_in_mouse.loot_contained.tier
-					#calculate offset
-					var _corner_right_up = _grid_coordinates_to_local(_loot_in_mouse.grid_position) + _grid_origin_position
-					var _mouse_local_position = _mouse_global_position - get_global_rect().position
-					var _mouse_offset = _mouse_local_position - _corner_right_up
-					#genera drag
-					var _drag_instance = DragPreview.new()
-					var _desired_size = Vector2(CELL_SIZE*_loot_size[0], CELL_SIZE*_loot_size[1])
-					_drag_instance.create_drag(LOOT_TEXTURES[_loot_tier], _desired_size,_mouse_offset)
-					get_tree().current_scene.add_child(_drag_instance)
-					#asignar loot held
-					_loot_held.grab(_loot_in_mouse.loot_contained, _mouse_offset)
-					#elimina loot
-					_loot_remove(_loot_in_mouse)
-			elif _loot_held.is_held(): #mouse realeased and loot held
-			#drop
-				var _grid_pos = _grid_drop_coordinates(_mouse_global_position)
-				var _loot_size = _loot_held.loot.size_cells
-				var _candidate_pos = _grid_find_space_available(_grid_pos, _loot_size)
+			var _loot_in_mouse := _loot_is_on_global_position(_mouse_global_position)
+			#GRAB
+			if _event.pressed and _loot_in_mouse and not _loot_held.is_held():
+				var _loot_size = _loot_in_mouse.get_loot_size()
+				var _loot_tier = _loot_in_mouse.get_loot_tier()
+				#calculate offset
+				var _corner_right_up = _grid_coordinates_to_local(_loot_in_mouse.grid_position) + _grid_origin_position
+				var _mouse_local_position = _mouse_global_position - get_global_rect().position
+				var _mouse_offset = _mouse_local_position - _corner_right_up
+				#genera drag
+				var _drag_instance = DragPreview.new()
+				var _desired_size = Vector2(CELL_SIZE*_loot_size[0], CELL_SIZE*_loot_size[1])
+				_drag_instance.create_drag(LOOT_TEXTURES[_loot_tier], _desired_size, _mouse_offset)
+				get_tree().current_scene.add_child(_drag_instance)
+				#asignar loot held
+				_loot_held.grab(_loot_in_mouse.loot_contained, _mouse_offset, _loot_in_mouse.grid_position)
+				#elimina loot
+				_loot_remove(_loot_in_mouse)
+			#DROP
+			elif not _event.pressed and _loot_held.is_held():
 				#mouse on loot
 				if _loot_in_mouse:
 					#A.merge
+					var _loot_in_bag_size = _loot_in_mouse.get_loot_size()
+					var _loot_in_bag_tier = _loot_in_mouse.get_loot_tier()
+					var _candidate_size = _loot_held.loot.size_cells
+					var _candidate_tier = _loot_held.loot.tier
+					if _loot_in_bag_tier == 4:#MAX TIER
+						_loot_return()
+					elif _loot_in_bag_size == _candidate_size and _loot_in_bag_tier == _candidate_tier:
+						#can merge
+						_loot_upgrade(_loot_in_mouse)
+						_loot_held.release()
 					#B.swap
-					pass
+					elif _grid_is_swap_valid(_loot_in_mouse):
+						#perform swap
+						print("hey?")
+						#ocupar posiciones y cambiar grid position (tnato visual como interno)
+						var _previous_pos = _loot_in_mouse.grid_position
+						#loot 1
+						_loot_move(_loot_in_mouse, _loot_held.original_grid_pos)
+						#loot2
+						_loot_add_held(_previous_pos)
+						_loot_held.release()
+					#C.not valid
+					else:
+						_loot_return()
 				#mouse on slot
+				else:
+					var _grid_pos = _grid_drop_coordinates(_mouse_global_position)
+					var _candidate_pos = _grid_find_space_available(_grid_pos, _loot_held.loot.size_cells)
 				#A.free slot
-				elif _grid_is_coordinates_valid(_candidate_pos):
-					#add loot to bag
-					_loot_add(_candidate_pos)
-		#mouse released
-		if not _event.pressed and _loot_held.is_held():
-			_loot_held_release()
+					if _grid_is_coordinates_valid(_candidate_pos):
+						#add loot to bag
+						_loot_add_held(_candidate_pos)
+						_loot_held.release()
+					else:
+						_loot_return()
+		#mouse released outside rect
+		elif not _event.pressed and _loot_held.is_held():
+			_loot_held.release()
 
-#PENDING
-func _loot_held_release():
+func _exit_tree():
+	_loot_held.free()
+
+func _preview_show(_grid_pos : Vector2, _loot_cell_size : Vector2):
+	_preview.position = _grid_coordinates_to_local(_grid_pos)
+	_preview.size = _loot_cell_size * CELL_SIZE
+	_preview.visible = true
+
+func _preview_hide():
+	_preview.visible = false
+
+func _loot_return():
+	if not _loot_held.is_from_crate():
+		var _grid_pos = _loot_held.original_grid_pos
+		_loot_add_held(_grid_pos)
 	_loot_held.release()
 
-func _loot_add(_grid_pos : Vector2):
+func _loot_add_held(_grid_pos : Vector2):
 	var _loot_info : Loot = _loot_held.loot
 	var _loot_instance : LootBag = LOOT_BAG.instantiate()
 	_loot_instance.texture = load(LOOT_TEXTURES[_loot_info.tier])
@@ -108,7 +138,18 @@ func _loot_add(_grid_pos : Vector2):
 	$BagGrid/LootContainer.add_child(_loot_instance)
 	_loot_in_bag.append(_loot_instance)
 	#marco ocupado
-	_grid_set_space(_grid_pos,_loot_info.size_cells, true)
+	_grid_set_space(_grid_pos, _loot_info.size_cells, true)
+
+func _loot_move(_loot_in_grid : LootBag, _desired_pos : Vector2):
+	_grid_set_space(_loot_in_grid.grid_position, _loot_in_grid.loot_contained.size_cells, false)
+	var _new_pos = _grid_find_space_available(_desired_pos, _loot_in_grid.get_loot_size())
+	_loot_in_grid.set_grid_pos(_new_pos)
+	_loot_in_grid.position = _grid_coordinates_to_local(_new_pos)
+	_grid_set_space(_new_pos, _loot_in_grid.loot_contained.size_cells, true)
+
+func _loot_upgrade(_loot : LootBag):
+	_loot.upgrade()
+	_loot.texture = load(LOOT_TEXTURES[_loot.get_loot_tier()])
 
 func _loot_remove(_loot : LootBag):
 	_loot_in_bag.erase(_loot)
@@ -131,6 +172,25 @@ func _grid_set_space(_grid_position : Vector2, _loot_size : Vector2, _state : bo
 	for _i in range(_grid_position.x, _grid_position.x + _loot_size.x):
 		for _j in range(_grid_position.y, _grid_position.y + _loot_size.y):
 			_grid[ Vector2(_i, _j) ] = _state
+
+func _grid_is_swap_valid(_loot_in_grid : LootBag) -> bool:
+	if _loot_held.is_from_crate():
+		return false
+	var _first_loot_pos = _loot_in_grid.grid_position
+	var _first_loot_size = _loot_in_grid.get_loot_size()
+	var _second_loot_pos = _loot_held.original_grid_pos
+	var _second_loot_size = _loot_held.loot.size_cells
+	var _swap_pos = _grid_find_space_available(_second_loot_pos, _first_loot_size)
+	if _grid_is_coordinates_valid(_swap_pos):
+		_grid_set_space(_first_loot_pos, _first_loot_size, false)
+		var _candidate_pos = _grid_find_space_available(_first_loot_pos, _second_loot_size)
+		if _grid_is_coordinates_valid(_candidate_pos):
+			return true
+		else:
+			_grid_set_space(_first_loot_pos, _first_loot_size, true)
+			return false
+	else:
+		return false
 
 func _grid_find_space_available(_grid_position : Vector2, _loot_size : Vector2i) -> Vector2:
 	var _final_pos = Vector2(-1,-1)

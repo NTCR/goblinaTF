@@ -1,43 +1,67 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy74duvr62k3f"]
+[gd_scene load_steps=10 format=3 uid="uid://dy74duvr62k3f"]
 
 [ext_resource type="Script" path="res://loot_phase/bg/scrolling_bg.gd" id="1_lg374"]
-[ext_resource type="Texture2D" uid="uid://dugluf3l7gqhc" path="res://loot_phase/bg/cookie0165_tm01_bg1.png" id="2_ete0n"]
-[ext_resource type="Texture2D" uid="uid://di1twtkdwqcjn" path="res://loot_phase/bg/cookie0165_tm01_bg2.png" id="3_f66dh"]
-[ext_resource type="Texture2D" uid="uid://cyevoex2sa3wx" path="res://loot_phase/bg/cookie0165_tm01_bg3.png" id="4_yqe1i"]
+[ext_resource type="Texture2D" uid="uid://15artwxaftkw" path="res://loot_phase/bg/6.png" id="2_pvdai"]
+[ext_resource type="Texture2D" uid="uid://cvu4bnktp4vk0" path="res://loot_phase/bg/5.png" id="3_eehdb"]
+[ext_resource type="Texture2D" uid="uid://d1foudq1m7rtf" path="res://loot_phase/bg/4.png" id="4_ttmqu"]
+[ext_resource type="Texture2D" uid="uid://dchoo4jktycmw" path="res://loot_phase/bg/3.png" id="5_kiwad"]
+[ext_resource type="Texture2D" uid="uid://dootgqgs86feq" path="res://loot_phase/bg/2.png" id="6_kx30e"]
+[ext_resource type="Texture2D" uid="uid://bd8ae62b0guod" path="res://loot_phase/bg/1.png" id="7_2f6wk"]
+[ext_resource type="Texture2D" uid="uid://ojdjrkkn4e60" path="res://loot_phase/bg/0.png" id="8_c3xad"]
+[ext_resource type="PackedScene" uid="uid://bco6ftfu2xho6" path="res://loot_phase/bag/ui_bag.tscn" id="9_udcsd"]
 
-[node name="ScrollingBG" type="ParallaxBackground" node_paths=PackedStringArray("far", "mid", "close")]
+[node name="ScrollingBG" type="ParallaxBackground" node_paths=PackedStringArray("_clouds", "_mountains", "_road", "_grass")]
 script = ExtResource("1_lg374")
-far = NodePath("BGFar")
-mid = NodePath("BGMid")
-close = NodePath("BGClose")
+_clouds = NodePath("BGClouds")
+_mountains = NodePath("BGMountains")
+_road = NodePath("BGRoad")
+_grass = NodePath("BGGrass")
 
-[node name="BGFar" type="ParallaxLayer" parent="."]
-motion_mirroring = Vector2(1150, 0)
+[node name="BGClouds" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1400, 0)
 
-[node name="SpriteFar" type="Sprite2D" parent="BGFar"]
-position = Vector2(700, 186)
-scale = Vector2(1.216, 1)
-texture = ExtResource("2_ete0n")
+[node name="SpriteClouds" type="Sprite2D" parent="BGClouds"]
+scale = Vector2(0.28, 0.17037)
+texture = ExtResource("2_pvdai")
+centered = false
 
-[node name="BGMid" type="ParallaxLayer" parent="."]
-motion_mirroring = Vector2(1150, 0)
+[node name="BGMountains" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1400, 0)
 
-[node name="SpriteMid" type="Sprite2D" parent="BGMid"]
-position = Vector2(700, 186)
-scale = Vector2(1.216, 1)
-texture = ExtResource("3_f66dh")
+[node name="SpriteM1" type="Sprite2D" parent="BGMountains"]
+scale = Vector2(0.28, 0.17)
+texture = ExtResource("3_eehdb")
+centered = false
 
-[node name="BGClose" type="ParallaxLayer" parent="."]
-position = Vector2(0, -3)
-motion_mirroring = Vector2(1390, 0)
+[node name="SpriteM2" type="Sprite2D" parent="BGMountains"]
+scale = Vector2(0.28, 0.17)
+texture = ExtResource("4_ttmqu")
+centered = false
 
-[node name="SpriteClose" type="Sprite2D" parent="BGClose"]
-position = Vector2(700, 186)
-scale = Vector2(1.216, 1)
-texture = ExtResource("4_yqe1i")
+[node name="BGRoad" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1400, 0)
 
-[node name="ColorBG" type="ColorRect" parent="."]
-offset_top = 368.0
-offset_right = 1400.0
-offset_bottom = 1049.0
-color = Color(0.305882, 0.596078, 0.572549, 1)
+[node name="SpriteR1" type="Sprite2D" parent="BGRoad"]
+scale = Vector2(0.28, 0.17)
+texture = ExtResource("5_kiwad")
+centered = false
+
+[node name="SpriteR2" type="Sprite2D" parent="BGRoad"]
+scale = Vector2(0.28, 0.17)
+texture = ExtResource("6_kx30e")
+centered = false
+
+[node name="BGGrass" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1400, 0)
+
+[node name="SpriteG1" type="Sprite2D" parent="BGGrass"]
+scale = Vector2(0.28, 0.17)
+texture = ExtResource("7_2f6wk")
+centered = false
+
+[node name="SpriteG2" type="Sprite2D" parent="BGGrass"]
+scale = Vector2(0.28, 0.17)
+texture = ExtResource("8_c3xad")
+centered = false
+
+[node name="UIBag" parent="." instance=ExtResource("9_udcsd")]

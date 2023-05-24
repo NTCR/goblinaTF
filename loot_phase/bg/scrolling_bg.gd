@@ -2,24 +2,23 @@ extends ParallaxBackground
 
 #3 layered BG
 @export_category("Layers")
-@export var far : ParallaxLayer
-@export var mid : ParallaxLayer
-@export var close : ParallaxLayer
+@export var _clouds : ParallaxLayer
+@export var _mountains : ParallaxLayer
+@export var _road : ParallaxLayer
+@export var _grass : ParallaxLayer
 @export_category("Speed settings")
-@export var speed_walk = 15
-@export var speed_run = 40
-
-var _speed = 0
-
-func _ready():
-	_speed = -speed_walk #bg moves backwards
+@export var speed = -20
 
 #scroll BG
-func _process(_delta):
+func _physics_process(_delta):
 	#each BG has its own scrolling speed
-	far.motion_offset.x += _speed * _delta
-	mid.motion_offset.x += _speed * _delta * 4
-	close.motion_offset.x += _speed * _delta * 8
+	#60 muy muy rapido
+	#40 muy rapido
+	#20 rapido
+	_clouds.motion_offset.x += speed 
+	_mountains.motion_offset.x += speed
+	_road.motion_offset.x += speed
+	_grass.motion_offset.x += speed
 
 # Disables process calls
 func stop_bg():
@@ -28,4 +27,4 @@ func stop_bg():
 # Reverses moving direction
 func inverse_bg():
 	set_process(true)
-	_speed = speed_run
+	speed *= -1

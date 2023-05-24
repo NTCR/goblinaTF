@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bolsdp66mr1nv"]
+[gd_scene load_steps=11 format=3 uid="uid://buo3ehqokpwn5"]
 
-[ext_resource type="Script" path="res://loot_phase/loot_phase.gd" id="1_7oxu8"]
-[ext_resource type="PackedScene" uid="uid://dy74duvr62k3f" path="res://loot_phase/bg/scrolling_bg.tscn" id="2_xd462"]
-[ext_resource type="PackedScene" uid="uid://dqy37tv54q4f5" path="res://loot_phase/player/player.tscn" id="3_gge33"]
-[ext_resource type="PackedScene" uid="uid://dbehx46ulmjfc" path="res://loot_phase/merge_system/merge_system.tscn" id="4_x200y"]
-[ext_resource type="Script" path="res://loot_phase/spawner/spawner.gd" id="5_pdxo7"]
-[ext_resource type="PackedScene" uid="uid://t5qsruuurpn7" path="res://loot_phase/enemy/enemy.tscn" id="6_qwwxu"]
+[ext_resource type="Script" path="res://loot_phase/loot_main_screen.gd" id="1_s3hgf"]
+[ext_resource type="PackedScene" uid="uid://dy74duvr62k3f" path="res://loot_phase/bg/scrolling_bg.tscn" id="2_dexuf"]
+[ext_resource type="PackedScene" uid="uid://dqy37tv54q4f5" path="res://loot_phase/player/player.tscn" id="3_pf6fm"]
+[ext_resource type="PackedScene" uid="uid://dbehx46ulmjfc" path="res://loot_phase/merge_system/merge_system.tscn" id="4_jj3f5"]
+[ext_resource type="Script" path="res://loot_phase/spawner/spawner.gd" id="5_w2ajb"]
+[ext_resource type="PackedScene" uid="uid://t5qsruuurpn7" path="res://loot_phase/enemy/enemy.tscn" id="6_vg6hk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fay25"]
 bg_color = Color(0.619608, 0.298039, 0.792157, 1)
@@ -208,25 +208,25 @@ _data = {
 "fade_out": SubResource("Animation_qtkwf")
 }
 
-[node name="LootPhase" type="Node" node_paths=PackedStringArray("merge_system", "spawner", "progress_bar", "animation_transition")]
-script = ExtResource("1_7oxu8")
+[node name="LootMainScreen" type="Node" node_paths=PackedStringArray("merge_system", "spawner", "progress_bar", "animation_transition")]
+script = ExtResource("1_s3hgf")
 merge_system = NodePath("MergeSystem")
 spawner = NodePath("Spawner")
 progress_bar = NodePath("ProgressEndPhase")
 animation_transition = NodePath("TransitionMerge")
-looted_scene = "res://loot_phase/looted_screen.tscn"
+looted_scene = "res://loot_phase/loot_end_screen.tscn"
 
-[node name="ScrollingBG" parent="." instance=ExtResource("2_xd462")]
+[node name="ScrollingBG" parent="." instance=ExtResource("2_dexuf")]
 
-[node name="Player" parent="." instance=ExtResource("3_gge33")]
+[node name="Player" parent="." instance=ExtResource("3_pf6fm")]
 position = Vector2(683, 278)
 
-[node name="MergeSystem" parent="." instance=ExtResource("4_x200y")]
+[node name="MergeSystem" parent="." instance=ExtResource("4_jj3f5")]
 modulate = Color(1, 1, 1, 0.960784)
 points_per_artifact = 100
 
 [node name="Spawner" type="Node" parent="." node_paths=PackedStringArray("spawnPoint")]
-script = ExtResource("5_pdxo7")
+script = ExtResource("5_w2ajb")
 spawnPoint = NodePath("ItemSpawn")
 
 [node name="Timer" type="Timer" parent="Spawner"]
@@ -253,7 +253,7 @@ libraries = {
 "": SubResource("AnimationLibrary_c4ji5")
 }
 
-[node name="Enemy" parent="." instance=ExtResource("6_qwwxu")]
+[node name="Enemy" parent="." instance=ExtResource("6_vg6hk")]
 position = Vector2(1712, 278)
 
 [connection signal="looted" from="Player" to="MergeSystem" method="_on_player_looted"]

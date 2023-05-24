@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dk0fi58omle8x" path="res://loot_phase/bag/bag_panel.svg" id="2_p0kma"]
 [ext_resource type="Texture2D" uid="uid://ygfuhow3ha1i" path="res://loot_phase/bag/bag_grid.svg" id="3_y4ck7"]
 [ext_resource type="Texture2D" uid="uid://dyvd2c1atd7r1" path="res://loot_phase/bag/bag_preview.svg" id="4_bquok"]
-[ext_resource type="PackedScene" uid="uid://cqapw76bxgckh" path="res://loot_phase/crate.tscn" id="5_aw071"]
+[ext_resource type="PackedScene" path="res://loot_phase/crate.tscn" id="5_aw071"]
 [ext_resource type="Texture2D" uid="uid://cl85ogp6alh85" path="res://loot_phase/bag/bag_borders.svg" id="6_c1thf"]
 
 [node name="UIBag" type="Control"]

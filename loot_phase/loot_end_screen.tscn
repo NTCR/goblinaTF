@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://p7e50ddj3kbe"]
+[gd_scene load_steps=3 format=3 uid="uid://bu15gleai0flt"]
 
-[ext_resource type="Script" path="res://loot_phase/looted_screen.gd" id="1_xxhx4"]
-[ext_resource type="FontFile" uid="uid://b5crpuqkswlg1" path="res://Take Coffee.otf" id="2_rv7tj"]
+[ext_resource type="Script" path="res://loot_phase/loot_end_screen.gd" id="1_re6l7"]
+[ext_resource type="FontFile" uid="uid://b5crpuqkswlg1" path="res://Take Coffee.otf" id="2_k5frg"]
 
-[node name="LootedScreen" type="Node" node_paths=PackedStringArray("grid_box")]
-script = ExtResource("1_xxhx4")
-shop_scene = "res://shop_phase/shop_phase.tscn"
+[node name="LootEndScreen" type="Node" node_paths=PackedStringArray("grid_box")]
+script = ExtResource("1_re6l7")
+shop_scene = "res://shop_phase/shop_screen.tscn"
 grid_box = NodePath("GridLoot")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -19,7 +19,7 @@ offset_left = 320.0
 offset_top = 76.0
 offset_right = 1024.0
 offset_bottom = 210.0
-theme_override_fonts/font = ExtResource("2_rv7tj")
+theme_override_fonts/font = ExtResource("2_k5frg")
 theme_override_font_sizes/font_size = 60
 text = "SAFE AND SOUND!
 
@@ -33,7 +33,7 @@ offset_left = 558.0
 offset_top = 930.0
 offset_right = 848.0
 offset_bottom = 1007.0
-theme_override_fonts/font = ExtResource("2_rv7tj")
+theme_override_fonts/font = ExtResource("2_k5frg")
 theme_override_font_sizes/font_size = 20
 text = "GO TO THE SHOP"
 
