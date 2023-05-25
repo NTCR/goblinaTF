@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://buo3ehqokpwn5"]
+[gd_scene load_steps=12 format=3 uid="uid://buo3ehqokpwn5"]
 
 [ext_resource type="Script" path="res://loot_phase/loot_main_screen.gd" id="1_s3hgf"]
 [ext_resource type="PackedScene" uid="uid://dy74duvr62k3f" path="res://loot_phase/bg/scrolling_bg.tscn" id="2_dexuf"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dbehx46ulmjfc" path="res://loot_phase/merge_system/merge_system.tscn" id="4_jj3f5"]
 [ext_resource type="Script" path="res://loot_phase/spawner/spawner.gd" id="5_w2ajb"]
 [ext_resource type="PackedScene" uid="uid://t5qsruuurpn7" path="res://loot_phase/enemy/enemy.tscn" id="6_vg6hk"]
+[ext_resource type="PackedScene" uid="uid://p3mse3ns0qin" path="res://loot_phase/crate/crate2p2.tscn" id="7_4t6bp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fay25"]
 bg_color = Color(0.619608, 0.298039, 0.792157, 1)
@@ -255,6 +256,9 @@ libraries = {
 
 [node name="Enemy" parent="." instance=ExtResource("6_vg6hk")]
 position = Vector2(1712, 278)
+
+[node name="Crate2p2" parent="." instance=ExtResource("7_4t6bp")]
+position = Vector2(1184, 272)
 
 [connection signal="looted" from="Player" to="MergeSystem" method="_on_player_looted"]
 [connection signal="loot_dropped" from="MergeSystem" to="." method="_on_merge_system_loot_dropped"]

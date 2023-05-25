@@ -1,41 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://bco6ftfu2xho6"]
+[gd_scene load_steps=7 format=3 uid="uid://c48ynunmnla50"]
 
 [ext_resource type="Script" path="res://loot_phase/bag/bag.gd" id="1_5idul"]
 [ext_resource type="Texture2D" uid="uid://dk0fi58omle8x" path="res://loot_phase/bag/bag_panel.svg" id="2_p0kma"]
 [ext_resource type="Texture2D" uid="uid://ygfuhow3ha1i" path="res://loot_phase/bag/bag_grid.svg" id="3_y4ck7"]
 [ext_resource type="Texture2D" uid="uid://dyvd2c1atd7r1" path="res://loot_phase/bag/bag_preview.svg" id="4_bquok"]
-[ext_resource type="PackedScene" path="res://loot_phase/crate.tscn" id="5_aw071"]
+[ext_resource type="Texture2D" uid="uid://dwi8pooex7c4k" path="res://loot_phase/bag/bag_preview_invalid.svg" id="5_831uv"]
 [ext_resource type="Texture2D" uid="uid://cl85ogp6alh85" path="res://loot_phase/bag/bag_borders.svg" id="6_c1thf"]
 
-[node name="UIBag" type="Control"]
+[node name="Bag" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 384.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.997
-offset_bottom = -0.00201416
-color = Color(0.270588, 0.698039, 0.282353, 1)
-
-[node name="Bag" type="Control" parent="."]
-layout_mode = 1
 anchor_left = 0.18
 anchor_right = 0.82
 anchor_bottom = 0.997
 offset_left = -1.52588e-05
-offset_right = -0.00012207
-offset_bottom = -0.00201416
+offset_top = 384.0
+offset_bottom = 0.150024
 script = ExtResource("1_5idul")
 
-[node name="BagBG" type="TextureRect" parent="Bag"]
+[node name="BagBG" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -44,7 +26,7 @@ offset_bottom = 1.992
 texture = ExtResource("2_p0kma")
 expand_mode = 1
 
-[node name="BagGrid" type="TextureRect" parent="Bag"]
+[node name="BagGrid" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.094
@@ -58,7 +40,7 @@ offset_bottom = -0.192017
 texture = ExtResource("3_y4ck7")
 expand_mode = 1
 
-[node name="LootContainer" type="Control" parent="Bag/BagGrid"]
+[node name="LootContainer" type="Control" parent="BagGrid"]
 layout_mode = 1
 anchor_left = 0.094
 anchor_top = 0.048
@@ -69,7 +51,7 @@ offset_top = -27.648
 offset_right = -67.1679
 offset_bottom = -35.9681
 
-[node name="Preview" type="TextureRect" parent="Bag/BagGrid"]
+[node name="PreviewValid" type="TextureRect" parent="BagGrid"]
 visible = false
 layout_mode = 0
 offset_right = 146.0
@@ -77,7 +59,15 @@ offset_bottom = 146.0
 texture = ExtResource("4_bquok")
 expand_mode = 1
 
-[node name="BagBorder" type="TextureRect" parent="Bag"]
+[node name="PreviewInvalid" type="TextureRect" parent="BagGrid"]
+visible = false
+layout_mode = 0
+offset_right = 146.0
+offset_bottom = 146.0
+texture = ExtResource("5_831uv")
+expand_mode = 1
+
+[node name="BagBorder" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,14 +78,3 @@ grow_vertical = 2
 texture = ExtResource("6_c1thf")
 expand_mode = 1
 metadata/_edit_lock_ = true
-
-[node name="Crate" parent="." instance=ExtResource("5_aw071")]
-layout_mode = 1
-offset_left = -16.0
-offset_top = 32.0
-offset_right = -15.8
-offset_bottom = 102.122
-grow_horizontal = 1
-grow_vertical = 1
-
-[connection signal="looted" from="Crate" to="Bag" method="_on_crate_looted"]

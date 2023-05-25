@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dootgqgs86feq" path="res://loot_phase/bg/2.png" id="6_kx30e"]
 [ext_resource type="Texture2D" uid="uid://bd8ae62b0guod" path="res://loot_phase/bg/1.png" id="7_2f6wk"]
 [ext_resource type="Texture2D" uid="uid://ojdjrkkn4e60" path="res://loot_phase/bg/0.png" id="8_c3xad"]
-[ext_resource type="PackedScene" uid="uid://bco6ftfu2xho6" path="res://loot_phase/bag/ui_bag.tscn" id="9_udcsd"]
+[ext_resource type="PackedScene" uid="uid://c48ynunmnla50" path="res://loot_phase/bag/ui_bag.tscn" id="9_udcsd"]
 
 [node name="ScrollingBG" type="ParallaxBackground" node_paths=PackedStringArray("_clouds", "_mountains", "_road", "_grass")]
 script = ExtResource("1_lg374")

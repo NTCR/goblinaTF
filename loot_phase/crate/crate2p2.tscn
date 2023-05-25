@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://p3mse3ns0qin"]
+
+[ext_resource type="Texture2D" uid="uid://cxxri0hld4j71" path="res://loot_phase/crate/crate2p2.png" id="1_p2unv"]
+[ext_resource type="Script" path="res://loot_phase/crate/crate.gd" id="2_bb01m"]
+
+[node name="Crate2p2" type="Sprite2D"]
+scale = Vector2(0.19, 0.19)
+texture = ExtResource("1_p2unv")
+flip_h = true
+script = ExtResource("2_bb01m")

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="288"
+   height="288"
+   viewBox="0 0 76.199998 76.2"
+   version="1.1"
+   id="svg2115"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="bag_preview_invalid.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview2117"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     showgrid="true"
+     showborder="true"
+     inkscape:zoom="2.587745"
+     inkscape:cx="38.836902"
+     inkscape:cy="201.72003"
+     inkscape:window-width="3840"
+     inkscape:window-height="2126"
+     inkscape:window-x="2869"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1561" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2112" />
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:none;stroke:#c62b33;stroke-width:2.0484;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:4.09679985,12.29039955;stroke-dashoffset:4.91615982;stroke-opacity:1"
+       id="rect3740"
+       width="74.151604"
+       height="74.151604"
+       x="1.0242002"
+       y="1.0242002" />
+    <path
+       style="fill:none;stroke:#c62b33;stroke-width:4.19078;stroke-linecap:round;stroke-opacity:1"
+       d="M 5.2916666,70.114582 70.114582,5.2916666"
+       id="path1567" />
+    <path
+       style="fill:none;stroke:#c62b33;stroke-width:4.23333;stroke-linecap:round;stroke-opacity:1"
+       d="M 5.2916666,5.2916666 71.437499,70.114582"
+       id="path1571" />
+  </g>
+</svg>

@@ -4,4 +4,11 @@
 
 [node name="LootBag" type="TextureRect"]
 expand_mode = 1
+flip_h = true
 script = ExtResource("1_2q4le")
+
+[node name="TierColor" type="ColorRect" parent="."]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
