@@ -1,11 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://13dtintuvuu4"]
+[gd_scene load_steps=4 format=3 uid="uid://13dtintuvuu4"]
 
 [ext_resource type="Texture2D" uid="uid://dvshm6b2ptbmb" path="res://loot_phase/crate/crate1p3.png" id="1_6bbkc"]
 [ext_resource type="Script" path="res://loot_phase/crate/crate.gd" id="2_hglx0"]
 
-[node name="Crate3p1" type="Sprite2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fi660"]
+size = Vector2(373.333, 1094.74)
+
+[node name="Crate1p3" type="Sprite2D"]
 scale = Vector2(0.3, 0.19)
 texture = ExtResource("1_6bbkc")
 flip_h = true
 script = ExtResource("2_hglx0")
 crate_type = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1.00387e-05)
+shape = SubResource("RectangleShape2D_fi660")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mbfgr"]
 size = Vector2(112, 156)
 
-[node name="Player" type="Area2D" node_paths=PackedStringArray("animated_sprite", "loot_timer")]
+[node name="Player" type="StaticBody2D" node_paths=PackedStringArray("animated_sprite", "loot_timer")]
 script = ExtResource("1_jqr46")
 animated_sprite = NodePath("AnimatedSprite2D")
 loot_timer = NodePath("LootTimer")
@@ -23,6 +23,3 @@ shape = SubResource("RectangleShape2D_mbfgr")
 [node name="LootTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="LootTimer" to="." method="_on_loot_timer_timeout"]

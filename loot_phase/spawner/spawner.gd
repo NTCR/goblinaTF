@@ -1,7 +1,5 @@
 extends Node
 
-const LOOT_BASE = preload("res://loot_phase/loot_base/loot_base.tscn")
-
 @export_category("Components:")
 @export var spawnPoint : Marker2D
 

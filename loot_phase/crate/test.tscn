@@ -1,24 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://busmdusc11obe"]
+[gd_scene load_steps=6 format=3 uid="uid://biwo8chtvcgjy"]
 
 [ext_resource type="Script" path="res://loot_phase/crate/test.gd" id="1_g5esq"]
 [ext_resource type="PackedScene" uid="uid://p3mse3ns0qin" path="res://loot_phase/crate/crate2p2.tscn" id="2_o2ugl"]
 [ext_resource type="PackedScene" uid="uid://13dtintuvuu4" path="res://loot_phase/crate/crate1p3.tscn" id="3_3ggin"]
 [ext_resource type="PackedScene" uid="uid://chys6kfyctvoa" path="res://loot_phase/crate/crate3p1.tscn" id="4_t83yc"]
-[ext_resource type="PackedScene" uid="uid://c48ynunmnla50" path="res://loot_phase/bag/ui_bag.tscn" id="5_5gn03"]
+[ext_resource type="PackedScene" uid="uid://c48ynunmnla50" path="res://loot_phase/bag/bag.tscn" id="5_5gn03"]
 
 [node name="Test" type="Node"]
 script = ExtResource("1_g5esq")
 
-[node name="Crate3p1" parent="." node_paths=PackedStringArray("bag_reference") instance=ExtResource("3_3ggin")]
+[node name="Crate3p1" parent="." instance=ExtResource("3_3ggin")]
 position = Vector2(416, 168)
-bag_reference = NodePath("../Bag")
 
-[node name="Crate2p2" parent="." node_paths=PackedStringArray("bag_reference") instance=ExtResource("2_o2ugl")]
+[node name="Crate2p2" parent="." instance=ExtResource("2_o2ugl")]
 position = Vector2(128, 136)
-bag_reference = NodePath("../Bag")
+crate_type = 0
 
-[node name="Crate3p2" parent="." node_paths=PackedStringArray("bag_reference") instance=ExtResource("4_t83yc")]
+[node name="Crate3p2" parent="." instance=ExtResource("4_t83yc")]
 position = Vector2(800, 160)
-bag_reference = NodePath("../Bag")
 
 [node name="Bag" parent="." instance=ExtResource("5_5gn03")]

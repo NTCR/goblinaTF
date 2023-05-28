@@ -1,11 +1,12 @@
 class_name Bag
 extends Control
 
-const LOOT_BAG : Resource = preload("res://loot_phase/loot_bag.tscn")
+const LOOT_BAG : Resource = preload("res://loot_phase/bag/loot_bag.tscn")
 const DIRECTIONS = [Vector2(1,0), Vector2(-1,0), Vector2(0,1), Vector2(0,-1)]
 const CELL_SIZE = 144
 const N_COLUMNS = 5
 const N_ROWS = 4
+@export var _drop_zone : Control
 var _grid_dict = {}
 @onready var _loot_held : Loot_Holder = Loot_Holder.new() #tracks if loot is held + data
 @onready var _loot_in_bag : Array[LootBag] #keeps references of loot in bag
@@ -87,16 +88,20 @@ func _gui_input(_event):
 			var _mouse_offset = _mouse_local_position - _corner_right_up
 			#genera drag
 			var _drag_instance = LootDrag.new()
-			_drag_instance.configure_loot_drag(self, _loot_in_mouse.get_loot(), _desired_size, _mouse_offset, _loot_in_mouse.get_grid_position())
+			_drag_instance.loot_drag_bag(self, _loot_in_mouse.get_loot(), _desired_size, _mouse_offset, _loot_in_mouse.get_grid_position())
 			get_tree().current_scene.add_child(_drag_instance)
 			#elimina loot
 			_loot_remove(_loot_in_mouse)
 
-#llamada externa
-func loot_grab(_loot : Loot, _mouse_offset : Vector2, _grid_pos : Vector2):
+func _exit_tree():
+	_loot_held.free()
+
+#llamada externa - loot drag setup
+func on_loot_grab(_loot : Loot, _mouse_offset : Vector2, _grid_pos : Vector2):
 	_loot_held.grab(_loot, _mouse_offset, _grid_pos)
 
-func loot_released():
+#señal loot drag release
+func _on_loot_released(_crate_ref : Crate = null):
 	var _mouse_global_position = get_global_mouse_position()
 	if not _loot_held.is_held(): #QUITAR DESPUES DEBUG
 		print("SOMETHING WENT TERRIBLY WRONG")
@@ -109,30 +114,45 @@ func loot_released():
 		if _loot_in_position:
 			if _can_merge(_loot_in_position):
 				_loot_upgrade(_loot_in_position)
-				_loot_held.release()
+				_loot_release(_crate_ref)
 			else:
-				_loot_return()
+				_loot_return(_crate_ref)
 		else:
 			var _candidate_pos = _grid_find_space_available(_grid_pos, _loot_held.get_loot_size())
 		#A.free slot
 			if _grid_is_coordinates_valid(_candidate_pos):
 				#add loot to bag
 				_loot_add_held(_candidate_pos)
-				_loot_held.release()
+				_loot_release(_crate_ref)
 			else:
-				_loot_return()
+				_loot_return(_crate_ref)
 	#loot released outside rect
+	#loot released in dropzone and not from bag
+	elif _drop_zone.get_global_rect().has_point(_mouse_global_position) and not _crate_ref:
+		_loot_release(_crate_ref)
 	else:
-		#ahora puedo gestionar el return
-		_loot_held.release()
+		#release ni en dropzone ni en bag
+		_loot_return(_crate_ref)
+
+func on_crate_destroyed():
+	_loot_held.release()
 
 func _can_merge(_loot_in_mouse : LootBag) -> bool:
 	return _loot_in_mouse.get_loot_type() == _loot_held.get_loot_type() \
 			and _loot_in_mouse.get_loot_tier() == _loot_held.get_loot_tier() \
 			and _loot_in_mouse.get_loot_tier()< Loot.MAX_TIER +1
 
-func _exit_tree():
-	_loot_held.free()
+func _loot_release(_crate_ref : Crate):
+	if _crate_ref:
+		#gestiona crate
+		_crate_ref.crate_has_been_looted()
+	_loot_held.release()
+
+func _loot_return(_crate_ref : Crate):
+	if not _crate_ref:
+		var _grid_pos = _loot_held.get_grid_position()
+		_loot_add_held(_grid_pos)
+	_loot_held.release()
 
 func _loot_add_held(_grid_pos : Vector2):
 	var _loot_info : Loot = _loot_held.get_loot()
@@ -144,11 +164,6 @@ func _loot_add_held(_grid_pos : Vector2):
 	#marco ocupado
 	_grid_set_space(_grid_pos, _loot_held.get_loot_size(), true)
 
-func _loot_return():
-	if not _loot_held.is_from_crate():
-		var _grid_pos = _loot_held.get_grid_position()
-		_loot_add_held(_grid_pos)
-	_loot_held.release()
 
 func _loot_upgrade(_loot : LootBag):
 	_loot.upgrade()
@@ -296,48 +311,45 @@ func _grid_coordinates_to_global(_grid_position : Vector2) -> Vector2:
 	return get_global_rect().position + _grid_origin_position + _grid_local_pos
 
 class Loot_Holder:
-	var loot : Loot
 	var offset : Vector2
-	var original_grid_pos : Vector2
+	var _loot : Loot
+	var _original_grid_pos : Vector2
 	
 	func _init():
 		_empty_values()
 	
 	func get_loot() -> Loot:
-		return loot
+		return _loot
 	
 	func get_loot_type() -> Loot.LOOT_TYPES:
-		return loot.type
+		return _loot.type
 	
 	func get_loot_tier() -> int:
-		return loot.tier
+		return _loot.tier
 	
 	func get_loot_size() -> Vector2:
-		return loot.get_size()
+		return _loot.get_size()
 	
 	func get_grid_position() -> Vector2:
-		return original_grid_pos
+		return _original_grid_pos
 	
 	func release():
-		loot.free()
+		_loot.free()
 		_empty_values()
 	
-	func grab(_loot : Loot, _offset : Vector2, _pos : Vector2):
-		loot = Loot.new(_loot.type, _loot.tier)
+	func grab(_loot_ref : Loot, _offset : Vector2, _pos : Vector2):
+		_loot = Loot.new(_loot_ref.type, _loot_ref.tier)
 		offset = _offset
-		original_grid_pos = _pos
+		_original_grid_pos = _pos
 
 	func is_held():
-		return loot != null
-	
-	func is_from_crate():
-		return original_grid_pos == Vector2(-1,-1)
-		
+		return _loot != null
+
 	func _empty_values():
-		loot = null
+		_loot = null
 		offset = Vector2.ZERO
-		original_grid_pos = Vector2(-1,-1)
+		_original_grid_pos = Vector2(-1,-1)
 	
 	func _destroy():
-		loot.free()
+		_loot.free()
 

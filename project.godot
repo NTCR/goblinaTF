@@ -24,6 +24,7 @@ ArtifactDB="*res://database/artifact_db.tscn"
 
 window/size/viewport_width=1400
 window/size/viewport_height=1050
+window/size/resizable=false
 
 [editor]
 

@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://pwm8sh3g5nb0"]
+[gd_scene load_steps=2 format=3 uid="uid://dxhdk606ud8r0"]
 
-[ext_resource type="Script" path="res://loot_phase/loot_bag.gd" id="1_2q4le"]
+[ext_resource type="Script" path="res://loot_phase/bag/loot_bag.gd" id="1_0mp4i"]
 
 [node name="LootBag" type="TextureRect"]
 expand_mode = 1
 flip_h = true
-script = ExtResource("1_2q4le")
+script = ExtResource("1_0mp4i")
 
 [node name="TierColor" type="ColorRect" parent="."]
 show_behind_parent = true

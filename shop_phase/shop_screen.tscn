@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://shop_phase/revelar/revelar.gd" id="4_ih61s"]
 [ext_resource type="Texture2D" uid="uid://hxxdt6owgm07" path="res://shop_phase/revelar/pila.png" id="5_41buq"]
 [ext_resource type="FontFile" uid="uid://b5crpuqkswlg1" path="res://Take Coffee.otf" id="6_xlygv"]
-[ext_resource type="Texture2D" uid="uid://q88nn7yhqqfs" path="res://loot_phase/loot/armor-t2.png" id="7_siy8d"]
 [ext_resource type="Texture2D" uid="uid://f8ywhg84c2xp" path="res://shop_phase/revelar/plain-arrow.png" id="8_xefhv"]
 [ext_resource type="Texture2D" uid="uid://ciljgi25tylkd" path="res://shop_phase/assets/artifacts/fire.png" id="9_6cejk"]
 [ext_resource type="Script" path="res://shop_phase/comercio/comercio.gd" id="10_de67e"]
@@ -17,6 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://v0e8tgdnvrxc" path="res://shop_phase/drag_and_drop/card_slot.tscn" id="15_qxd5o"]
 [ext_resource type="Script" path="res://shop_phase/tasar/tasar.gd" id="16_3yycg"]
 [ext_resource type="Texture2D" uid="uid://c2hvuhdfxi2lq" path="res://shop_phase/tasar/tasar.png" id="17_id0k1"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lia3d"]
+load_path = "res://.godot/imported/armor-t2.png-2dba06ff05a32997b9cb23e427a9d911.ctex"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d7ha1"]
 
@@ -233,7 +235,7 @@ layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
 offset_bottom = -128.0
-texture = ExtResource("7_siy8d")
+texture = SubResource("CompressedTexture2D_lia3d")
 stretch_mode = 2
 
 [node name="TextureArrow" type="TextureRect" parent="Revelar/Panel"]
