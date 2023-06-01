@@ -8,8 +8,8 @@ const TIER_COLORS : Array[Color] = [
 	Color8(98,16,113),
 	Color8(209,109,17)
 ]
-var grid_position : Vector2
 var _loot_contained : Loot
+var _grid_position : Vector2
 
 func setup(_loot : Loot, _grid_pos : Vector2):
 	_loot_contained = Loot.new(_loot.type, _loot.tier)
@@ -18,7 +18,7 @@ func setup(_loot : Loot, _grid_pos : Vector2):
 	size = Bag.CELL_SIZE * get_loot_size()
 	$TierColor.size = size
 	$TierColor.color = TIER_COLORS[_loot_contained.tier - 1]
-	grid_position = _grid_pos
+	_grid_position = _grid_pos
 
 func get_loot() -> Loot:
 	return _loot_contained
@@ -33,10 +33,10 @@ func get_loot_type() -> Loot.LOOT_TYPES:
 	return _loot_contained.type
 
 func get_grid_position() -> Vector2:
-	return grid_position
+	return _grid_position
 
 func set_grid_position(_pos : Vector2):
-	grid_position = _pos
+	_grid_position = _pos
 
 func upgrade():
 	_loot_contained.tier += 1

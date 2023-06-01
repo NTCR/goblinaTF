@@ -13,7 +13,7 @@ const CRATE_SPAWN_OFFSET : Array[Vector2] = [
 const INITIAL_HP = 2
 const MAX_GEAR = 5
 const GEAR_SPEED : Array[Vector2] = [
-	Vector2(0,0),
+	Vector2(0,0), #never used. easier acces code read
 	Vector2(2,0),
 	Vector2(3,0),
 	Vector2(4,0),
@@ -21,7 +21,7 @@ const GEAR_SPEED : Array[Vector2] = [
 	Vector2(7,0),
 ]
 const GEAR_TIMER : Array[float] = [
-	15.0,
+	15.0, #never used. easier acces code read
 	5.0,
 	4.0,
 	3.0,
@@ -31,30 +31,39 @@ const GEAR_TIMER : Array[float] = [
 
 @export_category("References:")
 @export var bag_ref : Bag
-@export_category("Components:")
+@export_category("Spawn:")
 @export var spawn_initial : Marker2D
 @export var spawn_point: Marker2D
 @export var spawn_timer : Timer
+@export_category("UI elements")
 @export var bar_speed : TextureRect
 @export var bar_hp : HBoxContainer
+@export_category("Parallax:")
 @export var clouds : ParallaxBackground
 @export var background : ParallaxBackground
 @export var foreground : ParallaxBackground
+@export_category("Player:")
 @export var player : StaticBody2D
 var _gear : int = 0
 var _progress : int = 0
 var _hp : int = INITIAL_HP
 
-#on create crate: connect signal, add to group
+#start of level
 func _ready():
+	bag_ref.connect("crate_looted", Callable(self, "_on_crate_looted"))
 	#spawn initial crate
 	var _initial_crate = _spawn_crate(spawn_initial.position)
-	_initial_crate.set_process_input(false)
-	spawn_timer.stop()
+	_initial_crate.set_process_input(false) #wait for transition to finnish
+	#clouds move independently from the rest of bg elements
 	clouds.set_motion(-0.5)
 	clouds.start()
+	
+	
 
-#some method that manages gear swap
+func get_game_bag():
+	return bag_ref
+
+#crate added to bag-> progress increased
 func increase_progress():
 	#was idle
 	if _gear == 0:
@@ -63,28 +72,34 @@ func increase_progress():
 			player.recover()
 		else:
 			player.walk()
-		_gear = 1
+		increase_gear()
 		_progress = 2
 		bar_speed.set_gear(_gear)
 		_start_parallax()
-		_set_gear_settings()
 		#timer revision
 		spawn_timer.timeout.emit()
 		spawn_timer.start()
-	#already playing
+	#goblina is running
 	elif _gear < MAX_GEAR:
 		bar_speed.increase()
 		_progress += 1
 		if not _progress % 2:
 			player.position.x += 2
-			_gear += 1
-			_set_gear_settings()
+			increase_gear()
 			if _gear < 4:
 				player.walk()
 			else:
 				player.run()
 				bar_hp.gain_shield()
 
+func start_gear():
+	pass
+
+func increase_gear():
+	_gear += 1
+	_set_gear_settings()
+
+#player collision with crate -> progress soft or hard reset
 func decrease_progress():
 	if _gear > 3:
 		player.position.x -= 6
@@ -97,7 +112,7 @@ func decrease_progress():
 		_gear_stop()
 
 func _gear_stop():
-	$Player.position.x = 206
+	$Player.position.x = 206 #initial position, HARDCODED
 	player.hit()
 	_gear = 0
 	_progress = 0
@@ -107,8 +122,10 @@ func _gear_stop():
 	_hp -= 1
 	bar_hp.lose_hp(_hp)
 	if _hp == 0:
-		bag_ref.on_phase_ended()
-		get_tree().current_scene.end_phase()
+		pass
+		#NEXT
+#		bag_ref.on_phase_ended()
+#		get_tree().current_scene.end_phase()
 
 func _set_gear_settings():
 	_move_parallax(GEAR_SPEED[_gear].x)
@@ -137,9 +154,8 @@ func _spawn_crate(_position : Vector2) -> Crate:
 	_crate_instance.position = _position + CRATE_SPAWN_OFFSET[_type]
 	
 	_crate_instance.add_to_group("crates")
-	_crate_instance.connect("crate_looted", Callable(self, "_on_crate_looted"))
+	_crate_instance.connect("crate_interacted", Callable(self, "_on_crate_interacted"))
 	_crate_instance.connect("crate_hit", Callable(self, "_on_crate_hit"))
-	_crate_instance.setup_bag(bag_ref)
 	add_child(_crate_instance)
 	return _crate_instance
 
@@ -179,12 +195,14 @@ func _probability_crate_type() -> int:
 func _on_spawn_timer_timeout():
 	_spawn_crate(spawn_point.position)
 
-func _on_crate_looted():
-	increase_progress()
-	#print(get_tree().get_nodes_in_group("crates").size())
+func _on_crate_interacted(_origin_crate : Crate):
+	bag_ref.on_loot_grab_from_crate(_origin_crate, _origin_crate.get_type())
 
 func _on_crate_hit():
+	bag_ref.on_crate_destroyed()
 	decrease_progress()
 
-
-
+#señal de bag conforme un loot crate ha sido añadido
+func _on_crate_looted(_crate_ref : Crate):
+	_crate_ref.crate_looted()
+	increase_progress()
