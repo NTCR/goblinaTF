@@ -6,7 +6,10 @@ extends StaticBody2D
 
 func _ready():
 	animated_sprite.play("idle")
-	
+
+func idle():
+	animated_sprite.play("idle")
+
 func walk():
 	animated_sprite.play("walk")
 
@@ -20,6 +23,9 @@ func recover():
 	animated_sprite.play("recover")
 	stun_animation.stop()
 	stun_animation.visible = false
+
+func flip_horizontal():
+	animated_sprite.flip_h = true
 
 
 func _on_animated_sprite_2d_animation_finished():

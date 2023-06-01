@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcctqmimp48kn"]
+[gd_scene load_steps=6 format=3 uid="uid://bcctqmimp48kn"]
 
 [ext_resource type="Script" path="res://general_phase/bg/parallax_script.gd" id="1_ner4q"]
-[ext_resource type="Texture2D" uid="uid://15artwxaftkw" path="res://general_phase/bg/6.png" id="2_pvdai"]
 [ext_resource type="Texture2D" uid="uid://cvu4bnktp4vk0" path="res://general_phase/bg/5.png" id="3_eehdb"]
 [ext_resource type="Texture2D" uid="uid://d1foudq1m7rtf" path="res://general_phase/bg/4.png" id="4_ttmqu"]
 [ext_resource type="Texture2D" uid="uid://dchoo4jktycmw" path="res://general_phase/bg/3.png" id="5_kiwad"]
@@ -9,15 +8,6 @@
 
 [node name="ScrollingBG" type="ParallaxBackground"]
 script = ExtResource("1_ner4q")
-
-[node name="BGClouds" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(0.1, 0.1)
-motion_mirroring = Vector2(1400, 0)
-
-[node name="SpriteClouds" type="Sprite2D" parent="BGClouds"]
-scale = Vector2(0.28, 0.17037)
-texture = ExtResource("2_pvdai")
-centered = false
 
 [node name="BGMountain2" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.2, 0.2)

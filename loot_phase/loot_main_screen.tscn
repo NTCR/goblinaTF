@@ -1,24 +1,310 @@
-[gd_scene load_steps=10 format=3 uid="uid://vt7nd4u23fgm"]
+[gd_scene load_steps=16 format=3 uid="uid://vt7nd4u23fgm"]
 
 [ext_resource type="Script" path="res://loot_phase/loot_main_screen.gd" id="1_s3hgf"]
 [ext_resource type="PackedScene" uid="uid://bcctqmimp48kn" path="res://general_phase/bg/scrolling_bg.tscn" id="2_dexuf"]
 [ext_resource type="Script" path="res://loot_phase/gameworld.gd" id="2_yffuw"]
+[ext_resource type="Script" path="res://general_phase/bg/parallax_script.gd" id="3_o4wxt"]
 [ext_resource type="PackedScene" uid="uid://dqy37tv54q4f5" path="res://loot_phase/player/player.tscn" id="3_pf6fm"]
+[ext_resource type="Texture2D" uid="uid://15artwxaftkw" path="res://general_phase/bg/6.png" id="4_f3jd3"]
 [ext_resource type="PackedScene" uid="uid://b2kho60dur4n2" path="res://general_phase/bg/scrolling_fg.tscn" id="5_obipr"]
 [ext_resource type="PackedScene" uid="uid://c48ynunmnla50" path="res://loot_phase/bag/bag.tscn" id="6_3xybr"]
 [ext_resource type="PackedScene" uid="uid://du0bdr1trvbnt" path="res://loot_phase/ui/speed_bar/speed_bar.tscn" id="7_4p7k6"]
 [ext_resource type="PackedScene" uid="uid://dbfr7jyn50hrv" path="res://ui/settings/settings_button.tscn" id="8_jh078"]
 [ext_resource type="PackedScene" uid="uid://cgbksvv4pj0a8" path="res://loot_phase/ui/health/health_bar.tscn" id="9_cm554"]
 
-[node name="LootMainScreen" type="Node" node_paths=PackedStringArray("merge_system", "spawner", "progress_bar", "animation_transition") groups=["crates"]]
-script = ExtResource("1_s3hgf")
-merge_system = NodePath("")
-spawner = NodePath("")
-progress_bar = NodePath("")
-animation_transition = NodePath("")
-looted_scene = "res://loot_phase/loot_end_screen.tscn"
+[sub_resource type="Animation" id="Animation_ofpd8"]
+resource_name = "enter_merge"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gameworld/Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-100, 250), Vector2(206, 250)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Bag:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/SpeedBar:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/SettingsButton:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/HealthBar:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Gameworld/Player")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"walk"
+}, {
+"args": [],
+"method": &"idle"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UI/FadeBlack:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1400, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("UI/FadeBlack:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_phase"
+}]
+}
 
-[node name="Gameworld" type="Node" parent="." node_paths=PackedStringArray("bag_ref", "spawn_initial", "spawn_point", "spawn_timer", "bar_speed", "bar_hp", "background", "foreground", "player")]
+[sub_resource type="Animation" id="Animation_dr5ni"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gameworld/Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(206, 250)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Bag:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/SpeedBar:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/SettingsButton:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/HealthBar:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI/FadeBlack:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UI/FadeBlack:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_cj0ub"]
+resource_name = "to_shop"
+length = 3.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gameworld/Player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"recover"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gameworld/Player:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(206, 250), Vector2(-80, 250)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gameworld/Player")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"flip_horizontal"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/FadeBlack:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/FadeBlack:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1400, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_622ic"]
+_data = {
+"RESET": SubResource("Animation_dr5ni"),
+"enter_merge": SubResource("Animation_ofpd8"),
+"to_shop": SubResource("Animation_cj0ub")
+}
+
+[node name="LootMainScreen" type="Node" node_paths=PackedStringArray("transitions", "fadeblack") groups=["crates"]]
+script = ExtResource("1_s3hgf")
+next_scene = "res://loot_phase/loot_end_screen.tscn"
+transitions = NodePath("AnimationPlayer")
+fadeblack = NodePath("UI/FadeBlack")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_622ic")
+}
+
+[node name="Gameworld" type="Node" parent="." node_paths=PackedStringArray("bag_ref", "spawn_initial", "spawn_point", "spawn_timer", "bar_speed", "bar_hp", "clouds", "background", "foreground", "player")]
 script = ExtResource("2_yffuw")
 bag_ref = NodePath("../UI/Bag")
 spawn_initial = NodePath("SpawnInitial")
@@ -26,12 +312,24 @@ spawn_point = NodePath("SpawnPoint")
 spawn_timer = NodePath("SpawnTimer")
 bar_speed = NodePath("../UI/SpeedBar")
 bar_hp = NodePath("../UI/HealthBar")
+clouds = NodePath("CloudsParallax")
 background = NodePath("ScrollingBG")
 foreground = NodePath("ScrollingFG")
 player = NodePath("Player")
 
+[node name="CloudsParallax" type="ParallaxBackground" parent="Gameworld"]
+script = ExtResource("3_o4wxt")
+
+[node name="CloudsLayer" type="ParallaxLayer" parent="Gameworld/CloudsParallax"]
+motion_mirroring = Vector2(1400, 0)
+
+[node name="CloudsImage" type="Sprite2D" parent="Gameworld/CloudsParallax/CloudsLayer"]
+scale = Vector2(0.28, 0.17)
+texture = ExtResource("4_f3jd3")
+centered = false
+
 [node name="ScrollingBG" parent="Gameworld" instance=ExtResource("2_dexuf")]
-layer = -1
+layer = -10
 
 [node name="SpawnPoint" type="Marker2D" parent="Gameworld"]
 position = Vector2(1520, 278)
@@ -69,14 +367,14 @@ offset_right = 0.199997
 offset_bottom = -0.100037
 
 [node name="SettingsButton" parent="UI" instance=ExtResource("8_jh078")]
-anchor_left = 0.869
-anchor_top = 0.823
+anchor_left = 0.921
+anchor_top = 0.914
 anchor_right = 0.976
-anchor_bottom = 0.969
-offset_left = -0.599976
-offset_top = -0.150024
-offset_right = 0.599854
-offset_bottom = -0.450073
+anchor_bottom = 0.983
+offset_left = 0.599854
+offset_top = 0.299988
+offset_right = 3.59998
+offset_bottom = 7.84998
 
 [node name="HealthBar" parent="UI" instance=ExtResource("9_cm554")]
 anchor_left = 0.007
@@ -86,5 +384,14 @@ offset_left = 0.2
 offset_top = 10.0
 offset_right = 0.399963
 offset_bottom = 0.249992
+
+[node name="FadeBlack" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.998
+offset_right = 1400.0
+offset_bottom = 1048.0
+color = Color(0, 0, 0, 1)
 
 [connection signal="timeout" from="Gameworld/SpawnTimer" to="Gameworld" method="_on_spawn_timer_timeout"]

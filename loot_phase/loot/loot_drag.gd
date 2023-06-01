@@ -24,8 +24,9 @@ func loot_drag_crate(_bag_ref : Bag, _loot : Loot, _size : Vector2, _offset : Ve
 	_setup(_bag_ref, _loot, _size, _offset)
 
 func _setup(_bag_ref : Bag, _loot : Loot, _size : Vector2, _offset : Vector2, _grid_pos : Vector2 = Vector2(-1,-1)):
+	#debug
 	if not _bag_ref:
-		print("CONFIGURA CRATE")
+		print("ERROR LOOT DRAG: NO BARG REF")
 		return
 	connect("loot_released", Callable(_bag_ref,"_on_loot_released"))
 	_bag_ref.on_loot_grab(_loot,_offset,_grid_pos)

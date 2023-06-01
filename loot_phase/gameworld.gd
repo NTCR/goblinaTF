@@ -37,6 +37,7 @@ const GEAR_TIMER : Array[float] = [
 @export var spawn_timer : Timer
 @export var bar_speed : TextureRect
 @export var bar_hp : HBoxContainer
+@export var clouds : ParallaxBackground
 @export var background : ParallaxBackground
 @export var foreground : ParallaxBackground
 @export var player : StaticBody2D
@@ -47,8 +48,11 @@ var _hp : int = INITIAL_HP
 #on create crate: connect signal, add to group
 func _ready():
 	#spawn initial crate
-	_spawn_crate(spawn_initial.position)
+	var _initial_crate = _spawn_crate(spawn_initial.position)
+	_initial_crate.set_process_input(false)
 	spawn_timer.stop()
+	clouds.set_motion(-0.5)
+	clouds.start()
 
 #some method that manages gear swap
 func increase_progress():
@@ -103,8 +107,7 @@ func _gear_stop():
 	_hp -= 1
 	bar_hp.lose_hp(_hp)
 	if _hp == 0:
-		print("TO BE CONTINUED")
-		#end phase
+		get_tree().current_scene.end_phase()
 
 func _set_gear_settings():
 	_move_parallax(GEAR_SPEED[_gear].x)
@@ -126,7 +129,7 @@ func _start_parallax():
 	background.start()
 	foreground.start()
 
-func _spawn_crate(_position : Vector2):
+func _spawn_crate(_position : Vector2) -> Crate:
 	#crate type
 	var _type = _probability_crate_type()
 	var _crate_instance = CRATES[_type].instantiate()
@@ -137,6 +140,7 @@ func _spawn_crate(_position : Vector2):
 	_crate_instance.connect("crate_hit", Callable(self, "_on_crate_hit"))
 	_crate_instance.setup_bag(bag_ref)
 	add_child(_crate_instance)
+	return _crate_instance
 
 func _probability_crate_type() -> int:
 	var _highest_tier = {}
@@ -147,7 +151,6 @@ func _probability_crate_type() -> int:
 		var _tier = _loot_bag.get_loot_tier()
 		if _highest_tier.get(_type) < _tier:
 			_highest_tier[_type] = _tier
-	print(_highest_tier)
 	#non flexible to tier changes
 	var _total_tickets = 0
 	for _type in Loot.LOOT_TYPES.values():

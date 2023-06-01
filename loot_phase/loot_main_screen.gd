@@ -1,12 +1,22 @@
 extends Node
 
-@export_category("Child scenes:")
-@export var merge_system : Node
-@export var spawner : Node
-@export var progress_bar : ProgressBar
-@export var animation_transition : AnimationPlayer
-@export_category("Next scene:")
-@export_file var looted_scene
+@export_file var next_scene
+@export var transitions : AnimationPlayer
+@export var fadeblack : ColorRect
+
+func _ready():
+	fadeblack.visible = true
+	transitions.play("enter_merge")
+
+func start_phase():
+	get_tree().call_group("crates", "set_process_input", true)
+
+func end_phase():
+	get_tree().call_group("crates", "set_process_input", false)
+	transitions.play("to_shop")
+
+func to_shop_scene():
+	get_tree().change_scene_to_file(next_scene)
 
 ## Prepare for next scene
 #func _transition_to_shop():
@@ -18,12 +28,6 @@ extends Node
 #	merge_system.drop_queue()
 #	#disable merge
 #	animation_transition.play("fade_out")
-#
-## Called by merge system. raises progress
-#func _on_merge_system_loot_dropped(_v):
-#	progress_bar.value += _v
-#	if progress_bar.value == 100:
-#		_transition_to_shop()
 #
 ## Load looted scene
 #func change_looted_scene():
