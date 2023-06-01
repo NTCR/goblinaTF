@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bel4416jacb8g"]
+
+[ext_resource type="Script" path="res://loot_phase/effects/particle_wood.gd" id="1_qhhqm"]
+
+[sub_resource type="Gradient" id="Gradient_2xq6p"]
+colors = PackedColorArray(0.345098, 0.192157, 0.152941, 1, 0.788235, 0.627451, 0.505882, 1)
+
+[node name="ParticleWood" type="CPUParticles2D"]
+emitting = false
+amount = 20
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.6
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 20.0
+scale_amount_max = 20.0
+color_ramp = SubResource("Gradient_2xq6p")
+script = ExtResource("1_qhhqm")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

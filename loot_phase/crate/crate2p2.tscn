@@ -1,20 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://p3mse3ns0qin"]
+[gd_scene load_steps=5 format=3 uid="uid://p3mse3ns0qin"]
 
 [ext_resource type="Texture2D" uid="uid://cxxri0hld4j71" path="res://loot_phase/crate/crate2p2.png" id="1_p2unv"]
 [ext_resource type="Script" path="res://loot_phase/crate/crate.gd" id="2_bb01m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5gxd"]
-size = Vector2(673.684, 673.684)
+size = Vector2(631.579, 673.684)
 
-[node name="Crate2p2" type="Sprite2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ved4p"]
+size = Vector2(926.316, 968.421)
+
+[node name="Crate2p2" type="Sprite2D" node_paths=PackedStringArray("_hit_area", "_mouse_area")]
 scale = Vector2(0.19, 0.19)
 texture = ExtResource("1_p2unv")
 flip_h = true
 script = ExtResource("2_bb01m")
+_hit_area = NodePath("HitBox")
+_mouse_area = NodePath("MouseBox")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="HitShape" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-21.0526, -3.0116e-05)
 shape = SubResource("RectangleShape2D_n5gxd")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="MouseBox" type="Area2D" parent="."]
+
+[node name="MouseShape" type="CollisionShape2D" parent="MouseBox"]
+position = Vector2(0, -63.1579)
+shape = SubResource("RectangleShape2D_ved4p")
+debug_color = Color(0.811765, 0.356863, 0.537255, 0.419608)
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_area_2d_body_entered"]

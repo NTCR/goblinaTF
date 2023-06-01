@@ -14,7 +14,6 @@ position = Vector2(416, 168)
 
 [node name="Crate2p2" parent="." instance=ExtResource("2_o2ugl")]
 position = Vector2(128, 136)
-crate_type = 0
 
 [node name="Crate3p2" parent="." instance=ExtResource("4_t83yc")]
 position = Vector2(800, 160)

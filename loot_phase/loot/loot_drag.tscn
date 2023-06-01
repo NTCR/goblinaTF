@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://loot_phase/loot/loot_drag.gd" id="1_0yqjl"]
 
 [node name="LootDrag" type="Sprite2D"]
+top_level = true
 script = ExtResource("1_0yqjl")

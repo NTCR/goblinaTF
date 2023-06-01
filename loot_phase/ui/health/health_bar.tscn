@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgbksvv4pj0a8"]
+
+[ext_resource type="Script" path="res://loot_phase/ui/health/health_bar.gd" id="1_xb4yj"]
+[ext_resource type="Texture2D" uid="uid://bxna2ihmduvow" path="res://loot_phase/ui/health/icon_heart.svg" id="1_xwy6s"]
+[ext_resource type="Texture2D" uid="uid://bkvo8ih6jsrx0" path="res://loot_phase/ui/health/icon_shield.svg" id="2_lddmh"]
+
+[node name="HealthBar" type="HBoxContainer" node_paths=PackedStringArray("h1", "h2", "sh")]
+custom_minimum_size = Vector2(90, 90)
+anchors_preset = -1
+anchor_right = 0.25
+anchor_bottom = 0.107
+offset_right = -110.0
+offset_bottom = -2.35001
+theme_override_constants/separation = 10
+script = ExtResource("1_xb4yj")
+h1 = NodePath("H1")
+h2 = NodePath("H2")
+sh = NodePath("S")
+
+[node name="H1" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("1_xwy6s")
+
+[node name="H2" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("1_xwy6s")
+
+[node name="S" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("2_lddmh")

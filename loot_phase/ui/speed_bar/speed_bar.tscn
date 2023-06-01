@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://du0bdr1trvbnt"]
+
+[ext_resource type="Texture2D" uid="uid://b0mhulq55arj2" path="res://loot_phase/ui/speed_bar/speed_bar.svg" id="1_t1yit"]
+[ext_resource type="Texture2D" uid="uid://n3jqgyaldc5e" path="res://loot_phase/ui/speed_bar/fill_up.svg" id="2_7yfel"]
+[ext_resource type="Script" path="res://loot_phase/ui/speed_bar/speed_bar.gd" id="2_q0juk"]
+[ext_resource type="Texture2D" uid="uid://bjn0th0t3quqd" path="res://loot_phase/ui/speed_bar/fill_down.svg" id="3_mtsqk"]
+
+[node name="SpeedBar" type="TextureRect"]
+anchors_preset = -1
+anchor_right = 0.081
+anchor_bottom = 0.488
+offset_right = -73.4
+offset_bottom = -472.4
+texture = ExtResource("1_t1yit")
+script = ExtResource("2_q0juk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.193
+anchor_top = 0.062
+anchor_right = 0.754
+anchor_bottom = 0.766
+offset_left = -0.00200081
+offset_top = 0.255999
+offset_right = 0.0439987
+offset_bottom = -0.192017
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="Bar5U" type="TextureRect" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_7yfel")
+
+[node name="Bar5D" type="TextureRect" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_mtsqk")
+
+[node name="Bar4U" type="TextureRect" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_7yfel")
+
+[node name="Bar4D" type="TextureRect" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_mtsqk")
+
+[node name="Bar3U" type="TextureRect" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_7yfel")
+
+[node name="Bar3D" type="TextureRect" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_mtsqk")
+
+[node name="Bar2U" type="TextureRect" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_7yfel")
+
+[node name="Bar2D" type="TextureRect" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_mtsqk")
+
+[node name="Bar1U" type="TextureRect" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_7yfel")
+
+[node name="Bar1D" type="TextureRect" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_mtsqk")

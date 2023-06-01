@@ -1,108 +1,109 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8myslnioaoge"]
+[gd_scene load_steps=20 format=3 uid="uid://c8myslnioaoge"]
 
 [ext_resource type="Script" path="res://general_phase/start_screen.gd" id="1_fxfal"]
-[ext_resource type="FontFile" uid="uid://b5crpuqkswlg1" path="res://Take Coffee.otf" id="2_l2oj4"]
+[ext_resource type="Texture2D" uid="uid://d0w1da4mg6buk" path="res://title_final.png" id="2_0xkfe"]
+[ext_resource type="Texture2D" uid="uid://15artwxaftkw" path="res://general_phase/bg/6.png" id="2_3epb6"]
+[ext_resource type="Script" path="res://general_phase/bg/parallax_script.gd" id="2_lf2dn"]
+[ext_resource type="Texture2D" uid="uid://bbwnctxg5u66y" path="res://ui/new_game/newgame_base.svg" id="3_uqjk7"]
+[ext_resource type="Texture2D" uid="uid://cvu4bnktp4vk0" path="res://general_phase/bg/5.png" id="3_vvfq6"]
+[ext_resource type="Texture2D" uid="uid://cnr0v61pqedwh" path="res://ui/new_game/newgame_click.svg" id="4_bgm53"]
+[ext_resource type="Texture2D" uid="uid://d1foudq1m7rtf" path="res://general_phase/bg/4.png" id="4_rts6b"]
+[ext_resource type="Texture2D" uid="uid://dchoo4jktycmw" path="res://general_phase/bg/3.png" id="5_3vfyb"]
+[ext_resource type="Texture2D" uid="uid://dg1vtcmtuihek" path="res://ui/new_game/newgame_hover.svg" id="5_gmswb"]
+[ext_resource type="Texture2D" uid="uid://chljrljewhp0l" path="res://ui/load_game/loadgame_base.svg" id="6_e0j5s"]
+[ext_resource type="Texture2D" uid="uid://dootgqgs86feq" path="res://general_phase/bg/2.png" id="6_n55jq"]
+[ext_resource type="Texture2D" uid="uid://50t4ej6gm7ws" path="res://general_phase/tienda_from_outside.png" id="7_a4itk"]
+[ext_resource type="Texture2D" uid="uid://c2tcqrjaih7gx" path="res://ui/load_game/loadgame_click.svg" id="7_dl2fg"]
+[ext_resource type="Texture2D" uid="uid://ch13vf4mbb5dj" path="res://ui/load_game/loadgame_hover.svg" id="8_j1qwq"]
+[ext_resource type="PackedScene" uid="uid://dbfr7jyn50hrv" path="res://ui/settings/settings_button.tscn" id="9_xuyp7"]
+[ext_resource type="Texture2D" uid="uid://d1lfabsg5wbf5" path="res://ui/about/about_base.svg" id="10_l71v8"]
+[ext_resource type="Texture2D" uid="uid://dkb1ur3puaswd" path="res://ui/about/about_click.svg" id="11_5xo2x"]
+[ext_resource type="Texture2D" uid="uid://cfhb7uta2p5s4" path="res://ui/about/about_hover.svg" id="12_iheef"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbw05"]
-bg_color = Color(0, 0, 0, 0.352941)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehphh"]
-bg_color = Color(0, 0, 0, 0.470588)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lh07s"]
-bg_color = Color(0, 0, 0, 0.588235)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[node name="MainMenu" type="Node"]
+[node name="MainMenu" type="Node" node_paths=PackedStringArray("parallax")]
 script = ExtResource("1_fxfal")
 next_scene = "res://loot_phase/loot_main_screen.tscn"
+parallax = NodePath("Background/ParallaxBG")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 1400.0
-offset_bottom = 1048.0
-color = Color(0, 0.580392, 0.337255, 1)
-metadata/_edit_use_anchors_ = true
+[node name="Background" type="Node" parent="."]
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 1400.0
-offset_bottom = 1048.0
-theme_override_constants/margin_bottom = 100
+[node name="ParallaxBG" type="ParallaxBackground" parent="Background"]
+script = ExtResource("2_lf2dn")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
+[node name="BGClouds" type="ParallaxLayer" parent="Background/ParallaxBG"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1400, 0)
 
-[node name="GameTitle" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("2_l2oj4")
-theme_override_font_sizes/font_size = 100
-text = "TIENDA DE GOBLINA"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
+[node name="SpriteClouds" type="Sprite2D" parent="Background/ParallaxBG/BGClouds"]
+scale = Vector2(0.28, 0.485185)
+texture = ExtResource("2_3epb6")
+centered = false
 
-[node name="VButtContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 10
+[node name="5" type="Sprite2D" parent="Background"]
+scale = Vector2(0.35, 0.607)
+texture = ExtResource("3_vvfq6")
+centered = false
 
-[node name="CNewG" type="MarginContainer" parent="MarginContainer/VBoxContainer/VButtContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_right = 100
+[node name="4" type="Sprite2D" parent="Background"]
+scale = Vector2(0.35, 0.607)
+texture = ExtResource("4_rts6b")
+centered = false
 
-[node name="ButtNewG" type="Button" parent="MarginContainer/VBoxContainer/VButtContainer/CNewG"]
-layout_mode = 2
-focus_mode = 0
-theme_override_fonts/font = ExtResource("2_l2oj4")
-theme_override_font_sizes/font_size = 70
-theme_override_styles/normal = SubResource("StyleBoxFlat_vbw05")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ehphh")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lh07s")
-text = "New Game"
+[node name="3" type="Sprite2D" parent="Background"]
+scale = Vector2(0.35, 0.607)
+texture = ExtResource("5_3vfyb")
+centered = false
 
-[node name="CSett" type="MarginContainer" parent="MarginContainer/VBoxContainer/VButtContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_right = 100
+[node name="2" type="Sprite2D" parent="Background"]
+scale = Vector2(0.35, 0.607)
+texture = ExtResource("6_n55jq")
+centered = false
 
-[node name="ButtSett" type="Button" parent="MarginContainer/VBoxContainer/VButtContainer/CSett"]
-layout_mode = 2
-focus_mode = 0
-theme_override_fonts/font = ExtResource("2_l2oj4")
-theme_override_font_sizes/font_size = 70
-theme_override_styles/normal = SubResource("StyleBoxFlat_vbw05")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ehphh")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lh07s")
-text = "Settings"
+[node name="Shop" type="Sprite2D" parent="."]
+position = Vector2(888, 720)
+scale = Vector2(0.315173, 0.317481)
+texture = ExtResource("7_a4itk")
 
-[node name="CFAQ" type="MarginContainer" parent="MarginContainer/VBoxContainer/VButtContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_right = 100
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(700, 180)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_0xkfe")
 
-[node name="ButtFAQ" type="Button" parent="MarginContainer/VBoxContainer/VButtContainer/CFAQ"]
-layout_mode = 2
-focus_mode = 0
-theme_override_fonts/font = ExtResource("2_l2oj4")
-theme_override_font_sizes/font_size = 70
-theme_override_styles/normal = SubResource("StyleBoxFlat_vbw05")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ehphh")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lh07s")
-text = "Made By"
+[node name="ButtNewGame" type="TextureButton" parent="."]
+offset_left = 112.0
+offset_top = 488.0
+offset_right = 423.0
+offset_bottom = 640.0
+texture_normal = ExtResource("3_uqjk7")
+texture_pressed = ExtResource("4_bgm53")
+texture_hover = ExtResource("5_gmswb")
 
-[connection signal="button_up" from="MarginContainer/VBoxContainer/VButtContainer/CNewG/ButtNewG" to="." method="_on_butt_new_g_button_up"]
+[node name="ButtLoadGame" type="TextureButton" parent="."]
+offset_left = 112.0
+offset_top = 672.0
+offset_right = 423.0
+offset_bottom = 824.0
+texture_normal = ExtResource("6_e0j5s")
+texture_pressed = ExtResource("7_dl2fg")
+texture_hover = ExtResource("8_j1qwq")
+
+[node name="ButtSettings" parent="." instance=ExtResource("9_xuyp7")]
+anchor_left = 0.921
+anchor_top = 0.914
+anchor_right = 0.983
+anchor_bottom = 0.99
+offset_left = 0.599854
+offset_top = 0.299988
+offset_right = -6.20007
+offset_bottom = 0.499878
+
+[node name="ButtAbout" type="TextureButton" parent="."]
+offset_left = 1290.0
+offset_top = 860.0
+offset_right = 1370.0
+offset_bottom = 940.0
+texture_normal = ExtResource("10_l71v8")
+texture_pressed = ExtResource("11_5xo2x")
+texture_hover = ExtResource("12_iheef")
+ignore_texture_size = true
+stretch_mode = 0

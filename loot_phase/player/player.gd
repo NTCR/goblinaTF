@@ -2,24 +2,30 @@ extends StaticBody2D
 
 @export_category("Components:")
 @export var animated_sprite : AnimatedSprite2D
-@export var loot_timer : Timer
+@export var stun_animation : AnimatedSprite2D
 
 func _ready():
-	self.set_meta("player",0)
-	animated_sprite.play("merge_walk")
+	animated_sprite.play("idle")
+	
+func walk():
+	animated_sprite.play("walk")
 
-func transition_merge():
-	animated_sprite.play("spoted")
+func run():
+	animated_sprite.play("run")
 
-func enter_runner():
-	animated_sprite.play("runner_walk")
-#
-#func _on_body_entered(body):
-#	if body.has_meta("type"):
-#		animated_sprite.play("merge_loot")
-#		emit_signal("looted",body.get_meta("type"))
-#		body.queue_free()
-#		loot_timer.start()
-#
-#func _on_loot_timer_timeout():
-#	animated_sprite.play("merge_walk")
+func hit():
+	animated_sprite.play("hit")
+
+func recover():
+	animated_sprite.play("recover")
+	stun_animation.stop()
+	stun_animation.visible = false
+
+
+func _on_animated_sprite_2d_animation_finished():
+	match(animated_sprite.animation):
+		"recover" : 
+			animated_sprite.play("walk")
+		"hit":
+			stun_animation.visible = true
+			stun_animation.play()
