@@ -5,6 +5,7 @@ const HIT_PARTICLES = preload("res://loot_phase/effects/particle_wood.tscn")
 
 signal crate_looted
 signal crate_hit
+signal phase_ended
 @export_category("Configuration:")
 @export var crate_type : Loot.LOOT_TYPES
 @export_category("Components:")
@@ -25,12 +26,14 @@ func _input(_event):
 func _exit_tree():
 	_loot.free()
 
-
 func setup_bag(_ref : Bag):
 	_bag_reference = _ref
 
 func move_towards_player(_speed : Vector2):
 	position -= _speed
+
+func on_phase_ended():
+	phase_ended.emit()
 
 func crate_has_been_looted():
 	#MORE THINGS HAPPEN WHEN CRATE LOOT
@@ -39,22 +42,26 @@ func crate_has_been_looted():
 	_hit_area.set_deferred("disabled",true)
 	queue_free()
 
+func _on_area_2d_body_entered(_body):
+	_crate_hit_player()
+
+func _crate_hit_player():
+	crate_hit.emit()
+	_bag_reference.on_crate_destroyed(self)
+	_hit_area.set_deferred("disabled",true)
+	var _effect = HIT_PARTICLES.instantiate()
+	_effect.position = position
+	get_tree().current_scene.add_child(_effect)
+	queue_free()
+
 func _create_drag():
 	var _drag_instance = LootDrag.new()
 	var _size = Bag.CELL_SIZE * _loot.get_size()
 	var _mouse_offset = _size/2
 	_drag_instance.loot_drag_crate(_bag_reference, _loot, _size, _mouse_offset, self)
 	connect("crate_hit", Callable(_drag_instance, "_on_crate_hit"))
+	connect("phase_ended", Callable(_drag_instance, "_on_crate_hit"))
 	get_tree().current_scene.find_child("UI").add_child(_drag_instance)
 
-func _on_area_2d_body_entered(_body):
-	_crate_hit_player()
 
-func _crate_hit_player():
-	crate_hit.emit()
-	_bag_reference.on_crate_destroyed()
-	_hit_area.set_deferred("disabled",true)
-	var _effect = HIT_PARTICLES.instantiate()
-	_effect.position = position
-	get_tree().current_scene.add_child(_effect)
-	queue_free()
+

@@ -107,6 +107,7 @@ func _gear_stop():
 	_hp -= 1
 	bar_hp.lose_hp(_hp)
 	if _hp == 0:
+		bag_ref.on_phase_ended()
 		get_tree().current_scene.end_phase()
 
 func _set_gear_settings():
