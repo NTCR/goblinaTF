@@ -4,7 +4,7 @@ extends Control
 signal crate_looted(_crate_ref)
 
 const LOOT_BAG : Resource = preload("res://loot_phase/bag/loot_bag.tscn")
-const THROW_PARTICLES = preload("res://loot_phase/effects/particle_wood.tscn")
+const THROW_PARTICLES = preload("res://loot_phase/effects/crate_destroy/particle_wood.tscn")
 const BASE_DIRECTIONS = [Vector2(1,0), Vector2(-1,0), Vector2(0,1), Vector2(0,-1)] #algorithm related
 const CELL_SIZE = 144 #non adaptive for now
 const N_COLUMNS = 5
@@ -25,9 +25,6 @@ func _ready():
 	for _x in range(N_COLUMNS):
 		for _y in range(N_ROWS):
 			_grid_dict[ Vector2(_x,_y) ] = false
-
-func _exit_tree():
-	_loot_held.free()
 
 func _physics_process(_delta):
 	#preview functionality
@@ -124,10 +121,13 @@ func on_loot_grab_from_crate(_origin_crate : Crate, _loot_type : Loot.LOOT_TYPES
 	var _drag_instance = _new_drag(_temp_loot, _offset)
 	_loot_held.grab_from_crate(_temp_loot, _offset, _origin_crate, _drag_instance)
 
-func on_crate_destroyed():
-	#drop invalid siempre. sea la crate que toca o no
+func release_held():
 	if _loot_held.is_held():
 		_loot_drop_invalid()
+
+func on_crate_hit(_crate_ref : Crate):
+	if _loot_held.is_held() and _loot_held.get_origin_crate() == _crate_ref:
+		_loot_held.release()
 
 func _new_drag(_loot : Loot, _offset : Vector2) -> LootDrag:
 	var _texture_path = _loot.get_texture_path()
@@ -246,7 +246,7 @@ func _grid_set_space(_grid_position : Vector2, _loot_size : Vector2, _state : bo
 
 func _grid_find_space_available(_grid_position : Vector2, _loot_size : Vector2i) -> Vector2:
 	var _final_pos = Vector2(-1,-1)
-	#safe check. initial slot should be free
+	#safety check. initial slot should be free
 	if _grid_dict.get(Vector2(_grid_position.x, _grid_position.y)):
 		return _final_pos
 	
@@ -254,7 +254,6 @@ func _grid_find_space_available(_grid_position : Vector2, _loot_size : Vector2i)
 	var _min_size : int = _loot_size.x * _loot_size.y
 	var _path = _path_recursive_finding(_grid_position, [], [], _jumps_left.duplicate(true), _min_size)
 	if _path.size() >= _min_size:
-		#valid
 		#find origin
 		return _path_node_closest_origin(_path)
 	else:

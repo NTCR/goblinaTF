@@ -13,7 +13,6 @@ func start_phase():
 
 func end_phase():
 	get_tree().call_group("crates", "set_process_input", false)
-	get_tree().call_group("crates", "on_phase_ended")
 	transitions.play("to_shop")
 
 func to_shop_scene():

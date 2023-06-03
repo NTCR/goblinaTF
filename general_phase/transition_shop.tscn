@@ -1,0 +1,378 @@
+[gd_scene load_steps=15 format=3 uid="uid://da8sgot7aki6i"]
+
+[ext_resource type="Script" path="res://general_phase/transition_shop.gd" id="1_lvhna"]
+[ext_resource type="Script" path="res://general_phase/bg/parallax_script.gd" id="2_ssxm3"]
+[ext_resource type="Texture2D" uid="uid://15artwxaftkw" path="res://general_phase/bg/6.png" id="3_tsxrb"]
+[ext_resource type="Texture2D" uid="uid://cvu4bnktp4vk0" path="res://general_phase/bg/5.png" id="4_2x2ni"]
+[ext_resource type="Texture2D" uid="uid://d1foudq1m7rtf" path="res://general_phase/bg/4.png" id="5_cqxs5"]
+[ext_resource type="Texture2D" uid="uid://dchoo4jktycmw" path="res://general_phase/bg/3.png" id="6_thh3v"]
+[ext_resource type="Texture2D" uid="uid://dootgqgs86feq" path="res://general_phase/bg/2.png" id="7_i1h37"]
+[ext_resource type="Texture2D" uid="uid://50t4ej6gm7ws" path="res://general_phase/tienda_from_outside.png" id="8_2ertm"]
+[ext_resource type="PackedScene" uid="uid://cb253syigmrae" path="res://loot_phase/player/player.tscn" id="9_xqj6j"]
+[ext_resource type="Texture2D" uid="uid://bd8ae62b0guod" path="res://general_phase/bg/1.png" id="10_adk5d"]
+[ext_resource type="Texture2D" uid="uid://ojdjrkkn4e60" path="res://general_phase/bg/0.png" id="11_ehojl"]
+
+[sub_resource type="Animation" id="Animation_364r8"]
+resource_name = "to_shop"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/LayerMountains1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.5, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.35, 0.485185), Vector2(0.35, 0.607)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/LayerMountains2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.5, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.35, 0.485185), Vector2(0.35, 0.607)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background/LayerGrass1:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.5, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.35, 0.485185), Vector2(0.35, 0.607)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Background/LayerGrass2:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.5, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.35, 0.485185), Vector2(0.35, 0.607)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Shop:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.5, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(888, 515), Vector2(888, 720)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FrontLayerGrass1:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2.5, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.35, 0.485185), Vector2(0.35, 0.607)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FrontLayerGrass2:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(2.5, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.35, 0.485185), Vector2(0.35, 0.607)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Player:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1500, 888), Vector2(890, 888)]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Player")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"walk"
+}, {
+"args": [],
+"method": &"flip_horizontal"
+}]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"to_shop_scene"
+}]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("FadeBlack:size")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1400, 1304), Vector2(0, 1304)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("FadeBlack2:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(4, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1050), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mx5od"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/LayerMountains1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.35, 0.607)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/LayerMountains2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.35, 0.607)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background/LayerGrass1:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.35, 0.607)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Background/LayerGrass2:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.35, 0.607)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Shop:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(888, 720)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FrontLayerGrass1:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.35, 0.607)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FrontLayerGrass2:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.35, 0.607)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Player:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1500, 840)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FadeBlack:size")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1400, 1304)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("FadeBlack2:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1050)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yxa3n"]
+_data = {
+"RESET": SubResource("Animation_mx5od"),
+"to_shop": SubResource("Animation_364r8")
+}
+
+[node name="TransitionShop" type="Node" node_paths=PackedStringArray("parallax", "transitions")]
+script = ExtResource("1_lvhna")
+next_scene = "res://general_phase/start_screen.tscn"
+parallax = NodePath("Background/ParallaxBG")
+transitions = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yxa3n")
+}
+
+[node name="Background" type="Node" parent="."]
+
+[node name="ParallaxBG" type="ParallaxBackground" parent="Background"]
+layer = -1
+script = ExtResource("2_ssxm3")
+
+[node name="BGClouds" type="ParallaxLayer" parent="Background/ParallaxBG"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1400, 0)
+
+[node name="LayerClouds" type="Sprite2D" parent="Background/ParallaxBG/BGClouds"]
+scale = Vector2(0.28, 0.485185)
+texture = ExtResource("3_tsxrb")
+centered = false
+
+[node name="LayerMountains1" type="Sprite2D" parent="Background"]
+scale = Vector2(0.35, 0.607)
+texture = ExtResource("4_2x2ni")
+centered = false
+
+[node name="LayerMountains2" type="Sprite2D" parent="Background"]
+scale = Vector2(0.35, 0.607)
+texture = ExtResource("5_cqxs5")
+centered = false
+
+[node name="LayerGrass1" type="Sprite2D" parent="Background"]
+scale = Vector2(0.35, 0.607)
+texture = ExtResource("6_thh3v")
+centered = false
+
+[node name="LayerGrass2" type="Sprite2D" parent="Background"]
+scale = Vector2(0.35, 0.607)
+texture = ExtResource("7_i1h37")
+centered = false
+
+[node name="Shop" type="Sprite2D" parent="."]
+position = Vector2(888, 720)
+scale = Vector2(0.315173, 0.317481)
+texture = ExtResource("8_2ertm")
+
+[node name="Player" parent="." instance=ExtResource("9_xqj6j")]
+position = Vector2(1500, 840)
+
+[node name="FrontLayerGrass1" type="Sprite2D" parent="."]
+scale = Vector2(0.35, 0.607)
+texture = ExtResource("10_adk5d")
+centered = false
+
+[node name="FrontLayerGrass2" type="Sprite2D" parent="."]
+scale = Vector2(0.35, 0.607)
+texture = ExtResource("11_ehojl")
+centered = false
+
+[node name="FadeBlack" type="ColorRect" parent="."]
+anchors_preset = -1
+offset_right = 1400.0
+offset_bottom = 1304.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="FadeBlack2" type="ColorRect" parent="."]
+top_level = true
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.998
+offset_top = 1050.0
+offset_right = 2800.0
+offset_bottom = 3147.9
+color = Color(0, 0, 0, 1)

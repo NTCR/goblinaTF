@@ -44,8 +44,5 @@ func upgrade():
 		print("ERROR TRIED TO UPGRADE OVER MAX TIER")
 	$TierColor.color = TIER_COLORS[_loot_contained.tier - 1]
 
-func can_merge_or_swap(_loot_held : Loot):
-	pass
-
 func _exit_tree():
 	_loot_contained.free()

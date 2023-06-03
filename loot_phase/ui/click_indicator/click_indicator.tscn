@@ -1,0 +1,79 @@
+[gd_scene load_steps=18 format=3 uid="uid://d4ln2psi5cdl0"]
+
+[ext_resource type="Texture2D" uid="uid://dmir5t21kgxgm" path="res://loot_phase/ui/click_indicator/Armature_up_down_00.png" id="1_5pcfs"]
+[ext_resource type="Texture2D" uid="uid://dw22uajgq7gqd" path="res://loot_phase/ui/click_indicator/Armature_up_down_01.png" id="2_mxaog"]
+[ext_resource type="Texture2D" uid="uid://b4i3w8qrbmx4p" path="res://loot_phase/ui/click_indicator/Armature_up_down_02.png" id="3_3gioe"]
+[ext_resource type="Texture2D" uid="uid://6bvct24rhljm" path="res://loot_phase/ui/click_indicator/Armature_up_down_03.png" id="4_no1ed"]
+[ext_resource type="Texture2D" uid="uid://kgx24jtnlyx7" path="res://loot_phase/ui/click_indicator/Armature_up_down_04.png" id="5_gdyej"]
+[ext_resource type="Texture2D" uid="uid://f7r70p0x4d5p" path="res://loot_phase/ui/click_indicator/Armature_up_down_05.png" id="6_noinu"]
+[ext_resource type="Texture2D" uid="uid://tf2jx7s45pmw" path="res://loot_phase/ui/click_indicator/Armature_up_down_06.png" id="7_mboxm"]
+[ext_resource type="Texture2D" uid="uid://cnio7gp6apqab" path="res://loot_phase/ui/click_indicator/Armature_up_down_07.png" id="8_wrxiq"]
+[ext_resource type="Texture2D" uid="uid://dg8dbf1xthgce" path="res://loot_phase/ui/click_indicator/Armature_up_down_08.png" id="9_tsln7"]
+[ext_resource type="Texture2D" uid="uid://bqme2gh4p00dx" path="res://loot_phase/ui/click_indicator/Armature_up_down_09.png" id="10_gfyob"]
+[ext_resource type="Texture2D" uid="uid://bc2qp8jihwog3" path="res://loot_phase/ui/click_indicator/Armature_up_down_10.png" id="11_eku6h"]
+[ext_resource type="Texture2D" uid="uid://dvoiol2uuq7dl" path="res://loot_phase/ui/click_indicator/Armature_up_down_11.png" id="12_wddk5"]
+[ext_resource type="Texture2D" uid="uid://cra1g64ve8vwg" path="res://loot_phase/ui/click_indicator/Armature_up_down_12.png" id="13_cmdnt"]
+[ext_resource type="Texture2D" uid="uid://cew2e2kcpivs7" path="res://loot_phase/ui/click_indicator/Armature_up_down_13.png" id="14_mta3y"]
+[ext_resource type="Texture2D" uid="uid://0kwo0gw554ty" path="res://loot_phase/ui/click_indicator/Armature_up_down_14.png" id="15_6d48v"]
+[ext_resource type="Texture2D" uid="uid://mcaxdsag5c4g" path="res://loot_phase/ui/click_indicator/Armature_up_down_15.png" id="16_l1tnt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jkvga"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5pcfs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mxaog")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3gioe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_no1ed")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gdyej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_noinu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_mboxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wrxiq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_tsln7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_gfyob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_eku6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_wddk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_cmdnt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_mta3y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_6d48v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_l1tnt")
+}],
+"loop": true,
+"name": &"up_down",
+"speed": 24.0
+}]
+
+[node name="ClickIndicator" type="AnimatedSprite2D"]
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_jkvga")
+animation = &"up_down"

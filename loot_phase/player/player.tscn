@@ -1,19 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://dqy37tv54q4f5"]
+[gd_scene load_steps=17 format=3 uid="uid://cb253syigmrae"]
 
-[ext_resource type="Script" path="res://loot_phase/player/player.gd" id="1_jqr46"]
-[ext_resource type="SpriteFrames" uid="uid://c6sn8jjbf8lrf" path="res://loot_phase/player/player_animations.tres" id="2_34igi"]
-[ext_resource type="Texture2D" uid="uid://w0aq811lalrj" path="res://loot_phase/player_vertical/stun/Armature_stun_00.png" id="3_jbalu"]
-[ext_resource type="Texture2D" uid="uid://cmre08t767a2c" path="res://loot_phase/player_vertical/stun/Armature_stun_01.png" id="4_8qiop"]
-[ext_resource type="Texture2D" uid="uid://dcnlk20p4cey" path="res://loot_phase/player_vertical/stun/Armature_stun_02.png" id="5_aes8k"]
-[ext_resource type="Texture2D" uid="uid://bgi2qmi5axw61" path="res://loot_phase/player_vertical/stun/Armature_stun_03.png" id="6_k158w"]
-[ext_resource type="Texture2D" uid="uid://cfmpkv10i85jr" path="res://loot_phase/player_vertical/stun/Armature_stun_04.png" id="7_fxq8p"]
-[ext_resource type="Texture2D" uid="uid://bmw7pprojypj0" path="res://loot_phase/player_vertical/stun/Armature_stun_05.png" id="8_liw7l"]
-[ext_resource type="Texture2D" uid="uid://cduv3s0lk441c" path="res://loot_phase/player_vertical/stun/Armature_stun_06.png" id="9_50v0n"]
-[ext_resource type="Texture2D" uid="uid://dahfjgsew35ed" path="res://loot_phase/player_vertical/stun/Armature_stun_07.png" id="10_qwe0b"]
-[ext_resource type="Texture2D" uid="uid://51kqf28p015s" path="res://loot_phase/player_vertical/stun/Armature_stun_08.png" id="11_t8gch"]
-[ext_resource type="Texture2D" uid="uid://ux031rlmwns8" path="res://loot_phase/player_vertical/stun/Armature_stun_09.png" id="12_rpl57"]
-[ext_resource type="Texture2D" uid="uid://c811u47t85s22" path="res://loot_phase/player_vertical/stun/Armature_stun_10.png" id="13_4cs40"]
-[ext_resource type="Texture2D" uid="uid://b0s2l12ujnec7" path="res://loot_phase/player_vertical/stun/Armature_stun_11.png" id="14_85q48"]
+[ext_resource type="Script" path="res://loot_phase/player/player.gd" id="1_vsf7w"]
+[ext_resource type="SpriteFrames" path="res://loot_phase/player/player_animations.tres" id="2_vo6lg"]
+[ext_resource type="Texture2D" uid="uid://w0aq811lalrj" path="res://loot_phase/player/stun/Armature_stun_00.png" id="3_erkp5"]
+[ext_resource type="Texture2D" uid="uid://cmre08t767a2c" path="res://loot_phase/player/stun/Armature_stun_01.png" id="4_km7t8"]
+[ext_resource type="Texture2D" uid="uid://dcnlk20p4cey" path="res://loot_phase/player/stun/Armature_stun_02.png" id="5_2vtns"]
+[ext_resource type="Texture2D" uid="uid://bgi2qmi5axw61" path="res://loot_phase/player/stun/Armature_stun_03.png" id="6_6ixun"]
+[ext_resource type="Texture2D" uid="uid://cfmpkv10i85jr" path="res://loot_phase/player/stun/Armature_stun_04.png" id="7_na34l"]
+[ext_resource type="Texture2D" uid="uid://bmw7pprojypj0" path="res://loot_phase/player/stun/Armature_stun_05.png" id="8_asq53"]
+[ext_resource type="Texture2D" uid="uid://cduv3s0lk441c" path="res://loot_phase/player/stun/Armature_stun_06.png" id="9_eb126"]
+[ext_resource type="Texture2D" uid="uid://dahfjgsew35ed" path="res://loot_phase/player/stun/Armature_stun_07.png" id="10_diyug"]
+[ext_resource type="Texture2D" uid="uid://51kqf28p015s" path="res://loot_phase/player/stun/Armature_stun_08.png" id="11_r27vg"]
+[ext_resource type="Texture2D" uid="uid://ux031rlmwns8" path="res://loot_phase/player/stun/Armature_stun_09.png" id="12_a08re"]
+[ext_resource type="Texture2D" uid="uid://c811u47t85s22" path="res://loot_phase/player/stun/Armature_stun_10.png" id="13_wh2ag"]
+[ext_resource type="Texture2D" uid="uid://b0s2l12ujnec7" path="res://loot_phase/player/stun/Armature_stun_11.png" id="14_p6cp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mbfgr"]
 size = Vector2(144, 190)
@@ -22,40 +22,40 @@ size = Vector2(144, 190)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_jbalu")
+"texture": ExtResource("3_erkp5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_8qiop")
+"texture": ExtResource("4_km7t8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_aes8k")
+"texture": ExtResource("5_2vtns")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_k158w")
+"texture": ExtResource("6_6ixun")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_fxq8p")
+"texture": ExtResource("7_na34l")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_liw7l")
+"texture": ExtResource("8_asq53")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_50v0n")
+"texture": ExtResource("9_eb126")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_qwe0b")
+"texture": ExtResource("10_diyug")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_t8gch")
+"texture": ExtResource("11_r27vg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_rpl57")
+"texture": ExtResource("12_a08re")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_4cs40")
+"texture": ExtResource("13_wh2ag")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_85q48")
+"texture": ExtResource("14_p6cp3")
 }],
 "loop": true,
 "name": &"stun",
@@ -63,13 +63,13 @@ animations = [{
 }]
 
 [node name="Player" type="StaticBody2D" node_paths=PackedStringArray("animated_sprite", "stun_animation")]
-script = ExtResource("1_jqr46")
+script = ExtResource("1_vsf7w")
 animated_sprite = NodePath("AnimatedSprite2D")
 stun_animation = NodePath("StunAnimation")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.175, 0.173)
-sprite_frames = ExtResource("2_34igi")
+sprite_frames = ExtResource("2_vo6lg")
 animation = &"run"
 frame_progress = 0.664551
 offset = Vector2(0, -100)

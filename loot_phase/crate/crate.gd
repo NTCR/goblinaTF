@@ -1,10 +1,10 @@
 class_name Crate
 extends Sprite2D
 
-const HIT_PARTICLES = preload("res://loot_phase/effects/particle_wood.tscn")
+const HIT_PARTICLES = preload("res://loot_phase/effects/crate_destroy/particle_wood.tscn")
 
 signal crate_interacted(_crate_ref)
-signal crate_hit
+signal crate_hit(_crate_ref)
 #signal phase_ended
 @export_category("Configuration:")
 @export var crate_type : Loot.LOOT_TYPES
@@ -33,9 +33,6 @@ func get_type() -> Loot.LOOT_TYPES:
 func move_towards_player(_speed : Vector2):
 	position -= _speed
 
-#func on_phase_ended():
-#	phase_ended.emit()
-
 func crate_looted():
 	#disable hit just in case
 	_hit_area.set_deferred("disabled",true)
@@ -46,7 +43,7 @@ func _on_area_2d_body_entered(_body):
 
 func _crate_hit_player():
 	#notify gameworld
-	crate_hit.emit()
+	crate_hit.emit(self)
 	#disable hit (avoid trigger repetition)
 	_hit_area.set_deferred("disabled",true)
 	#spawn effect

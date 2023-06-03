@@ -1,5 +1,7 @@
 extends Node
 
+signal hp_depleted
+
 const CRATES : Array[Resource] = [
 	preload("res://loot_phase/crate/crate2p2.tscn"),
 	preload("res://loot_phase/crate/crate1p3.tscn"),
@@ -38,6 +40,7 @@ const GEAR_TIMER : Array[float] = [
 @export_category("UI elements")
 @export var bar_speed : TextureRect
 @export var bar_hp : HBoxContainer
+@export var click_indicator : AnimatedSprite2D
 @export_category("Parallax:")
 @export var clouds : ParallaxBackground
 @export var background : ParallaxBackground
@@ -48,17 +51,19 @@ var _gear : int = 0
 var _progress : int = 0
 var _hp : int = INITIAL_HP
 
+
 #start of level
 func _ready():
 	bag_ref.connect("crate_looted", Callable(self, "_on_crate_looted"))
 	#spawn initial crate
-	var _initial_crate = _spawn_crate(spawn_initial.position)
+	var _initial_crate := _spawn_crate(spawn_initial.position)
 	_initial_crate.set_process_input(false) #wait for transition to finnish
+	var _size = _initial_crate.texture.get_size() * _initial_crate.scale
+	click_indicator.position = _initial_crate.position - Vector2(0,_size.y/2)
+	click_indicator.play()
 	#clouds move independently from the rest of bg elements
 	clouds.set_motion(-0.5)
 	clouds.start()
-	
-	
 
 func get_game_bag():
 	return bag_ref
@@ -79,6 +84,9 @@ func increase_progress():
 		#timer revision
 		spawn_timer.timeout.emit()
 		spawn_timer.start()
+		#indicator
+		click_indicator.stop()
+		click_indicator.visible = false
 	#goblina is running
 	elif _gear < MAX_GEAR:
 		bar_speed.increase()
@@ -109,6 +117,7 @@ func decrease_progress():
 		_set_gear_settings()
 		bar_hp.lose_shield()
 	else:
+		bag_ref.release_held()
 		_gear_stop()
 
 func _gear_stop():
@@ -122,10 +131,8 @@ func _gear_stop():
 	_hp -= 1
 	bar_hp.lose_hp(_hp)
 	if _hp == 0:
-		pass
-		#NEXT
-#		bag_ref.on_phase_ended()
-#		get_tree().current_scene.end_phase()
+		bag_ref.release_held()
+		hp_depleted.emit()
 
 func _set_gear_settings():
 	_move_parallax(GEAR_SPEED[_gear].x)
@@ -160,36 +167,41 @@ func _spawn_crate(_position : Vector2) -> Crate:
 	return _crate_instance
 
 func _probability_crate_type() -> int:
-	var _highest_tier = {}
-	for _type in Loot.LOOT_TYPES.values():
-		_highest_tier[_type] = 0
-	for _loot_bag in bag_ref.loot_in_bag:
-		var _type = _loot_bag.get_loot_type()
-		var _tier = _loot_bag.get_loot_tier()
-		if _highest_tier.get(_type) < _tier:
-			_highest_tier[_type] = _tier
-	#non flexible to tier changes
-	var _total_tickets = 0
-	for _type in Loot.LOOT_TYPES.values():
-		var _tickets
-		match _highest_tier.get(_type):
-			0:
-				_tickets = 33
-			1:
-				_tickets = 20
-			2, 3, 4:
-				_tickets = 66
-			5:
-				_tickets = 20
-		_highest_tier[_type] = _tickets
-		_total_tickets += _tickets
-	var _draw_ticket = randi_range(0,_total_tickets)
-	for _type in Loot.LOOT_TYPES.values():
-		_total_tickets -= _highest_tier.get(_type)
-		if _draw_ticket > _total_tickets:
-			return _type
-	print("you shouldnt be here")
-	return 0
+	return randi_range(0,99) % 3
+#	var _highest_tier = {}
+#	for _type in Loot.LOOT_TYPES.values():
+#		_highest_tier[_type] = 0
+#	for _loot_bag in bag_ref.loot_in_bag:
+#		var _type = _loot_bag.get_loot_type()
+#		var _tier = _loot_bag.get_loot_tier()
+#		if _highest_tier.get(_type) < _tier:
+#			_highest_tier[_type] = _tier
+#	#non flexible to tier changes
+#	var _total_tickets = 0
+#	for _type in Loot.LOOT_TYPES.values():
+#		var _tickets
+#		match _highest_tier.get(_type):
+#			0:
+#				_tickets = 33
+#			1:
+#				_tickets = 20
+#			2:
+#				_tickets = 33
+#			3:
+#				_tickets = 40
+#			4:
+#				_tickets = 50
+#			5:
+#				_tickets = 20
+#		_highest_tier[_type] = _tickets
+#		_total_tickets += _tickets
+#	var _draw_ticket = randi_range(0,_total_tickets)
+#	for _type in Loot.LOOT_TYPES.values():
+#		_total_tickets -= _highest_tier.get(_type)
+#		if _draw_ticket >= _total_tickets:
+#			return _type
+#	print("you shouldnt be here")
+#	return 0
 
 #spawner
 func _on_spawn_timer_timeout():
@@ -198,8 +210,8 @@ func _on_spawn_timer_timeout():
 func _on_crate_interacted(_origin_crate : Crate):
 	bag_ref.on_loot_grab_from_crate(_origin_crate, _origin_crate.get_type())
 
-func _on_crate_hit():
-	bag_ref.on_crate_destroyed()
+func _on_crate_hit(_crate_ref : Crate):
+	bag_ref.on_crate_hit(_crate_ref)
 	decrease_progress()
 
 #señal de bag conforme un loot crate ha sido añadido

@@ -3,7 +3,7 @@ extends Node
 
 
 enum LOOT_TYPES {SQUARE,TALL,WIDE}
-const MAX_TIER = 5
+const MAX_TIER : int= 5
 const TYPE_SIZE = {
 	LOOT_TYPES.SQUARE : Vector2(2,2),
 	LOOT_TYPES.TALL : Vector2(1,3),
