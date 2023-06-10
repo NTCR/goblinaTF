@@ -11,6 +11,9 @@ const TIER_COLORS : Array[Color] = [
 var _loot_contained : Loot
 var _grid_position : Vector2
 
+static func get_tier_color(_t : int) -> Color:
+	return TIER_COLORS[_t - 1]
+
 func setup(_loot : Loot, _grid_pos : Vector2):
 	_loot_contained = Loot.new(_loot.type, _loot.tier)
 	#configure imagen (assets y fondo)

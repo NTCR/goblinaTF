@@ -113,6 +113,7 @@ func decrease_progress():
 		player.position.x -= 6
 		_gear -= 3
 		_progress -= 6
+		player.walk()
 		bar_speed.set_gear(_gear)
 		_set_gear_settings()
 		bar_hp.lose_shield()
@@ -132,6 +133,7 @@ func _gear_stop():
 	bar_hp.lose_hp(_hp)
 	if _hp == 0:
 		bag_ref.release_held()
+		bag_ref.store_loot()
 		hp_depleted.emit()
 
 func _set_gear_settings():

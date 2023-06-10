@@ -1,0 +1,189 @@
+[gd_scene load_steps=10 format=3 uid="uid://h5xvmjtqsu15"]
+
+[ext_resource type="Texture2D" uid="uid://qlrsjldrfepx" path="res://shop_phase/bg_storage.jpg" id="1_nhq5a"]
+[ext_resource type="Script" path="res://shop_phase/shop_back_screen.gd" id="1_s2rw8"]
+[ext_resource type="PackedScene" uid="uid://cb253syigmrae" path="res://loot_phase/player/player.tscn" id="2_tkat5"]
+[ext_resource type="PackedScene" uid="uid://dbfr7jyn50hrv" path="res://ui/settings/settings_button.tscn" id="4_wi4hw"]
+[ext_resource type="PackedScene" uid="uid://dckwp4gmcx2ro" path="res://shop_phase/ui/book/book_button.tscn" id="5_3q03t"]
+[ext_resource type="PackedScene" uid="uid://bqgkjrd8wdnk3" path="res://shop_phase/ui/inventory/inventory_button.tscn" id="6_2h6rn"]
+
+[sub_resource type="Animation" id="Animation_lpnlj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/FadeBlackHorizontal:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/FadeBlackHorizontal:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(600, 840)]
+}
+
+[sub_resource type="Animation" id="Animation_bxure"]
+resource_name = "enter_storage"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/FadeBlackHorizontal:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/FadeBlackHorizontal:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1400, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1224, 1168), Vector2(600, 840)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4, 3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"walk"
+}, {
+"args": [],
+"method": &"idle"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Player")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"flip_horizontal"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_reveal_phase"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jlc8t"]
+_data = {
+"RESET": SubResource("Animation_lpnlj"),
+"enter_storage": SubResource("Animation_bxure")
+}
+
+[node name="ShopBackScreen" type="Node" node_paths=PackedStringArray("transition", "spawnpoint_crate")]
+script = ExtResource("1_s2rw8")
+transition = NodePath("AnimationPlayer")
+spawnpoint_crate = NodePath("CrateSpawn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jlc8t")
+}
+
+[node name="BGStorage" type="TextureRect" parent="."]
+offset_right = 1400.0
+offset_bottom = 1050.0
+texture = ExtResource("1_nhq5a")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("2_tkat5")]
+position = Vector2(600, 840)
+
+[node name="CrateSpawn" type="Marker2D" parent="."]
+position = Vector2(448, 864)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="FadeBlackHorizontal" type="ColorRect" parent="CanvasLayer"]
+visible = false
+top_level = true
+offset_right = 1400.0
+offset_bottom = 1050.0
+color = Color(0, 0, 0, 1)
+
+[node name="SettingsButton" parent="CanvasLayer" instance=ExtResource("4_wi4hw")]
+offset_left = 1260.0
+offset_top = 930.0
+offset_right = 1260.2
+offset_bottom = 930.2
+
+[node name="BookButton" parent="CanvasLayer" instance=ExtResource("5_3q03t")]
+offset_left = 60.0
+offset_top = 930.0
+offset_right = 60.2
+offset_bottom = 930.2
+
+[node name="InventoryButton" parent="CanvasLayer" instance=ExtResource("6_2h6rn")]
+offset_left = 180.0
+offset_top = 930.0
+offset_right = 180.2
+offset_bottom = 930.2

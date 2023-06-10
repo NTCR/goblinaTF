@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvg4crctctt4n"]
+
+[ext_resource type="Texture2D" uid="uid://dvshm6b2ptbmb" path="res://loot_phase/crate/crate1p3.png" id="1_gtayj"]
+[ext_resource type="Script" path="res://shop_phase/crate/crate_reveal.gd" id="2_s2cmy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tb7pf"]
+size = Vector2(395.604, 1094.74)
+
+[node name="Crate1p3Reveal" type="Sprite2D" node_paths=PackedStringArray("mouse_area", "bar")]
+position = Vector2(21.76, 0)
+scale = Vector2(0.303333, 0.19)
+texture = ExtResource("1_gtayj")
+script = ExtResource("2_s2cmy")
+mouse_area = NodePath("MouseBox")
+bar = NodePath("ProgressBar")
+
+[node name="MouseBox" type="Area2D" parent="."]
+
+[node name="MouseShape" type="CollisionShape2D" parent="MouseBox"]
+position = Vector2(-5.8022, 0.000732422)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_tb7pf")
+debug_color = Color(0.811765, 0.356863, 0.537255, 0.419608)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -204.0
+offset_top = 547.0
+offset_right = 192.0
+offset_bottom = 631.0
+step = 1.0
+show_percentage = false

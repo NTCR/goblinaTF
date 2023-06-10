@@ -10,7 +10,7 @@ const CELL_SIZE = 144 #non adaptive for now
 const N_COLUMNS = 5
 const N_ROWS = 4
 var _grid_dict = {} #accessed with vector2 key, value bool indicates if slot free
-@onready var loot_in_bag : Array[LootBag] #keeps references of loot in bag
+@onready var _loot_in_bag : Array[LootBag] #keeps references of loot in bag
 @onready var _loot_held : Loot_Holder = Loot_Holder.new() #tracks if loot is held + data
 #need for calculations
 @onready var _grid_origin_position : Vector2 = $BagGrid.position.round()
@@ -98,7 +98,7 @@ func _gui_input(_event):
 
 #on grab, remove loot from bag
 func _loot_remove(_loot_bag : LootBag):
-	loot_in_bag.erase(_loot_bag)
+	_loot_in_bag.erase(_loot_bag)
 	_grid_set_space(_loot_bag.get_grid_position(), _loot_bag.get_loot_size(), false)
 	_loot_bag.queue_free()
 
@@ -128,6 +128,12 @@ func release_held():
 func on_crate_hit(_crate_ref : Crate):
 	if _loot_held.is_held() and _loot_held.get_origin_crate() == _crate_ref:
 		_loot_held.release()
+
+func store_loot():
+	for _lootbag in _loot_in_bag:
+		Database.loot_add(_lootbag.get_loot())
+	print(Database.loot_size())
+
 
 func _new_drag(_loot : Loot, _offset : Vector2) -> LootDrag:
 	var _texture_path = _loot.get_texture_path()
@@ -211,7 +217,7 @@ func _loot_add_held(_grid_pos : Vector2):
 	_loot_instance.setup(_loot_info, _grid_pos)
 	_loot_instance.position = _grid_coordinates_to_local(_grid_pos)
 	$BagGrid/LootContainer.add_child(_loot_instance)
-	loot_in_bag.append(_loot_instance)
+	_loot_in_bag.append(_loot_instance)
 	#marco ocupado
 	_grid_set_space(_grid_pos, _loot_held.get_loot_size(), true)
 #---
@@ -234,7 +240,7 @@ func _loot_is_in_position(_mouse_position : Vector2, _grid_pos : Vector2) -> Loo
 
 #find if lootbag is on a global position
 func _loot_is_in_global_position(_global_position : Vector2) -> LootBag:
-	for _loot_bag in loot_in_bag:
+	for _loot_bag in _loot_in_bag:
 		if _loot_bag.get_global_rect().has_point(_global_position):
 			return _loot_bag
 	return null

@@ -19,6 +19,8 @@ config/icon="res://goblina_face.png"
 
 LootDB="*res://database/loot_db.tscn"
 ArtifactDB="*res://database/artifact_db.tscn"
+TransitionManager="*res://general_phase/transition_manager.gd"
+Database="*res://database/database.gd"
 
 [display]
 

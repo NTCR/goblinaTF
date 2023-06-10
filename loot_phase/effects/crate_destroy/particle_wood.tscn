@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://bx8xitmh6kuk1"]
 
-[ext_resource type="Script" path="res://loot_phase/effects/crate_destroy/particle_wood.gd" id="1_qhhqm"]
+[ext_resource type="Script" path="res://loot_phase/effects/crate_destroy/emit_once.gd" id="1_6u5mw"]
 
 [sub_resource type="Gradient" id="Gradient_2xq6p"]
 colors = PackedColorArray(0.345098, 0.192157, 0.152941, 1, 0.788235, 0.627451, 0.505882, 1)
@@ -20,7 +20,7 @@ initial_velocity_max = 100.0
 scale_amount_min = 20.0
 scale_amount_max = 20.0
 color_ramp = SubResource("Gradient_2xq6p")
-script = ExtResource("1_qhhqm")
+script = ExtResource("1_6u5mw")
 
 [node name="Timer" type="Timer" parent="."]
 

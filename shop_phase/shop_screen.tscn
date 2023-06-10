@@ -1,8 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://bkyophtkdb8j0"]
+[gd_scene load_steps=20 format=3 uid="uid://bkyophtkdb8j0"]
 
 [ext_resource type="Script" path="res://shop_phase/shop_screen.gd" id="1_cucrg"]
 [ext_resource type="Texture2D" uid="uid://dspcl7a0owgiv" path="res://shop_phase/shop_bg.jpg" id="2_f3vft"]
-[ext_resource type="Texture2D" uid="uid://cp8sf6k2tcl3w" path="res://shop_phase/door.jpg" id="3_k7yob"]
 [ext_resource type="Script" path="res://shop_phase/revelar/revelar.gd" id="4_ih61s"]
 [ext_resource type="Texture2D" uid="uid://hxxdt6owgm07" path="res://shop_phase/revelar/pila.png" id="5_41buq"]
 [ext_resource type="FontFile" uid="uid://b5crpuqkswlg1" path="res://Take Coffee.otf" id="6_xlygv"]
@@ -40,7 +39,7 @@ butt_revelar = NodePath("BaseUI/HBoxC-bottmenu/ButtRevelar")
 butt_comercio = NodePath("BaseUI/HBoxC-bottmenu/ButtComercio")
 butt_tasar = NodePath("BaseUI/HBoxC-bottmenu/ButtTasar")
 butt_volver = NodePath("BaseUI/HBoxC-bottmenu/ButtVolver")
-butt_door = NodePath("ButtDoor")
+butt_door = NodePath("")
 text_state = NodePath("BaseUI/HBoxC-topmenu/MargCInfo/LabelState")
 revelar_menu = NodePath("Revelar")
 comercio_menu = NodePath("Comercio")
@@ -55,17 +54,6 @@ offset_bottom = 1048.0
 texture = ExtResource("2_f3vft")
 expand_mode = 1
 metadata/_edit_lock_ = true
-
-[node name="ButtDoor" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 608.0
-offset_top = 488.0
-offset_right = 816.0
-offset_bottom = 776.0
-focus_mode = 0
-texture_normal = ExtResource("3_k7yob")
-ignore_texture_size = true
-stretch_mode = 0
 
 [node name="BaseUI" type="Control" parent="."]
 anchors_preset = 0
@@ -749,7 +737,6 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 text = "DE ACUERDO"
 
-[connection signal="button_up" from="ButtDoor" to="." method="_on_butt_door_up"]
 [connection signal="button_up" from="BaseUI/HBoxC-topmenu/MargCLibro/ButtLibro" to="." method="_on_butt_libro_button_up"]
 [connection signal="button_up" from="BaseUI/HBoxC-topmenu/MargCInv/ButtInv" to="." method="_on_butt_inv_button_up"]
 [connection signal="button_up" from="BaseUI/HBoxC-bottmenu/ButtRevelar" to="." method="_on_butt_revelar_button_up"]

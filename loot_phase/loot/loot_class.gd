@@ -32,3 +32,11 @@ func get_texture_path() -> String:
 
 static func get_random_type():
 	return LOOT_TYPES.keys()[randi() % LOOT_TYPES.size()]
+
+func _to_string():
+	var _arr = ["SQUARE","TALL","WIDE"]
+	var _s : String = "Tipo: "
+	_s += _arr[type]
+	_s += " Tier: "
+	_s += str(tier)
+	return _s

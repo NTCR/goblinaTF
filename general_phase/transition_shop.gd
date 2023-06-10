@@ -11,4 +11,5 @@ func _ready():
 	transitions.play("to_shop")
 
 func to_shop_scene():
+	TransitionManager.first_enter_shop = true
 	get_tree().change_scene_to_file(next_scene)

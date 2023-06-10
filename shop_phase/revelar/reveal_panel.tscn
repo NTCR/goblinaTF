@@ -1,0 +1,179 @@
+[gd_scene load_steps=14 format=3 uid="uid://b14wg67ivpfy2"]
+
+[ext_resource type="Script" path="res://shop_phase/revelar/reveal_panel.gd" id="1_0s43p"]
+[ext_resource type="Texture2D" uid="uid://b501r2dqmxy1m" path="res://shop_phase/reveal/reveal_base.svg" id="1_fuudo"]
+[ext_resource type="Texture2D" uid="uid://c8ykfomnwvygf" path="res://shop_phase/reveal/reveal_title.svg" id="2_fyau6"]
+[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ZeroCool.ttf" id="3_rkx64"]
+[ext_resource type="PackedScene" uid="uid://daid81smvt7vy" path="res://ui/ok/butt_ok.tscn" id="4_ixhwu"]
+[ext_resource type="Texture2D" uid="uid://2k8nvaxx3ul" path="res://shop_phase/reveal/addinv_normal.png" id="6_fx8ck"]
+[ext_resource type="Texture2D" uid="uid://5wa5jh1mjnff" path="res://shop_phase/reveal/addinv_click.png" id="7_uvgni"]
+[ext_resource type="Texture2D" uid="uid://biddxh3v54bh3" path="res://shop_phase/reveal/addinv_hover.png" id="8_qtq5r"]
+[ext_resource type="Texture2D" uid="uid://bm7nt2n5hp8a4" path="res://shop_phase/reveal/artifact_box.svg" id="9_hk078"]
+
+[sub_resource type="Animation" id="Animation_aouha"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ub21r"]
+resource_name = "close_reveal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_q4gdg"]
+resource_name = "open_reveal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qq44p"]
+_data = {
+"RESET": SubResource("Animation_aouha"),
+"close_reveal": SubResource("Animation_ub21r"),
+"open_reveal": SubResource("Animation_q4gdg")
+}
+
+[node name="RevealPanel" type="Control" node_paths=PackedStringArray("group_empty", "group_success", "transition")]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 0.998
+offset_right = -1400.0
+offset_bottom = -1047.9
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0s43p")
+group_empty = NodePath("Empty")
+group_success = NodePath("Success")
+transition = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qq44p")
+}
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 640.0
+texture = ExtResource("1_fuudo")
+expand_mode = 1
+
+[node name="PanelTitle" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 111.0
+texture = ExtResource("2_fyau6")
+expand_mode = 1
+
+[node name="TitleLabel" type="Label" parent="PanelTitle"]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 7.0
+offset_right = 355.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(0.67451, 0.364706, 0.176471, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_rkx64")
+theme_override_font_sizes/font_size = 28
+text = "¿QUÉ HABÍA?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Empty" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+
+[node name="FailedLabel" type="Label" parent="Empty"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 147.0
+offset_right = 457.0
+offset_bottom = 444.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_rkx64")
+theme_override_font_sizes/font_size = 30
+text = "VAYA... 
+NO HABÍA NADA EN LA CAJA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtOK" parent="Empty" instance=ExtResource("4_ixhwu")]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 554.0
+offset_right = 359.0
+offset_bottom = 651.0
+
+[node name="Success" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+
+[node name="ArtifactBox" type="TextureRect" parent="Success"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 216.0
+offset_right = 406.0
+offset_bottom = 516.0
+texture = ExtResource("9_hk078")
+expand_mode = 1
+
+[node name="ArtifactName" type="Label" parent="Success"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.019
+anchor_bottom = 0.011
+offset_left = 63.0
+offset_top = 95.0
+offset_right = 417.4
+offset_bottom = 211.45
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_rkx64")
+theme_override_font_sizes/font_size = 30
+text = "NOMBRE NORMAL A NO SER QUE SEA MUY LARGO"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtAddInv" type="TextureButton" parent="Success"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 554.0
+offset_right = 359.0
+offset_bottom = 651.0
+texture_normal = ExtResource("6_fx8ck")
+texture_pressed = ExtResource("7_uvgni")
+texture_hover = ExtResource("8_qtq5r")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="Empty/ButtOK" to="." method="close_panel"]
+[connection signal="pressed" from="Success/ButtAddInv" to="." method="close_panel"]

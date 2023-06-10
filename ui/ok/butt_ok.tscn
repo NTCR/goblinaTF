@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://daid81smvt7vy"]
+
+[ext_resource type="Texture2D" uid="uid://bevm84cynx6nj" path="res://ui/ok/ok_normal.png" id="1_qmj6t"]
+[ext_resource type="Texture2D" uid="uid://cvaxjnh13wj1" path="res://ui/ok/ok_click.png" id="2_l7dos"]
+[ext_resource type="Texture2D" uid="uid://bmdagymaax17t" path="res://ui/ok/ok_hover.png" id="3_c0ijp"]
+
+[node name="ButtOK" type="TextureButton"]
+offset_right = 311.0
+offset_bottom = 152.0
+texture_normal = ExtResource("1_qmj6t")
+texture_pressed = ExtResource("2_l7dos")
+texture_hover = ExtResource("3_c0ijp")
+ignore_texture_size = true
+stretch_mode = 0
