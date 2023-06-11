@@ -265,14 +265,11 @@ tracks/8/path = NodePath("Player")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"walk"
-}, {
-"args": [],
-"method": &"flip_horizontal"
 }]
 }
 tracks/9/type = "method"
@@ -336,6 +333,20 @@ tracks/13/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/14/type = "method"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Player")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"look_left"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yxa3n"]

@@ -1,3 +1,4 @@
+class_name Player
 extends StaticBody2D
 
 @export_category("Components:")
@@ -24,9 +25,11 @@ func recover():
 	stun_animation.stop()
 	stun_animation.visible = false
 
-func flip_horizontal():
-	animated_sprite.flip_h = true
+func look_right():
+	animated_sprite.flip_h = false
 
+func look_left():
+	animated_sprite.flip_h = true
 
 func _on_animated_sprite_2d_animation_finished():
 	match(animated_sprite.animation):

@@ -1,0 +1,176 @@
+[gd_scene load_steps=12 format=3 uid="uid://db3o7k40dii6b"]
+
+[ext_resource type="Texture2D" uid="uid://dbvfvm1rbuuiw" path="res://shop_phase/inventario_vertical/inventory_base.svg" id="1_prj4m"]
+[ext_resource type="Script" path="res://shop_phase/inventario_vertical/inventory_panel.gd" id="1_xpx2y"]
+[ext_resource type="Texture2D" uid="uid://c8ykfomnwvygf" path="res://shop_phase/reveal/reveal_title.svg" id="2_0dwki"]
+[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ZeroCool.ttf" id="3_glnld"]
+[ext_resource type="Texture2D" uid="uid://bq8i1oenytlcd" path="res://shop_phase/inventario_vertical/gold_indicator.svg" id="4_ev5cu"]
+[ext_resource type="Texture2D" uid="uid://bt4d746xtvkx0" path="res://shop_phase/inventario_vertical/inventory_subbase.svg" id="5_72yhn"]
+
+[sub_resource type="Animation" id="Animation_6nrpe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vckce"]
+resource_name = "close_panel"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_v7yt7"]
+resource_name = "open_panel"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g4rcr"]
+_data = {
+"RESET": SubResource("Animation_6nrpe"),
+"close_panel": SubResource("Animation_vckce"),
+"open_panel": SubResource("Animation_v7yt7")
+}
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8vxmq"]
+texture = ExtResource("5_72yhn")
+
+[node name="InventoryPanel" type="Control" node_paths=PackedStringArray("transitions", "artifacts_container")]
+clip_contents = true
+layout_mode = 3
+anchor_right = 0.457
+anchor_bottom = 0.652
+offset_right = 0.199951
+offset_bottom = 0.399963
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xpx2y")
+transitions = NodePath("AnimationPlayer")
+artifacts_container = NodePath("ScrollContainer/GridContainer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g4rcr")
+}
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.005
+anchor_bottom = 0.939
+offset_right = -603.2
+offset_bottom = -603.215
+texture = ExtResource("1_prj4m")
+
+[node name="PanelTitle" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.164
+offset_bottom = -0.340004
+texture = ExtResource("2_0dwki")
+expand_mode = 1
+
+[node name="TitleLabel" type="Label" parent="PanelTitle"]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 7.0
+offset_right = 479.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(0.67451, 0.364706, 0.176471, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_glnld")
+theme_override_font_sizes/font_size = 28
+text = "INVENTARIO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelGold" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.838
+anchor_right = 0.75
+anchor_bottom = 1.001
+offset_top = -0.0300293
+offset_right = -3.05176e-05
+offset_bottom = 0.314941
+texture = ExtResource("4_ev5cu")
+expand_mode = 1
+
+[node name="GoldLabel" type="Label" parent="PanelGold"]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 25.0
+offset_right = 287.0
+offset_bottom = 84.0
+theme_override_fonts/font = ExtResource("3_glnld")
+theme_override_font_sizes/font_size = 40
+text = "9999999"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 8
+visible_ratio = 1.14286
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(480, 415)
+layout_mode = 2
+anchor_left = 0.119
+anchor_top = 0.168
+anchor_right = 0.881
+anchor_bottom = 0.774
+offset_left = -0.160004
+offset_top = -0.0800095
+offset_right = 0.159973
+offset_bottom = -0.190063
+theme_override_styles/panel = SubResource("StyleBoxTexture_8vxmq")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(480, 415)
+layout_mode = 2
+columns = 2

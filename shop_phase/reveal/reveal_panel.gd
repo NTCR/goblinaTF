@@ -1,11 +1,15 @@
 extends Control
 
-signal panel_closed
+signal panel_closed(artifact)
 
 @export_category("Components:")
 @export var group_empty : Control
 @export var group_success : Control
 @export var transition : AnimationPlayer
+@export var nameplate : Label
+@export var box : TextureRect
+
+var _artifact : Artifact = null
 
 func _ready():
 	transition.play("open_reveal")
@@ -13,15 +17,14 @@ func _ready():
 func setup_panel(_a : Artifact):
 	if _a:
 		group_success.visible = true
-		$Success/ArtifactName.text = _a.name
-		var _sprite = Sprite2D.new()
-		_sprite.texture = load(_a.get_texture_path())
-		_sprite.position = $Success/ArtifactBox.position + $Success/ArtifactBox.size/2
-		_sprite.scale = Vector2(0.25,0.25)
-		group_success.add_child(_sprite)
+		nameplate.text = _a.name
+		var _color = LootBag.TIER_COLORS[_a.rarity+1]
+		nameplate.add_theme_color_override("font_color",_color)
+		box.setup_box(_a)
+		_artifact = _a
 	else:
 		group_empty.visible = true
 
 func close_panel():
-	panel_closed.emit()
+	panel_closed.emit(_artifact)
 	transition.play("close_reveal")

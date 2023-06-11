@@ -2,7 +2,7 @@ extends Sprite2D
 
 const CLICK_PARTICLES = preload("res://shop_phase/crate/effect/particle_wood_small.tscn")
 
-signal crate_opened
+signal crate_opened(tier)
 
 @export_category("Components:")
 @export var mouse_area : Area2D
@@ -10,8 +10,8 @@ signal crate_opened
 
 @onready var _mouse_rect : Rect2 = mouse_area.get_child(0).get_shape().get_rect()
 var _progress = 0
-var _tier = 1
-var _click_needed = 1
+var _tier : int = 1
+var _click_needed : int = 1
 
 func _ready():
 	var _box = StyleBoxFlat.new()
@@ -47,4 +47,5 @@ func _reduce_progress():
 
 func _open():
 	set_process_input(false)
-	crate_opened.emit()
+	crate_opened.emit(_tier)
+	queue_free()

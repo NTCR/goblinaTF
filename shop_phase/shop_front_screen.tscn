@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cgoi2omqtl4pe"]
+[gd_scene load_steps=11 format=3 uid="uid://cb28qk65fvhqa"]
 
 [ext_resource type="Texture2D" uid="uid://n2veggr2t78t" path="res://shop_phase/front_l1.jpg" id="1_hbkla"]
 [ext_resource type="Script" path="res://shop_phase/shop_front_screen.gd" id="1_w0csl"]
 [ext_resource type="PackedScene" uid="uid://dbfr7jyn50hrv" path="res://ui/settings/settings_button.tscn" id="2_vf2yt"]
-[ext_resource type="PackedScene" uid="uid://bqgkjrd8wdnk3" path="res://shop_phase/ui/inventory/inventory_button.tscn" id="3_1yoga"]
+[ext_resource type="PackedScene" uid="uid://crt81s8unwy5n" path="res://shop_phase/inventario_vertical/inventory_button.tscn" id="3_1yoga"]
 [ext_resource type="Texture2D" uid="uid://bet4u8gxyit6x" path="res://shop_phase/front_l2.png" id="3_t548y"]
 [ext_resource type="PackedScene" uid="uid://dckwp4gmcx2ro" path="res://shop_phase/ui/book/book_button.tscn" id="4_2oyxt"]
 [ext_resource type="PackedScene" uid="uid://cb253syigmrae" path="res://loot_phase/player/player.tscn" id="5_ygcde"]
@@ -159,7 +159,7 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"flip_horizontal"
+"method": &"look_left"
 }]
 }
 tracks/4/type = "method"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2ea55gi07pji"
-path="res://.godot/imported/inven_hover.svg-96f1a6e1ad3cd6796bfaa3d9c136bf36.ctex"
+uid="uid://bdxwy31dmymt"
+path="res://.godot/imported/pay_hover.png-5d099cf51f7b1935bb558a68bb56bcb4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shop_phase/ui/inventory/inven_hover.svg"
-dest_files=["res://.godot/imported/inven_hover.svg-96f1a6e1ad3cd6796bfaa3d9c136bf36.ctex"]
+source_file="res://shop_phase/tasar_vertical/pay_hover.png"
+dest_files=["res://.godot/imported/pay_hover.png-5d099cf51f7b1935bb558a68bb56bcb4.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

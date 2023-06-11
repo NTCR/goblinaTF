@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlb0qpvshvokh"
-path="res://.godot/imported/inven_click.svg-a3e83b5951a2bbbb18d08793958ec340.ctex"
+uid="uid://2ea55gi07pji"
+path="res://.godot/imported/inven_hover.svg-faf45c2cda6b87f8e0c02442361d6238.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shop_phase/ui/inventory/inven_click.svg"
-dest_files=["res://.godot/imported/inven_click.svg-a3e83b5951a2bbbb18d08793958ec340.ctex"]
+source_file="res://shop_phase/inventario_vertical/inven_hover.svg"
+dest_files=["res://.godot/imported/inven_hover.svg-faf45c2cda6b87f8e0c02442361d6238.ctex"]
 
 [params]
 

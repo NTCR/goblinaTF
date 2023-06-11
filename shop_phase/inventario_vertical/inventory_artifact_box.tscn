@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ug72pfmoc1uy"]
+
+[ext_resource type="Texture2D" uid="uid://bm7nt2n5hp8a4" path="res://shop_phase/reveal/artifact_box.svg" id="1_y35tm"]
+[ext_resource type="Script" path="res://shop_phase/inventario_vertical/inventory_artifact_box.gd" id="2_2lh8s"]
+
+[node name="InventoryArtifactBox" type="TextureRect"]
+custom_minimum_size = Vector2(230, 230)
+offset_right = 230.0
+offset_bottom = 230.0
+texture = ExtResource("1_y35tm")
+expand_mode = 1
+script = ExtResource("2_2lh8s")

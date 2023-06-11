@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmyfe3d8grc5x"
-path="res://.godot/imported/inven_locked.svg-c402aff80d1cd92cc85dff061aa2d29d.ctex"
+uid="uid://bjho7xcm6ef4c"
+path="res://.godot/imported/pay_click.png-2e5977288b36a5ac1f80bdebdca3e76d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shop_phase/ui/inventory/inven_locked.svg"
-dest_files=["res://.godot/imported/inven_locked.svg-c402aff80d1cd92cc85dff061aa2d29d.ctex"]
+source_file="res://shop_phase/tasar_vertical/pay_click.png"
+dest_files=["res://.godot/imported/pay_click.png-2e5977288b36a5ac1f80bdebdca3e76d.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

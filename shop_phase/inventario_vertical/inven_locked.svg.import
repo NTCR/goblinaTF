@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caqx4d2q3gr1s"
-path="res://.godot/imported/inven_normal.svg-672a13219fab42abf8db1f27d6e36418.ctex"
+uid="uid://bmyfe3d8grc5x"
+path="res://.godot/imported/inven_locked.svg-fbcae236396ca98ba73c417ff58ba8f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shop_phase/ui/inventory/inven_normal.svg"
-dest_files=["res://.godot/imported/inven_normal.svg-672a13219fab42abf8db1f27d6e36418.ctex"]
+source_file="res://shop_phase/inventario_vertical/inven_locked.svg"
+dest_files=["res://.godot/imported/inven_locked.svg-fbcae236396ca98ba73c417ff58ba8f1.ctex"]
 
 [params]
 

@@ -132,7 +132,6 @@ func on_crate_hit(_crate_ref : Crate):
 func store_loot():
 	for _lootbag in _loot_in_bag:
 		Database.loot_add(_lootbag.get_loot())
-	print(Database.loot_size())
 
 
 func _new_drag(_loot : Loot, _offset : Vector2) -> LootDrag:

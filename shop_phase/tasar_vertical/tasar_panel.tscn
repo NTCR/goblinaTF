@@ -1,0 +1,544 @@
+[gd_scene load_steps=22 format=3 uid="uid://yav0vrpaoh3e"]
+
+[ext_resource type="Script" path="res://shop_phase/tasar_vertical/tasar_panel.gd" id="1_3eqx1"]
+[ext_resource type="Texture2D" uid="uid://dwgvxe07vgcyt" path="res://shop_phase/ui/shine_effect.png" id="2_bv58g"]
+[ext_resource type="Texture2D" uid="uid://dbvfvm1rbuuiw" path="res://shop_phase/inventario_vertical/inventory_base.svg" id="2_hpe7b"]
+[ext_resource type="Texture2D" uid="uid://c8ykfomnwvygf" path="res://shop_phase/reveal/reveal_title.svg" id="3_5xip3"]
+[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ZeroCool.ttf" id="4_qxxt8"]
+[ext_resource type="Texture2D" uid="uid://bt4d746xtvkx0" path="res://shop_phase/inventario_vertical/inventory_subbase.svg" id="5_ouujy"]
+[ext_resource type="PackedScene" uid="uid://ug72pfmoc1uy" path="res://shop_phase/inventario_vertical/inventory_artifact_box.tscn" id="6_821po"]
+[ext_resource type="Texture2D" uid="uid://btv1u5315503t" path="res://shop_phase/ui/gold_icon.svg" id="7_vswft"]
+[ext_resource type="Texture2D" uid="uid://b847wcc5u8qgt" path="res://shop_phase/tasar_vertical/pay_normal.png" id="8_0cs21"]
+[ext_resource type="Texture2D" uid="uid://bjho7xcm6ef4c" path="res://shop_phase/tasar_vertical/pay_click.png" id="9_ai5ox"]
+[ext_resource type="Texture2D" uid="uid://bdxwy31dmymt" path="res://shop_phase/tasar_vertical/pay_hover.png" id="10_oku72"]
+[ext_resource type="Texture2D" uid="uid://dkbri5ud827lh" path="res://shop_phase/ui/back/buttback_normal.svg" id="11_6l182"]
+[ext_resource type="Texture2D" uid="uid://cw4iyxilr6i4o" path="res://shop_phase/ui/back/buttback_click.svg" id="12_1086j"]
+[ext_resource type="Texture2D" uid="uid://d320w7d1h148a" path="res://shop_phase/ui/back/buttback_hover.svg" id="13_drkai"]
+[ext_resource type="PackedScene" uid="uid://bxka4y02oartk" path="res://shop_phase/tasar_vertical/slot_machine/slot_machine.tscn" id="15_5vjma"]
+
+[sub_resource type="Animation" id="Animation_elhlv"]
+resource_name = "big_reveal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Price:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InventoryArtifactBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(205, 223), Vector2(205, 100)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Price:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SlotMachine:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SlotMachine:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_start_slot"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_8mdgh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Price:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InventoryArtifactBox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(205, 223)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Price:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SlotMachine:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SlotMachine:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("InventoryArtifactBox:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ScrollContainer:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ScrollContainer:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("InventoryArtifactBox:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mldd2"]
+resource_name = "price_state"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrollContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScrollContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Price:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Price:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("InventoryArtifactBox:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("InventoryArtifactBox:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_v3k4o"]
+resource_name = "not_paid"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InventoryArtifactBox:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InventoryArtifactBox:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Price:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Price:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ScrollContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ScrollContainer:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vjoox"]
+_data = {
+"RESET": SubResource("Animation_8mdgh"),
+"big_reveal": SubResource("Animation_elhlv"),
+"not_paid": SubResource("Animation_v3k4o"),
+"price_state": SubResource("Animation_mldd2")
+}
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3bovs"]
+texture = ExtResource("5_ouujy")
+
+[node name="TasarPanel" type="Control" node_paths=PackedStringArray("transition", "artifacts_container", "artifact_box", "price_label", "price_group", "slot_machine")]
+layout_mode = 3
+anchor_right = 0.457
+anchor_bottom = 0.61
+offset_right = 0.199951
+offset_bottom = -0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3eqx1")
+transition = NodePath("AnimationPlayer")
+artifacts_container = NodePath("ScrollContainer/GridContainer")
+artifact_box = NodePath("InventoryArtifactBox")
+price_label = NodePath("Price/HBoxContainer/PriceLabel")
+price_group = NodePath("Price")
+slot_machine = NodePath("SlotMachine")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vjoox")
+}
+
+[node name="ShineEffect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_top = -157.0
+offset_right = 643.0
+offset_bottom = 43.0
+texture = ExtResource("2_bv58g")
+expand_mode = 1
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.005
+anchor_bottom = 1.005
+offset_right = -0.200012
+offset_bottom = -0.200012
+texture = ExtResource("2_hpe7b")
+
+[node name="PanelTitle" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.164
+offset_bottom = -0.340004
+texture = ExtResource("3_5xip3")
+expand_mode = 1
+
+[node name="TitleLabel" type="Label" parent="PanelTitle"]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 7.0
+offset_right = 479.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(0.67451, 0.364706, 0.176471, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_qxxt8")
+theme_override_font_sizes/font_size = 28
+text = "TASAR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(480, 415)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.119
+anchor_top = 0.18
+anchor_right = 0.881
+anchor_bottom = 0.828
+offset_left = -0.160004
+offset_top = -0.200005
+offset_right = 0.160034
+offset_bottom = 0.0799561
+theme_override_styles/panel = SubResource("StyleBoxTexture_3bovs")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(480, 415)
+layout_mode = 2
+columns = 2
+
+[node name="InventoryArtifactBox" parent="." instance=ExtResource("6_821po")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.32
+anchor_top = 0.348
+anchor_right = 0.68
+anchor_bottom = 0.708
+offset_left = 205.0
+offset_top = 223.0
+offset_right = 435.0
+offset_bottom = 453.001
+
+[node name="Price" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchor_left = 0.117
+anchor_top = 0.164
+anchor_right = 0.883
+anchor_bottom = 0.914
+offset_left = 0.119995
+offset_top = 0.0399933
+offset_right = -0.119995
+offset_bottom = 0.039978
+
+[node name="InfoLabel" type="Label" parent="Price"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -4.0
+offset_right = 485.0
+offset_bottom = 116.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_qxxt8")
+theme_override_font_sizes/font_size = 30
+text = "Tasar revelará uno de los encantos del siguiente artefacto:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Price"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 356.0
+offset_right = 362.0
+offset_bottom = 412.0
+alignment = 1
+
+[node name="GoldIcon" type="TextureRect" parent="Price/HBoxContainer"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+texture = ExtResource("7_vswft")
+expand_mode = 1
+
+[node name="PriceLabel" type="Label" parent="Price/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_qxxt8")
+theme_override_font_sizes/font_size = 40
+text = "2323"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtPay" type="TextureButton" parent="Price"]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 438.0
+offset_right = 376.0
+offset_bottom = 569.0
+texture_normal = ExtResource("8_0cs21")
+texture_pressed = ExtResource("9_ai5ox")
+texture_hover = ExtResource("10_oku72")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ButtBack" type="TextureButton" parent="Price"]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 438.0
+offset_right = 490.0
+offset_bottom = 518.0
+texture_normal = ExtResource("11_6l182")
+texture_pressed = ExtResource("12_1086j")
+texture_hover = ExtResource("13_drkai")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="SlotMachine" parent="." instance=ExtResource("15_5vjma")]
+visible = false
+position = Vector2(316, 397)
+scale = Vector2(0.2, 0.2)
+
+[connection signal="pressed" from="Price/ButtPay" to="." method="_on_butt_pay_pressed"]
+[connection signal="pressed" from="Price/ButtBack" to="." method="_on_butt_back_pressed"]
+[connection signal="slot_ended" from="SlotMachine" to="." method="_on_slot_machine_slot_ended"]

@@ -1,0 +1,107 @@
+[gd_scene load_steps=17 format=3 uid="uid://bxka4y02oartk"]
+
+[ext_resource type="Texture2D" uid="uid://duaprgrj02kpg" path="res://shop_phase/charms/0.png" id="1_qggwg"]
+[ext_resource type="Script" path="res://shop_phase/tasar_vertical/slot_machine/slot_machine.gd" id="1_r1fj2"]
+[ext_resource type="Texture2D" uid="uid://dhgcsx81hgtn7" path="res://shop_phase/charms/1.png" id="2_4voa5"]
+[ext_resource type="Texture2D" uid="uid://c5txtcjy1k1l8" path="res://shop_phase/charms/2.png" id="3_1cjd1"]
+[ext_resource type="Texture2D" uid="uid://8a5t6oqnydde" path="res://shop_phase/charms/3.png" id="4_kfc6m"]
+[ext_resource type="Texture2D" uid="uid://c7iik70ymfagw" path="res://shop_phase/charms/4.png" id="5_32xw2"]
+[ext_resource type="Texture2D" uid="uid://cxytcaolgnfr8" path="res://shop_phase/charms/5.png" id="6_qvbsw"]
+[ext_resource type="Texture2D" uid="uid://b0raui27r0tr" path="res://shop_phase/charms/6.png" id="7_dirkr"]
+[ext_resource type="Texture2D" uid="uid://nhapkc1uufls" path="res://shop_phase/charms/7.png" id="8_t20uu"]
+[ext_resource type="Texture2D" uid="uid://bkpooxvfh2u0i" path="res://shop_phase/charms/8.png" id="9_y47xx"]
+[ext_resource type="Texture2D" uid="uid://cdxyucnbf2w7a" path="res://shop_phase/charms/9.png" id="10_7edkf"]
+[ext_resource type="Texture2D" uid="uid://b1h27qvm66d04" path="res://shop_phase/charms/10.png" id="11_u2r7u"]
+[ext_resource type="Texture2D" uid="uid://4he6uj1nvgha" path="res://shop_phase/charms/11.png" id="12_cyk16"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mhtsy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qggwg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4voa5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1cjd1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kfc6m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_32xw2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qvbsw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dirkr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_t20uu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_y47xx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7edkf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_u2r7u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_cyk16")
+}],
+"loop": true,
+"name": &"loop",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_6vcti"]
+resource_name = "slot"
+length = 5.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["loop"],
+"method": &"play"
+}, {
+"args": [],
+"method": &"_prepare_last_loop"
+}]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, 0, 0, 0, 0, 0.3, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6op52"]
+_data = {
+"slot": SubResource("Animation_6vcti")
+}
+
+[node name="SlotMachine" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_mhtsy")
+animation = &"loop"
+frame = 11
+script = ExtResource("1_r1fj2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6op52")
+}

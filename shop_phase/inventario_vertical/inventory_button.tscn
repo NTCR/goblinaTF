@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://crt81s8unwy5n"]
+
+[ext_resource type="Texture2D" uid="uid://caqx4d2q3gr1s" path="res://shop_phase/inventario_vertical/inven_normal.svg" id="1_3f3yt"]
+[ext_resource type="Texture2D" uid="uid://dlb0qpvshvokh" path="res://shop_phase/inventario_vertical/inven_click.svg" id="2_v7abp"]
+[ext_resource type="Texture2D" uid="uid://2ea55gi07pji" path="res://shop_phase/inventario_vertical/inven_hover.svg" id="3_2eyjh"]
+[ext_resource type="Texture2D" uid="uid://bmyfe3d8grc5x" path="res://shop_phase/inventario_vertical/inven_locked.svg" id="4_26nwo"]
+[ext_resource type="Script" path="res://shop_phase/inventario_vertical/inventory_button.gd" id="5_8782l"]
+
+[node name="InventoryButton" type="TextureButton"]
+anchors_preset = -1
+anchor_right = 0.057
+anchor_bottom = 0.076
+offset_right = 0.199997
+offset_bottom = 0.199997
+texture_normal = ExtResource("1_3f3yt")
+texture_pressed = ExtResource("2_v7abp")
+texture_hover = ExtResource("3_2eyjh")
+texture_disabled = ExtResource("4_26nwo")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("5_8782l")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

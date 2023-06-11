@@ -259,7 +259,7 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"flip_horizontal"
+"method": &"look_left"
 }]
 }
 tracks/3/type = "value"
@@ -448,8 +448,8 @@ top_level = true
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.998
-offset_right = 12600.0
-offset_bottom = 9783.2
+offset_right = 25200.0
+offset_bottom = 19214.3
 color = Color(0, 0, 0, 1)
 
 [connection signal="hp_depleted" from="Gameworld" to="." method="end_phase"]
