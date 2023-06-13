@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c6o8c87wjcyf0"]
+[gd_scene load_steps=15 format=3 uid="uid://c6o8c87wjcyf0"]
 
 [ext_resource type="Texture2D" uid="uid://cscqtjdagv86h" path="res://shop_phase/sell/reaction_indicator/angry.png" id="1_xhwxb"]
 [ext_resource type="Texture2D" uid="uid://bgmbscytg2l2j" path="res://shop_phase/sell/reaction_indicator/despedida.png" id="2_bh2tp"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://co3ajvhqrrvk4" path="res://shop_phase/sell/reaction_indicator/2dots.png" id="10_pa7vq"]
 [ext_resource type="Texture2D" uid="uid://dogokyia42x1t" path="res://shop_phase/sell/reaction_indicator/3dots.png" id="11_p5pfv"]
 [ext_resource type="Texture2D" uid="uid://cbxbr817abyeo" path="res://shop_phase/sell/reaction_indicator/empty.png" id="12_mi5x5"]
+[ext_resource type="Script" path="res://shop_phase/sell/reaction_indicator/reaction_indicator.gd" id="13_lhiox"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gf314"]
 animations = [{
@@ -34,10 +35,13 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_6pwpc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6pwpc")
 }],
 "loop": false,
 "name": &"confused",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -69,18 +73,24 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("7_8hpto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_8hpto")
 }],
 "loop": false,
 "name": &"perfect",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_lsrqj")
+}, {
 "duration": 1.0,
 "texture": ExtResource("8_lsrqj")
 }],
 "loop": false,
 "name": &"valid",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -102,4 +112,7 @@ animations = [{
 
 [node name="ReactionIndicator" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_gf314")
-animation = &"angry"
+animation = &"waiting"
+script = ExtResource("13_lhiox")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

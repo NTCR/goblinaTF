@@ -13,6 +13,9 @@ func setup_box(_a : Artifact):
 	add_child(_sprite)
 	_artifact = _a
 
+func get_artifact() -> Artifact:
+	return _artifact
+
 func _on_pressed():
 	artifact_selected.emit(_artifact)
 	disabled = true

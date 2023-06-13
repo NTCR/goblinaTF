@@ -3,10 +3,13 @@ extends Control
 const ARTIFACT_BUTTON = preload("res://shop_phase/ui/artifact_box/artifact_box_selection.tscn")
 const CHARM_SLOT = preload("res://shop_phase/sell/charm_slot.tscn")
 
+signal panel_closed()
+signal begin_main()
 signal charm_was_complete()
 signal charm_was_valid()
-signal charm_was_invalid()
+signal charm_was_invalid(patience_cost)
 signal charm_returned()
+signal artifact_sold()
 signal artifact_completed(artifact)
 
 @export_category("Components:")
@@ -16,13 +19,17 @@ signal artifact_completed(artifact)
 @export var name_label : Label
 @export var charm_slots : HBoxContainer
 @export var charm_options : GridContainer
+@export var price_label : Label
+@export var sold_label : Label
+@export var priceleft_label : Label
 
 var _curr_artifact : Artifact = null
 var _was_completed = false
+var _completed_sell = true
+var _gold_gain = 0
 
 #prepara estado initial
 func _ready():
-	debujea()
 	for _i in range(0,Database.inventory_size()):
 		var _a : Artifact = Database.inventory_get_at(_i)
 		var _butt_instance = ARTIFACT_BUTTON.instantiate()
@@ -32,9 +39,15 @@ func _ready():
 		artifacts_container.add_child(_butt_instance)
 	transition.play("open_sell")
 
+func _on_butt_go_loot_pressed():
+	panel_closed.emit()
+	transition.play("close_sell")
+
 #estado main
 func on_artifact_selected(_a : Artifact):
+	begin_main.emit()
 	_curr_artifact = _a
+	Database.inventory_erase_artifact(_curr_artifact)
 	_was_completed = Database.progress_is_artifact_completed(_curr_artifact)
 	artifact_box.free_box()
 	artifact_box.setup_box(_curr_artifact)
@@ -97,9 +110,11 @@ func _icon_pressed(_cs : CharmSlot):
 	if _charm in _curr_artifact.charms_complete:
 		charm_was_complete.emit()
 	elif _charm in _curr_artifact.charms_valid:
+		_completed_sell = false
 		charm_was_valid.emit()
 	else:
-		charm_was_invalid.emit()
+		var _patience_cost = Database.patience_cost(_curr_artifact.rarity)
+		charm_was_invalid.emit(_patience_cost)
 		_valid = false
 		
 	if _valid:
@@ -122,12 +137,53 @@ func _find_empty_slot() -> CharmSlot:
 
 func _is_artifact_sold():
 	if not _find_empty_slot():
+		artifact_sold.emit()
+		print("vendido!")
 		#remember party if completed
 		if not _was_completed and Database.progress_is_artifact_completed(_curr_artifact):
 			artifact_completed.emit(_curr_artifact)
-		#USTED ESTA AQUI
+			print("first_complete")
+		#ver si venta valida o perfecta
+		#update gold price
+		#update text
+		if _completed_sell:
+			sold_label.text = "¡Has vendido el artefacto a su mejor precio!"
+			_gold_gain = Database.price_sell(_curr_artifact.rarity, false, true)
+			price_label.text = str(_gold_gain)
+		else:
+			sold_label.text = "Has vendido el artefacto a un buen precio."
+			_gold_gain = Database.price_sell(_curr_artifact.rarity, false, false)
+			price_label.text = str(_gold_gain)
 		transition.play("sold")
-		#gain gold, inform type of sell
+
+func _on_sold_butt_pressed():
+	#add gold, reset all vars, intial state, elimina un butt artifact adecuado
+	Database.gold_gained(_gold_gain)
+	for _artf_butt in artifacts_container.get_children():
+		if _curr_artifact == _artf_butt.get_artifact():
+			_artf_butt.queue_free()
+			break
+	_curr_artifact = null
+	_was_completed = false
+	_completed_sell = true
+	_gold_gain = 0
+	transition.play("back_initial")
+
+func merchant_is_leaving():
+	_gold_gain = Database.price_sell(_curr_artifact.rarity, true)
+	Database.gold_gained(_gold_gain)
+	priceleft_label.text = str(_gold_gain)
+	transition.play("merchant_left")
+
+func can_leave():
+	_controls_enable()
+
+func _clean_main():
+	for _slot in charm_slots.get_children():
+		_slot.queue_free()
+	for _option in charm_options.get_children():
+		_option.queue_free()
+	artifact_box.free_box()
 
 func _controls_disable():
 	get_tree().call_group("controls","set_disabled",true)
@@ -144,3 +200,8 @@ func debujea():
 	Database.inventory_add_artifact(_a)
 	Database.inventory_add_artifact(_a)
 	
+
+
+
+
+

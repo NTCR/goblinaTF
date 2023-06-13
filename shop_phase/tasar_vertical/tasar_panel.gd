@@ -19,7 +19,6 @@ var _curr_price : int = 0
 
 #prepare estado1
 func _ready():
-	debujea()
 	for _i in range(0,Database.inventory_size()):
 		var _a : Artifact = Database.inventory_get_at(_i)
 		if _a not in _unique_inventory and not Database.progress_is_artifact_completed(_a):

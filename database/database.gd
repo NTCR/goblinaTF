@@ -5,6 +5,12 @@ const TASAR_MULTIPLIER : float = 0.05
 const ARTIFACTS_CSV_FILE = "res://database/artifacts.csv"
 const LOOTTABLE_CSV_FILE = "res://database/loottable.csv"
 const PRICETABLE_CSV_FILE = "res://database/pricetable.csv"
+const PATIENCE_COST = {
+	Artifact.RARITIES.UNCOMMON : 10,
+	Artifact.RARITIES.RARE : 15,
+	Artifact.RARITIES.EPIC : 20,
+	Artifact.RARITIES.LEGENDARY : 25,
+}
 
 var game_artifacts : Dictionary #dictionary with key:artifact name - value:artifact resource
 var game_loottable : Dictionary #dictionary with key:tier - value: array float probabilities
@@ -135,6 +141,21 @@ func price_tasar(_r : Artifact.RARITIES) -> int:
 	var _final_price = _initial_price * (1+_multiplier)
 	return roundi(_final_price)
 
+func price_sell(_r : Artifact.RARITIES, _merchant_left : bool, _is_complete_sell : bool = false) -> int:
+	if _merchant_left:
+		#failed sell
+		return roundi(game_pricetable[_r][2])
+	elif _is_complete_sell:
+		#perfect sell
+		return roundi(game_pricetable[_r][0])
+	else:
+		#valid sell
+		return roundi(game_pricetable[_r][1])
+
+#PATIENCE RELATED
+func patience_cost(_r : Artifact.RARITIES) -> int:
+	return PATIENCE_COST[_r]
+
 #GOLD RELATED
 func gold_total():
 	return gold
@@ -174,7 +195,8 @@ func progress_artifact_discovered(_artifact : Artifact):
 
 func progress_charm_succeeded(_artifact : Artifact, _charm : Charm.CHARMS):
 	var _progress_entry : ArtifactProgress = progress[_artifact.file_name]
-	if _progress_entry.charm_succeeded(_charm):
+	if not _progress_entry.has_charm_succeeded(_charm):
+		_progress_entry.charm_succeeded(_charm)
 		_progress_check_artifact_completed(_artifact, _progress_entry)
 
 func progress_has_charm_succeeded(_artifact : Artifact, _charm : Charm.CHARMS) -> bool:
@@ -211,7 +233,7 @@ func progress_is_gamecompleted() -> bool:
 func _progress_check_artifact_completed(_artifact : Artifact, _progress_entry : ArtifactProgress):
 	var _complete = true
 	for _charm in _artifact.charms_complete:
-		_complete &= _progress_entry.has_charm_succeeded(_charm)
+		_complete = _complete and _progress_entry.has_charm_succeeded(_charm)
 	if _complete:
 		_progress_entry.has_been_completed()
 

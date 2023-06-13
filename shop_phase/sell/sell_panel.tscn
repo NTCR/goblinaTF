@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bh7ipidlpmqgu"]
+[gd_scene load_steps=27 format=3 uid="uid://bh7ipidlpmqgu"]
 
 [ext_resource type="Texture2D" uid="uid://b1yas6cpbreh3" path="res://shop_phase/sell/sell_base.png" id="1_qtw1g"]
 [ext_resource type="Script" path="res://shop_phase/sell/sell_panel.gd" id="1_xvbud"]
@@ -11,43 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://bkung56o7q5uc" path="res://shop_phase/sell/explorar_hover.png" id="7_issut"]
 [ext_resource type="PackedScene" uid="uid://ug72pfmoc1uy" path="res://shop_phase/inventario_vertical/inventory_artifact_box.tscn" id="8_u8hjr"]
 [ext_resource type="Theme" uid="uid://bylvg6kjri6uy" path="res://shop_phase/ui/scroll_theme.tres" id="9_s8qdf"]
+[ext_resource type="Texture2D" uid="uid://dyapcgp2rvnt2" path="res://shop_phase/sell/explorar_locked.png" id="11_tv23d"]
 [ext_resource type="Texture2D" uid="uid://btv1u5315503t" path="res://shop_phase/ui/gold_icon.svg" id="11_uuk0i"]
 [ext_resource type="Texture2D" uid="uid://yfdw6ko6p5t3" path="res://shop_phase/sell/sold_normal.png" id="13_wf2jn"]
 [ext_resource type="Texture2D" uid="uid://vfqo7xv78ryu" path="res://shop_phase/sell/sold_click.png" id="14_gscd5"]
 [ext_resource type="Texture2D" uid="uid://r6qt1idcrly6" path="res://shop_phase/sell/sold_hover.png" id="15_332s7"]
-
-[sub_resource type="Animation" id="Animation_ccbdk"]
-resource_name = "open_sell"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"_controls_disable"
-}, {
-"args": [],
-"method": &"_controls_enable"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_68lfs"]
 length = 0.001
@@ -147,6 +115,78 @@ tracks/7/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sold:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ShineEffect:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Main/HBoxContainer:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Main/HBoxContainer:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Leave:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Leave:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_shp3l"]
 resource_name = "begin_main"
@@ -206,6 +246,39 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_controls_disable"
+}, {
+"args": [],
+"method": &"_controls_enable"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ccbdk"]
+resource_name = "open_sell"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -296,10 +369,263 @@ tracks/5/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_afq18"]
+resource_name = "back_initial"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_controls_disable"
+}, {
+"args": [],
+"method": &"_clean_main"
+}, {
+"args": [],
+"method": &"_controls_enable"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sold:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sold:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Main:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Main:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Main/ScrollContainer:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ShineEffect:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Initial:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Initial:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Main/ScrollContainer:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tcorj"]
+resource_name = "merchant_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main/HBoxContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main/HBoxContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Main/ScrollContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Main/ScrollContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Leave:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Leave:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_controls_disable"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_me1jl"]
+resource_name = "close_sell"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5naka"]
 _data = {
 "RESET": SubResource("Animation_68lfs"),
+"back_initial": SubResource("Animation_afq18"),
 "begin_main": SubResource("Animation_shp3l"),
+"close_sell": SubResource("Animation_me1jl"),
+"merchant_left": SubResource("Animation_tcorj"),
 "open_sell": SubResource("Animation_ccbdk"),
 "sold": SubResource("Animation_svn7v")
 }
@@ -310,7 +636,7 @@ texture = ExtResource("4_twfor")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_63ete"]
 texture = ExtResource("4_twfor")
 
-[node name="SellPanel" type="Control" node_paths=PackedStringArray("transition", "artifacts_container", "artifact_box", "name_label", "charm_slots", "charm_options")]
+[node name="SellPanel" type="Control" node_paths=PackedStringArray("transition", "artifacts_container", "artifact_box", "name_label", "charm_slots", "charm_options", "price_label", "sold_label", "priceleft_label")]
 layout_mode = 3
 anchor_right = 0.457
 anchor_bottom = 0.792
@@ -325,6 +651,9 @@ artifact_box = NodePath("Main/InventoryArtifactBox")
 name_label = NodePath("Main/NameLabel")
 charm_slots = NodePath("Main/HBoxContainer")
 charm_options = NodePath("Main/ScrollContainer/GridContainer")
+price_label = NodePath("Sold/HBoxContainer/PriceLabel")
+sold_label = NodePath("Sold/SoldLabel")
+priceleft_label = NodePath("Leave/HBoxContainer/PriceLabel2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -332,6 +661,7 @@ libraries = {
 }
 
 [node name="ShineEffect" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = -0.245
@@ -423,6 +753,7 @@ offset_bottom = 0.160034
 texture_normal = ExtResource("5_aagqa")
 texture_pressed = ExtResource("6_e56wc")
 texture_hover = ExtResource("7_issut")
+texture_disabled = ExtResource("11_tv23d")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -509,6 +840,7 @@ theme_override_constants/v_separation = 10
 columns = 3
 
 [node name="Sold" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -585,3 +917,71 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="LeftLabel" type="Label" parent="Leave"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.184
+anchor_top = 0.181
+anchor_right = 0.809
+anchor_bottom = 0.374
+offset_left = 0.239998
+offset_top = 250.408
+offset_right = 0.240051
+offset_bottom = 284.832
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_lhnbq")
+theme_override_font_sizes/font_size = 28
+text = "Vaya, has agotado la paciencia del mercader y te has tenido que conformar con el precio más bajo. "
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Leave"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.269
+anchor_top = 0.742
+anchor_right = 0.739
+anchor_bottom = 0.858
+offset_left = -2.15997
+offset_top = -18.1599
+offset_right = -2.45993
+offset_bottom = -17.8399
+alignment = 1
+
+[node name="GoldIcon" type="TextureRect" parent="Leave/HBoxContainer"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+texture = ExtResource("11_uuk0i")
+expand_mode = 1
+
+[node name="PriceLabel2" type="Label" parent="Leave/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_lhnbq")
+theme_override_font_sizes/font_size = 40
+text = "2323"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtGoLoot" type="TextureButton" parent="Leave" groups=["controls"]]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.336
+anchor_top = 0.9
+anchor_right = 0.664
+anchor_bottom = 1.056
+offset_left = -0.0400085
+offset_right = 0.039978
+offset_bottom = 0.160034
+texture_normal = ExtResource("5_aagqa")
+texture_pressed = ExtResource("6_e56wc")
+texture_hover = ExtResource("7_issut")
+texture_disabled = ExtResource("11_tv23d")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="Initial/ButtGoLoot" to="." method="_on_butt_go_loot_pressed"]
+[connection signal="pressed" from="Sold/SoldButt" to="." method="_on_sold_butt_pressed"]
+[connection signal="pressed" from="Leave/ButtGoLoot" to="." method="_on_butt_go_loot_pressed"]
