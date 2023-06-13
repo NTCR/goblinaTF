@@ -939,10 +939,10 @@ anchor_left = 0.32
 anchor_top = 0.348
 anchor_right = 0.68
 anchor_bottom = 0.708
-offset_left = 0.200027
-offset_top = 0.279999
-offset_right = -0.199951
-offset_bottom = -0.119995
+offset_left = 205.0
+offset_top = 223.0
+offset_right = 435.0
+offset_bottom = 453.0
 
 [node name="SlotMachine" parent="." instance=ExtResource("15_5vjma")]
 visible = false

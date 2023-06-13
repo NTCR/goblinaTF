@@ -1,6 +1,7 @@
 extends Node
 
 const SELL_PANEL = preload("res://shop_phase/sell/sell_panel.tscn")
+const COMPLETED_PANEL = preload("res://shop_phase/completed/panel_completed_artifact.tscn")
 
 @export_file var next_scene
 @export_file var loot_scene
@@ -12,6 +13,9 @@ var _sell_panel = null
 var _merchant_left := false
 
 func _ready():
+	Database.inventory_add_artifact(Database.game_artifacts["rum"])
+	Database.inventory_add_artifact(Database.game_artifacts["rum"])
+	Database.inventory_add_artifact(Database.game_artifacts["rum"])
 	TransitionManager.first_enter_shop = false
 	if TransitionManager.first_enter_shop:
 		transitions.play("to_storage")
@@ -60,9 +64,10 @@ func on_artifact_sold():
 	reaction_indicator.on_sell()
 
 func on_artifact_completed(_a : Artifact):
-	#montar fiest
-	print("tonight we pahty")
-	pass
+	var _panel_instance = COMPLETED_PANEL.instantiate()
+	_panel_instance.setup_panel(_a)
+	#veremos que hago con señal close
+	add_child(_panel_instance)
 
 func _on_patiencer_bar_patience_ran_out():
 	#merchant leaves etc

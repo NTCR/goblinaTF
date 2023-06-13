@@ -190,15 +190,6 @@ func _controls_disable():
 
 func _controls_enable():
 	get_tree().call_group("controls","set_disabled",false)
-
-func debujea():
-	Database.gold_gained(25)
-	var _a : Artifact = Database.game_artifacts["rum"]
-#	Database.progress_charm_succeeded(_a, Charm.CHARMS.SOUTH)
-#	Database.progress_charm_succeeded(_a, Charm.CHARMS.MAGE)
-#	Database.progress_charm_failed(_a, Charm.CHARMS.SWORDS)
-	Database.inventory_add_artifact(_a)
-	Database.inventory_add_artifact(_a)
 	
 
 

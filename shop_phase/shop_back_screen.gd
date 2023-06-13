@@ -21,8 +21,6 @@ var _artifact_spawn : Sprite2D = null
 
 func _ready():
 	transition.play("enter_storage")
-	Database.gold_gained(50)
-	debug_t()
 
 func _reveal_phase():
 	if Database.loot_size() > 0:
@@ -81,20 +79,3 @@ func _on_tasar_closed():
 func go_front_shop():
 	TransitionManager.first_enter_shop = false
 	get_tree().change_scene_to_file(next_scene)
-
-func debug_t():
-	var _l = Loot.new(Loot.LOOT_TYPES.SQUARE,2)
-	Database.loot_add(_l)
-	_l.tier = 4
-	Database.loot_add(_l)
-	_l.tier = 1
-	Database.loot_add(_l)
-	_l.type = Loot.LOOT_TYPES.TALL
-	Database.loot_add(_l)
-	_l.tier = 3
-	Database.loot_add(_l)
-	_l.tier = 5
-	Database.loot_add(_l)
-	_l.type = Loot.LOOT_TYPES.WIDE
-	_l.tier = 2
-	Database.loot_add(_l)
