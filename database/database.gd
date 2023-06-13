@@ -176,17 +176,25 @@ func progress_charm_succeeded(_artifact : Artifact, _charm : Charm.CHARMS):
 	var _progress_entry : ArtifactProgress = progress[_artifact.file_name]
 	if _progress_entry.charm_succeeded(_charm):
 		_progress_check_artifact_completed(_artifact, _progress_entry)
+
+func progress_has_charm_succeeded(_artifact : Artifact, _charm : Charm.CHARMS) -> bool:
+	var _progress_entry : ArtifactProgress = progress[_artifact.file_name]
+	return _progress_entry.has_charm_succeeded(_charm)
 	
 func progress_charm_failed(_artifact : Artifact, _charm : Charm.CHARMS):
 	var _progress_entry : ArtifactProgress = progress[_artifact.file_name]
 	_progress_entry.charm_failed(_charm)
 
+func progress_has_charm_failed(_artifact : Artifact, _charm : Charm.CHARMS) -> bool:
+	var _progress_entry : ArtifactProgress = progress[_artifact.file_name]
+	return _progress_entry.has_charm_failed(_charm)
+
 func progress_first_uncompleted_charm(_artifact : Artifact) -> Charm.CHARMS:
 	var _progress_entry : ArtifactProgress = progress[_artifact.file_name]
 	for _c in _artifact.charms_complete:
-		if not _progress_entry.is_charm_found(_c):
+		if not _progress_entry.has_charm_succeeded(_c):
 			return _c
-	print("artifact was completed when calling first uncompleted charm in db")
+	print("artifact was completed before calling first uncompleted charm in db")
 	return 0
 
 func progress_is_artifact_completed(_artifact : Artifact):
@@ -203,7 +211,7 @@ func progress_is_gamecompleted() -> bool:
 func _progress_check_artifact_completed(_artifact : Artifact, _progress_entry : ArtifactProgress):
 	var _complete = true
 	for _charm in _artifact.charms_complete:
-		_complete &= _progress_entry.is_charm_found(_charm)
+		_complete &= _progress_entry.has_charm_succeeded(_charm)
 	if _complete:
 		_progress_entry.has_been_completed()
 
@@ -231,14 +239,15 @@ class ArtifactProgress:
 	func is_completed() -> bool:
 		return _completed
 	
-	func is_charm_found(_c : Charm.CHARMS) -> bool:
+	func has_charm_succeeded(_c : Charm.CHARMS) -> bool:
 		return _c in _charms_succes
 	
-	func charm_succeeded(_c : Charm.CHARMS) -> bool:
+	func charm_succeeded(_c : Charm.CHARMS):
 		if _c not in _charms_succes:
 			_charms_succes.append(_c)
-			return true
-		return false
+	
+	func has_charm_failed(_c : Charm.CHARMS) -> bool:
+		return _c in _charms_failed
 	
 	func charm_failed(_c : Charm.CHARMS):
 		if _c not in _charms_failed:

@@ -1,0 +1,105 @@
+[gd_scene load_steps=14 format=3 uid="uid://c6o8c87wjcyf0"]
+
+[ext_resource type="Texture2D" uid="uid://cscqtjdagv86h" path="res://shop_phase/sell/reaction_indicator/angry.png" id="1_xhwxb"]
+[ext_resource type="Texture2D" uid="uid://bgmbscytg2l2j" path="res://shop_phase/sell/reaction_indicator/despedida.png" id="2_bh2tp"]
+[ext_resource type="Texture2D" uid="uid://bvj88ivy65txk" path="res://shop_phase/sell/reaction_indicator/confused.png" id="3_6pwpc"]
+[ext_resource type="Texture2D" uid="uid://0cj7xhwgx31c" path="res://shop_phase/sell/reaction_indicator/happy.png" id="4_wpsq6"]
+[ext_resource type="Texture2D" uid="uid://bbpvcngoqhg71" path="res://shop_phase/sell/reaction_indicator/saludo.png" id="5_qb266"]
+[ext_resource type="Texture2D" uid="uid://781xs0p5trvx" path="res://shop_phase/sell/reaction_indicator/fail.png" id="6_xchei"]
+[ext_resource type="Texture2D" uid="uid://hnbjeunjfhr3" path="res://shop_phase/sell/reaction_indicator/perfect.png" id="7_8hpto"]
+[ext_resource type="Texture2D" uid="uid://dma6n6e83g40k" path="res://shop_phase/sell/reaction_indicator/valid.png" id="8_lsrqj"]
+[ext_resource type="Texture2D" uid="uid://dj38u1xuxkguh" path="res://shop_phase/sell/reaction_indicator/1dot.png" id="9_2nxx6"]
+[ext_resource type="Texture2D" uid="uid://co3ajvhqrrvk4" path="res://shop_phase/sell/reaction_indicator/2dots.png" id="10_pa7vq"]
+[ext_resource type="Texture2D" uid="uid://dogokyia42x1t" path="res://shop_phase/sell/reaction_indicator/3dots.png" id="11_p5pfv"]
+[ext_resource type="Texture2D" uid="uid://cbxbr817abyeo" path="res://shop_phase/sell/reaction_indicator/empty.png" id="12_mi5x5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gf314"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xhwxb")
+}],
+"loop": false,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bh2tp")
+}],
+"loop": false,
+"name": &"bye",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6pwpc")
+}],
+"loop": false,
+"name": &"confused",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_wpsq6")
+}],
+"loop": false,
+"name": &"happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qb266")
+}],
+"loop": false,
+"name": &"hi",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_xchei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xchei")
+}],
+"loop": false,
+"name": &"invalid",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_8hpto")
+}],
+"loop": false,
+"name": &"perfect",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_lsrqj")
+}],
+"loop": false,
+"name": &"valid",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_2nxx6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pa7vq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_p5pfv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_mi5x5")
+}],
+"loop": true,
+"name": &"waiting",
+"speed": 2.0
+}]
+
+[node name="ReactionIndicator" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_gf314")
+animation = &"angry"

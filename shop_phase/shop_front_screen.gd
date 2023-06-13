@@ -4,13 +4,16 @@ extends Node
 @export var transitions : AnimationPlayer
 
 func _ready():
-	TransitionManager.first_enter_shop = true
+	TransitionManager.first_enter_shop = false
 	if TransitionManager.first_enter_shop:
-		entering_shop()
-
-func entering_shop():
-	transitions.play("enter_shop")
+		transitions.play("to_storage")
+	else:
+		transitions.play("to_sell")
+		TransitionManager.first_enter_shop = false
 
 func go_storage():
 	TransitionManager.first_enter_shop = false
 	get_tree().change_scene_to_file(next_scene)
+
+func begin_sell():
+	print("sell would start")

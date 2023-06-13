@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://db3o7k40dii6b"]
+[gd_scene load_steps=13 format=3 uid="uid://db3o7k40dii6b"]
 
 [ext_resource type="Texture2D" uid="uid://dbvfvm1rbuuiw" path="res://shop_phase/inventario_vertical/inventory_base.svg" id="1_prj4m"]
 [ext_resource type="Script" path="res://shop_phase/inventario_vertical/inventory_panel.gd" id="1_xpx2y"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ZeroCool.ttf" id="3_glnld"]
 [ext_resource type="Texture2D" uid="uid://bq8i1oenytlcd" path="res://shop_phase/inventario_vertical/gold_indicator.svg" id="4_ev5cu"]
 [ext_resource type="Texture2D" uid="uid://bt4d746xtvkx0" path="res://shop_phase/inventario_vertical/inventory_subbase.svg" id="5_72yhn"]
+[ext_resource type="Theme" uid="uid://bylvg6kjri6uy" path="res://shop_phase/ui/scroll_theme.tres" id="6_vf23g"]
 
 [sub_resource type="Animation" id="Animation_6nrpe"]
 length = 0.001
@@ -44,6 +45,20 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_close"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0.6),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -152,25 +167,24 @@ theme_override_font_sizes/font_size = 40
 text = "9999999"
 horizontal_alignment = 1
 vertical_alignment = 1
-visible_characters = 8
-visible_ratio = 1.14286
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-custom_minimum_size = Vector2(480, 415)
+custom_minimum_size = Vector2(484, 415)
 layout_mode = 2
-anchor_left = 0.119
+anchor_left = 0.127
 anchor_top = 0.168
-anchor_right = 0.881
+anchor_right = 0.883
 anchor_bottom = 0.774
-offset_left = -0.160004
+offset_left = -0.279991
 offset_top = -0.0800095
-offset_right = 0.159973
+offset_right = -0.119934
 offset_bottom = -0.190063
+theme = ExtResource("6_vf23g")
 theme_override_styles/panel = SubResource("StyleBoxTexture_8vxmq")
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
-custom_minimum_size = Vector2(480, 415)
+custom_minimum_size = Vector2(470, 415)
 layout_mode = 2
 columns = 2

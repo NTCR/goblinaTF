@@ -15,3 +15,4 @@ func setup_box(_a : Artifact):
 
 func _on_pressed():
 	artifact_selected.emit(_artifact)
+	disabled = true

@@ -2,6 +2,8 @@ extends Control
 
 const ARTIFACT_BOX = preload("res://shop_phase/inventario_vertical/inventory_artifact_box.tscn")
 
+signal panel_closed()
+
 @export_category("Components:")
 @export var transitions : AnimationPlayer
 @export var artifacts_container : GridContainer
@@ -22,3 +24,6 @@ func _ready():
 func _input(_event):
 	if _event is InputEventMouseButton and not get_global_rect().has_point(_event.global_position):
 		transitions.play("close_panel")
+
+func emit_close():
+	panel_closed.emit()

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsdv5khkuqo78"]
+
+[ext_resource type="Texture2D" uid="uid://q8stxxb46wd" path="res://shop_phase/sell/patience_bar/patience_bar.svg" id="1_eg5ld"]
+[ext_resource type="Texture2D" uid="uid://dtt2lwwsq88n3" path="res://shop_phase/sell/patience_bar/patience_fill.svg" id="2_hiy7c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l1hdh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2kkk1"]
+texture = ExtResource("2_hiy7c")
+
+[node name="PatiencerBar" type="TextureRect"]
+anchors_preset = -1
+anchor_right = 0.36
+anchor_bottom = 0.112
+offset_right = -464.0
+offset_bottom = -77.6
+texture = ExtResource("1_eg5ld")
+
+[node name="BarIndicator" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.234
+anchor_top = 0.22
+anchor_right = 0.923
+anchor_bottom = 0.763
+offset_left = 0.0639954
+offset_top = 0.039999
+offset_right = -0.192017
+offset_bottom = -0.0340042
+theme_override_styles/background = SubResource("StyleBoxEmpty_l1hdh")
+theme_override_styles/fill = SubResource("StyleBoxTexture_2kkk1")
+show_percentage = false

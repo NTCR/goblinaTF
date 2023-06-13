@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsylst8eombm1"]
+
+[ext_resource type="Theme" uid="uid://bylvg6kjri6uy" path="res://shop_phase/ui/scroll_theme.tres" id="1_i53xg"]
+[ext_resource type="Texture2D" uid="uid://bt4d746xtvkx0" path="res://shop_phase/inventario_vertical/inventory_subbase.svg" id="2_tl4pc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tfseq"]
+texture = ExtResource("2_tl4pc")
+
+[node name="ScrollContainer" type="ScrollContainer"]
+custom_minimum_size = Vector2(354, 213)
+anchors_preset = -1
+anchor_left = 0.223
+anchor_top = 0.609
+anchor_right = 0.777
+anchor_bottom = 0.865
+offset_left = 0.279999
+offset_top = 0.311981
+offset_right = -0.279999
+offset_bottom = 0.319946
+theme = ExtResource("1_i53xg")
+theme_override_styles/panel = SubResource("StyleBoxTexture_tfseq")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(308, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3

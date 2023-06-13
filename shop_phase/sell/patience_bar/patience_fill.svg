@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="88.370834mm"
+   height="13.49375mm"
+   viewBox="0 0 88.370834 13.49375"
+   version="1.1"
+   id="svg46420"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="patience_fill.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview46422"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="3.3439377"
+     inkscape:cx="216.95979"
+     inkscape:cy="113.04039"
+     inkscape:window-width="3840"
+     inkscape:window-height="2126"
+     inkscape:window-x="2869"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs46417">
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#id478"
+       id="radialGradient24917"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(6.83716e-5,0.161636,-1.43801,7.99018e-4,9330,2747)"
+       cx="4362.9502"
+       cy="3454.51"
+       fx="4362.9502"
+       fy="3454.51"
+       r="166.448" />
+    <radialGradient
+       id="id478"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(6.83716e-5,0.161636,-1.43801,7.99018e-4,9330,2747)"
+       cx="4362.9502"
+       cy="3454.51"
+       r="166.448"
+       fx="4362.9502"
+       fy="3454.51">
+   <stop
+   offset="0"
+   style="stop-color:#ff3300;stop-opacity:1;"
+   id="stop991" />
+
+   <stop
+   offset="0.85097998"
+   style="stop-color:#be310e;stop-opacity:1;"
+   id="stop993" />
+
+   <stop
+   offset="1"
+   style="stop-color:#a32100;stop-opacity:1;"
+   id="stop995" />
+
+  </radialGradient>
+    <radialGradient
+       id="id429"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.00001,0,0,0.138454,0,2976)"
+       xlink:href="#id428"
+       cx="4362.9502"
+       cy="3454.1101"
+       r="164.888"
+       fx="4362.9502"
+       fy="3454.1101">
+  </radialGradient>
+    <radialGradient
+       id="id428"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.00001,0,0,0.138454,0,2769)"
+       cx="3372.3201"
+       cy="3213.5601"
+       r="164.888"
+       fx="3372.3201"
+       fy="3213.5601">
+   <stop
+   offset="0"
+   style="stop-color:#ff8161;stop-opacity:1;"
+   id="stop915" />
+
+   <stop
+   offset="1"
+   style="stop-color:#ff4d20;stop-opacity:1;"
+   id="stop917" />
+
+  </radialGradient>
+  </defs>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-40.258553,-66.129462)">
+    <g
+       id="g20548"
+       inkscape:export-filename="..\game_ui\try_bar.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       style="clip-rule:evenodd;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       transform="matrix(0.26458333,0,0,0.26458333,-1069.9331,-841.39136)">
+   <path
+   style="fill:#991f00;fill-opacity:1"
+   inkscape:connector-curvature="0"
+   id="path20550"
+   d="m 4201,3432 h 324 c 2,0 5,2 5,5 v 39 c 0,3 -3,5 -5,5 h -324 c -3,0 -5,-2 -5,-5 v -39 c 0,-3 2,-5 5,-5 z"
+   class="fil1029" />
+
+   <path
+   style="display:inline;fill:#a32100;fill-opacity:1"
+   inkscape:connector-curvature="0"
+   id="path20552"
+   d="m 4201,3430 h 324 c 2,0 5,2 5,5 v 39 c 0,3 -3,5 -5,5 h -324 c -3,0 -5,-2 -5,-5 v -39 c 0,-3 2,-5 5,-5 z"
+   class="fil1030" />
+
+   <path
+   inkscape:connector-curvature="0"
+   style="display:inline;fill:url(#radialGradient24917)"
+   id="path20554"
+   d="m 4201,3430 h 323 c 3,0 5,2 5,5 v 39 c 0,3 -2,5 -5,5 h -323 c -2,0 -5,-2 -5,-5 v -39 c 0,-3 3,-5 5,-5 z"
+   class="fil1598" />
+
+   
+   <path
+   inkscape:connector-curvature="0"
+   style="display:inline;fill:url(#id429)"
+   id="path20558"
+   d="m 4202,3431 h 321 c 3,0 5,2 5,5 v 37 c 0,2 -2,4 -5,4 h -321 c -2,0 -4,-2 -4,-4 v -37 c 0,-3 2,-5 4,-5 z"
+   class="fil1599" />
+
+   <path
+   style="display:inline;fill:#ff9980;fill-opacity:0.50196099"
+   inkscape:connector-curvature="0"
+   id="path20560"
+   d="m 4203,3432 h 320 c 2,0 4,2 4,4 v 18 h -328 v -18 c 0,-2 2,-4 4,-4 z"
+   class="fil1034" />
+
+  </g>
+  </g>
+</svg>

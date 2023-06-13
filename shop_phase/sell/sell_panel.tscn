@@ -1,0 +1,587 @@
+[gd_scene load_steps=23 format=3 uid="uid://bh7ipidlpmqgu"]
+
+[ext_resource type="Texture2D" uid="uid://b1yas6cpbreh3" path="res://shop_phase/sell/sell_base.png" id="1_qtw1g"]
+[ext_resource type="Script" path="res://shop_phase/sell/sell_panel.gd" id="1_xvbud"]
+[ext_resource type="Texture2D" uid="uid://c8ykfomnwvygf" path="res://shop_phase/reveal/reveal_title.svg" id="2_0j1gg"]
+[ext_resource type="Texture2D" uid="uid://dwgvxe07vgcyt" path="res://shop_phase/ui/shine_effect.png" id="2_6cbn7"]
+[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ZeroCool.ttf" id="3_lhnbq"]
+[ext_resource type="Texture2D" uid="uid://bt4d746xtvkx0" path="res://shop_phase/inventario_vertical/inventory_subbase.svg" id="4_twfor"]
+[ext_resource type="Texture2D" uid="uid://b06oco7js878c" path="res://shop_phase/sell/explorar_normal.png" id="5_aagqa"]
+[ext_resource type="Texture2D" uid="uid://bbal40mm7sxhb" path="res://shop_phase/sell/explorar_click.png" id="6_e56wc"]
+[ext_resource type="Texture2D" uid="uid://bkung56o7q5uc" path="res://shop_phase/sell/explorar_hover.png" id="7_issut"]
+[ext_resource type="PackedScene" uid="uid://ug72pfmoc1uy" path="res://shop_phase/inventario_vertical/inventory_artifact_box.tscn" id="8_u8hjr"]
+[ext_resource type="Theme" uid="uid://bylvg6kjri6uy" path="res://shop_phase/ui/scroll_theme.tres" id="9_s8qdf"]
+[ext_resource type="Texture2D" uid="uid://btv1u5315503t" path="res://shop_phase/ui/gold_icon.svg" id="11_uuk0i"]
+[ext_resource type="Texture2D" uid="uid://yfdw6ko6p5t3" path="res://shop_phase/sell/sold_normal.png" id="13_wf2jn"]
+[ext_resource type="Texture2D" uid="uid://vfqo7xv78ryu" path="res://shop_phase/sell/sold_click.png" id="14_gscd5"]
+[ext_resource type="Texture2D" uid="uid://r6qt1idcrly6" path="res://shop_phase/sell/sold_hover.png" id="15_332s7"]
+
+[sub_resource type="Animation" id="Animation_ccbdk"]
+resource_name = "open_sell"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_controls_disable"
+}, {
+"args": [],
+"method": &"_controls_enable"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_68lfs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Initial:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Initial:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Main:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Main:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Main/ScrollContainer:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Main/ScrollContainer:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sold:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_shp3l"]
+resource_name = "begin_main"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Initial:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Initial:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Main:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Main:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_controls_disable"
+}, {
+"args": [],
+"method": &"_controls_enable"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_svn7v"]
+resource_name = "sold"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main/ScrollContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main/ScrollContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sold:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sold:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ShineEffect:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_controls_disable"
+}, {
+"args": [],
+"method": &"_controls_enable"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5naka"]
+_data = {
+"RESET": SubResource("Animation_68lfs"),
+"begin_main": SubResource("Animation_shp3l"),
+"open_sell": SubResource("Animation_ccbdk"),
+"sold": SubResource("Animation_svn7v")
+}
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hssb7"]
+texture = ExtResource("4_twfor")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_63ete"]
+texture = ExtResource("4_twfor")
+
+[node name="SellPanel" type="Control" node_paths=PackedStringArray("transition", "artifacts_container", "artifact_box", "name_label", "charm_slots", "charm_options")]
+layout_mode = 3
+anchor_right = 0.457
+anchor_bottom = 0.792
+offset_right = 0.199951
+offset_bottom = 0.399963
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xvbud")
+transition = NodePath("AnimationPlayer")
+artifacts_container = NodePath("Initial/ScrollContainer/GridContainer")
+artifact_box = NodePath("Main/InventoryArtifactBox")
+name_label = NodePath("Main/NameLabel")
+charm_slots = NodePath("Main/HBoxContainer")
+charm_options = NodePath("Main/ScrollContainer/GridContainer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5naka")
+}
+
+[node name="ShineEffect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.245
+anchor_right = 1.005
+anchor_bottom = 0.067
+offset_top = -0.199997
+offset_right = -0.199951
+offset_bottom = 0.120003
+texture = ExtResource("2_6cbn7")
+expand_mode = 1
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.989
+offset_right = -600.0
+offset_bottom = -782.848
+texture = ExtResource("1_qtw1g")
+
+[node name="PanelTitle" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.175
+texture = ExtResource("2_0j1gg")
+expand_mode = 1
+
+[node name="TitleLabel" type="Label" parent="PanelTitle"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.289
+anchor_right = 0.693
+anchor_bottom = 0.741
+offset_left = 0.0319977
+offset_top = 7.0
+offset_right = 0.18399
+offset_bottom = 0.00799561
+theme_override_colors/font_color = Color(0.67451, 0.364706, 0.176471, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_lhnbq")
+theme_override_font_sizes/font_size = 28
+text = "VENTA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Initial" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Initial"]
+custom_minimum_size = Vector2(480, 415)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.119
+anchor_top = 0.18
+anchor_right = 0.881
+anchor_bottom = 0.828
+offset_left = -0.160004
+offset_top = -0.200005
+offset_right = 0.159973
+offset_bottom = 0.0799561
+theme = ExtResource("9_s8qdf")
+theme_override_styles/panel = SubResource("StyleBoxTexture_hssb7")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Initial/ScrollContainer"]
+custom_minimum_size = Vector2(480, 415)
+layout_mode = 2
+columns = 2
+
+[node name="ButtGoLoot" type="TextureButton" parent="Initial" groups=["controls"]]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.336
+anchor_top = 0.9
+anchor_right = 0.664
+anchor_bottom = 1.056
+offset_left = -0.0400085
+offset_right = 0.039978
+offset_bottom = 0.160034
+texture_normal = ExtResource("5_aagqa")
+texture_pressed = ExtResource("6_e56wc")
+texture_hover = ExtResource("7_issut")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Main" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="InventoryArtifactBox" parent="Main" instance=ExtResource("8_u8hjr")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.183
+anchor_right = 0.862
+anchor_bottom = 0.459
+offset_left = 2.0
+offset_top = -0.256012
+offset_right = 0.319946
+offset_bottom = 0.111969
+
+[node name="NameLabel" type="Label" parent="Main"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.131
+anchor_top = 0.183
+anchor_right = 0.491
+anchor_bottom = 0.459
+offset_left = 0.159988
+offset_top = -0.256012
+offset_right = -0.240021
+offset_bottom = 0.111969
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_lhnbq")
+theme_override_font_sizes/font_size = 30
+text = "NOMBRE DEL artefacto"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.471
+anchor_right = 0.934
+anchor_bottom = 0.594
+offset_left = 0.119999
+offset_top = 0.127991
+offset_right = 0.23999
+offset_bottom = -0.208038
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Main"]
+custom_minimum_size = Vector2(354, 213)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.223
+anchor_top = 0.609
+anchor_right = 0.777
+anchor_bottom = 0.898
+offset_left = 0.279999
+offset_top = 0.311981
+offset_right = -0.279968
+offset_bottom = -0.135986
+theme = ExtResource("9_s8qdf")
+theme_override_styles/panel = SubResource("StyleBoxTexture_63ete")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Main/ScrollContainer"]
+custom_minimum_size = Vector2(308, 200)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="Sold" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SoldLabel" type="Label" parent="Sold"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.105
+anchor_top = 0.611
+anchor_right = 0.888
+anchor_bottom = 0.713
+offset_left = -0.199997
+offset_top = -0.351959
+offset_right = -0.320007
+offset_bottom = -0.216003
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_lhnbq")
+theme_override_font_sizes/font_size = 30
+text = "¡HAS VENDIDO EL ARTEFACTO A SU MEJOR PRECIO!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Sold"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.269
+anchor_top = 0.742
+anchor_right = 0.739
+anchor_bottom = 0.858
+offset_left = -2.15997
+offset_top = -18.1599
+offset_right = -2.45993
+offset_bottom = -17.8399
+alignment = 1
+
+[node name="GoldIcon" type="TextureRect" parent="Sold/HBoxContainer"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+texture = ExtResource("11_uuk0i")
+expand_mode = 1
+
+[node name="PriceLabel" type="Label" parent="Sold/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_lhnbq")
+theme_override_font_sizes/font_size = 40
+text = "2323"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SoldButt" type="TextureButton" parent="Sold" groups=["controls"]]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 727.0
+offset_right = 506.0
+offset_bottom = 879.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("13_wf2jn")
+texture_pressed = ExtResource("14_gscd5")
+texture_hover = ExtResource("15_332s7")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Leave" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

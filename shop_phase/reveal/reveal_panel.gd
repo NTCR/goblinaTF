@@ -26,5 +26,7 @@ func setup_panel(_a : Artifact):
 		group_empty.visible = true
 
 func close_panel():
+	$Success/ButtAddInv.disabled = true
+	$Empty/ButtOK.disabled = true
 	panel_closed.emit(_artifact)
 	transition.play("close_reveal")

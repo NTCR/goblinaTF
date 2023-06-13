@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfcc0kb1u3lxp"]
+
+[ext_resource type="Texture2D" uid="uid://bssnygalw66" path="res://shop_phase/charms/empty.png" id="1_36hj5"]
+[ext_resource type="Script" path="res://shop_phase/sell/charm_slot.gd" id="2_vvdcm"]
+
+[node name="CharmSlot" type="TextureButton"]
+custom_minimum_size = Vector2(102.4, 102.4)
+anchors_preset = -1
+anchor_right = 0.073
+anchor_bottom = 0.097
+offset_right = 408.8
+offset_bottom = 409.15
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+size_flags_horizontal = 6
+texture_normal = ExtResource("1_36hj5")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("2_vvdcm")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

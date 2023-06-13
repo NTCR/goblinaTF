@@ -21,10 +21,3 @@ var file_name : String
 func get_texture_path() -> String:
 	var _s = ARTIFACT_PATH + file_name + ".png"
 	return _s
-
-func _to_string():
-	var _format : String
-	var _s : String
-	_s += "Name: %s, Description: %s, Enchant: %s Rarity: %s"
-	_format += _s % [name,description,enchant,rarity]
-	return _format
