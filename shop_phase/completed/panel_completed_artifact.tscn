@@ -112,7 +112,7 @@ _data = {
 }
 
 [node name="PanelCompletedArtifact" type="CanvasLayer" node_paths=PackedStringArray("transitions", "artifact_box", "artifact_enchant", "charm_container")]
-layer = 3
+layer = 4
 script = ExtResource("1_6yk4w")
 transitions = NodePath("AnimationPlayer")
 artifact_box = NodePath("Control/InventoryArtifactBox")

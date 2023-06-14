@@ -1,6 +1,6 @@
 extends Node
 
-const MAX_PITY : int = 4
+const MAX_PITY : int = 3
 const TASAR_MULTIPLIER : float = 0.05
 const ARTIFACTS_CSV_FILE = "res://database/artifacts.csv"
 const LOOTTABLE_CSV_FILE = "res://database/loottable.csv"
@@ -88,6 +88,16 @@ func _setup_raritydict():
 		var _artifact : Artifact = game_artifacts[_key]
 		game_artifactsbyrarity[_artifact.rarity].append(_key)
 
+#GAME ARTIFACTS RELATED
+func gameartifacts_get_artifact(_key : String) -> Artifact:
+	return game_artifacts[_key]
+
+func gameartifacts_names() -> Array:
+	return game_artifacts.keys()
+
+func gameartifacts_totaln_artifacts() -> int:
+	return game_artifacts.size()
+
 #LOOT RELATED
 func loot_add(_l : Loot):
 	var _n = Loot.new(_l.type, _l.tier)
@@ -117,8 +127,21 @@ func draw_artifact(_t : int) -> Artifact:
 
 func _get_drawn_artifact(_r : int) -> Artifact:
 	if pity == MAX_PITY:
-		#buscare de _r para arriba el k no haya completado
-		return null
+		pity = 0
+		if _r==0:
+			_r=1
+		var _drawn_artifact_key = ""
+		while _drawn_artifact_key == "":
+			var _artifacts_of_rarity : Array = game_artifactsbyrarity[_r-1]
+			for _key in _artifacts_of_rarity:
+				var _artifact_progress : ArtifactProgress = progress[_key]
+				if not _artifact_progress.is_completed():
+					_drawn_artifact_key = _key
+			if _drawn_artifact_key == "" and _r == Artifact.RARITIES.size():
+				_drawn_artifact_key = _artifacts_of_rarity[randi() % _artifacts_of_rarity.size()]
+			else:
+				_r += 1
+		return game_artifacts[_drawn_artifact_key]
 	elif _r == 0:
 		return null
 	else:
@@ -189,6 +212,10 @@ func inventory_get_at(_index : int):
 	return inventory[_index]
 
 #PROGRESS RELATED
+func progress_is_artifact_discovered(_artifact : Artifact) -> bool:
+	var _progress_entry : ArtifactProgress = progress[_artifact.file_name]
+	return _progress_entry.is_discovered()
+
 func progress_artifact_discovered(_artifact : Artifact):
 	var _progress_entry : ArtifactProgress = progress[_artifact.file_name]
 	_progress_entry.has_been_discovered()
@@ -198,6 +225,13 @@ func progress_charm_succeeded(_artifact : Artifact, _charm : Charm.CHARMS):
 	if not _progress_entry.has_charm_succeeded(_charm):
 		_progress_entry.charm_succeeded(_charm)
 		_progress_check_artifact_completed(_artifact, _progress_entry)
+
+func _progress_check_artifact_completed(_artifact : Artifact, _progress_entry : ArtifactProgress):
+	var _complete = true
+	for _charm in _artifact.charms_complete:
+		_complete = _complete and _progress_entry.has_charm_succeeded(_charm)
+	if _complete:
+		_progress_entry.has_been_completed()
 
 func progress_has_charm_succeeded(_artifact : Artifact, _charm : Charm.CHARMS) -> bool:
 	var _progress_entry : ArtifactProgress = progress[_artifact.file_name]
@@ -230,12 +264,7 @@ func progress_is_gamecompleted() -> bool:
 			return false
 	return true
 
-func _progress_check_artifact_completed(_artifact : Artifact, _progress_entry : ArtifactProgress):
-	var _complete = true
-	for _charm in _artifact.charms_complete:
-		_complete = _complete and _progress_entry.has_charm_succeeded(_charm)
-	if _complete:
-		_progress_entry.has_been_completed()
+
 
 class ArtifactProgress:
 	var _discovered : bool

@@ -1,6 +1,7 @@
 extends Node
 
-@export_file var next_scene
+@export_file var shop_scene
+@export_file var loot_scene
 @export_category("Components:")
 @export var parallax : ParallaxBackground
 @export var transitions : AnimationPlayer
@@ -8,8 +9,14 @@ extends Node
 func _ready():
 	parallax.set_motion(-6)
 	parallax.start()
-	transitions.play("to_shop")
+	if TransitionManager.transition_from_shop:
+		transitions.play("to_loot")
+	else:
+		transitions.play("to_shop")
 
 func to_shop_scene():
-	TransitionManager.first_enter_shop = true
-	get_tree().change_scene_to_file(next_scene)
+	get_tree().change_scene_to_file(shop_scene)
+
+func to_loot_scene():
+	TransitionManager.transition_from_shop = false
+	get_tree().change_scene_to_file(loot_scene)

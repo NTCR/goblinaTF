@@ -163,6 +163,20 @@ offset_bottom = 651.0
 visible = false
 anchors_preset = 0
 
+[node name="InfoLabel" type="Label" parent="Success"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 470.0
+offset_right = 466.0
+offset_bottom = 550.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_xky22")
+theme_override_font_sizes/font_size = 18
+text = "Consulta tu colección para saber más sobre sus propiedades"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
 [node name="ArtifactName" type="Label" parent="Success"]
 layout_mode = 1
 anchors_preset = -1

@@ -41,6 +41,7 @@ const GEAR_TIMER : Array[float] = [
 @export var bar_speed : TextureRect
 @export var bar_hp : HBoxContainer
 @export var click_indicator : AnimatedSprite2D
+@export var butt_recover : Button
 @export_category("Parallax:")
 @export var clouds : ParallaxBackground
 @export var background : ParallaxBackground
@@ -50,7 +51,7 @@ const GEAR_TIMER : Array[float] = [
 var _gear : int = 0
 var _progress : int = 0
 var _hp : int = INITIAL_HP
-
+var _has_shielded = false
 
 #start of level
 func _ready():
@@ -85,7 +86,6 @@ func increase_progress():
 		spawn_timer.timeout.emit()
 		spawn_timer.start()
 		#indicator
-		click_indicator.stop()
 		click_indicator.visible = false
 	#goblina is running
 	elif _gear < MAX_GEAR:
@@ -98,7 +98,8 @@ func increase_progress():
 				player.walk()
 			else:
 				player.run()
-				bar_hp.gain_shield()
+				if not _has_shielded:
+					bar_hp.gain_shield()
 
 func start_gear():
 	pass
@@ -109,7 +110,7 @@ func increase_gear():
 
 #player collision with crate -> progress soft or hard reset
 func decrease_progress():
-	if _gear > 3:
+	if not _has_shielded and _gear > 3:
 		player.position.x -= 6
 		_gear -= 3
 		_progress -= 6
@@ -117,11 +118,13 @@ func decrease_progress():
 		bar_speed.set_gear(_gear)
 		_set_gear_settings()
 		bar_hp.lose_shield()
+		_has_shielded = true
 	else:
 		bag_ref.release_held()
 		_gear_stop()
 
 func _gear_stop():
+	_has_shielded = false
 	$Player.position.x = 206 #initial position, HARDCODED
 	player.hit()
 	_gear = 0
@@ -131,10 +134,20 @@ func _gear_stop():
 	_stop_parallax()
 	_hp -= 1
 	bar_hp.lose_hp(_hp)
+	get_tree().call_group("crates", "set_process_input", false)
 	if _hp == 0:
 		bag_ref.release_held()
 		bag_ref.store_loot()
 		hp_depleted.emit()
+	else:
+		butt_recover.visible = true
+		click_indicator.position = $Player.position + Vector2(0,-100)
+		click_indicator.visible = true
+
+func _on_recover_pressed():
+	get_tree().call_group("crates", "set_process_input", true)
+	increase_progress()
+	butt_recover.visible = false
 
 func _set_gear_settings():
 	_move_parallax(GEAR_SPEED[_gear].x)
@@ -170,40 +183,6 @@ func _spawn_crate(_position : Vector2) -> Crate:
 
 func _probability_crate_type() -> int:
 	return randi_range(0,99) % 3
-#	var _highest_tier = {}
-#	for _type in Loot.LOOT_TYPES.values():
-#		_highest_tier[_type] = 0
-#	for _loot_bag in bag_ref.loot_in_bag:
-#		var _type = _loot_bag.get_loot_type()
-#		var _tier = _loot_bag.get_loot_tier()
-#		if _highest_tier.get(_type) < _tier:
-#			_highest_tier[_type] = _tier
-#	#non flexible to tier changes
-#	var _total_tickets = 0
-#	for _type in Loot.LOOT_TYPES.values():
-#		var _tickets
-#		match _highest_tier.get(_type):
-#			0:
-#				_tickets = 33
-#			1:
-#				_tickets = 20
-#			2:
-#				_tickets = 33
-#			3:
-#				_tickets = 40
-#			4:
-#				_tickets = 50
-#			5:
-#				_tickets = 20
-#		_highest_tier[_type] = _tickets
-#		_total_tickets += _tickets
-#	var _draw_ticket = randi_range(0,_total_tickets)
-#	for _type in Loot.LOOT_TYPES.values():
-#		_total_tickets -= _highest_tier.get(_type)
-#		if _draw_ticket >= _total_tickets:
-#			return _type
-#	print("you shouldnt be here")
-#	return 0
 
 #spawner
 func _on_spawn_timer_timeout():
@@ -220,3 +199,5 @@ func _on_crate_hit(_crate_ref : Crate):
 func _on_crate_looted(_crate_ref : Crate):
 	_crate_ref.crate_looted()
 	increase_progress()
+
+

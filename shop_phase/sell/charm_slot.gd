@@ -4,6 +4,7 @@ class_name CharmSlot
 signal charm_selected(slot)
 
 var _empty := true
+var _locked := false
 var _charm : Charm.CHARMS
 
 func get_charm() -> Charm.CHARMS:
@@ -45,9 +46,12 @@ func slot_empty():
 	texture_pressed = null
 	_empty = true
 
+func slot_lock():
+	_locked = true
+
 func slot_is_empty() -> bool:
 	return _empty
 
 func _on_pressed():
-	if not _empty:
+	if not _empty and not _locked:
 		charm_selected.emit(self)

@@ -1,0 +1,120 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6cjywdawek5v"]
+
+[ext_resource type="Script" path="res://shop_phase/coleccion/coleccion_entry.gd" id="1_6nd6k"]
+[ext_resource type="PackedScene" uid="uid://b0wu7x041p7rv" path="res://shop_phase/coleccion/coleccion_artifact_box.tscn" id="2_bu4q4"]
+[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ZeroCool.ttf" id="2_xdagl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l548k"]
+bg_color = Color(0.254902, 0.172549, 0.0901961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.717647, 0.545098, 0.176471, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="ColeccionEntry" type="Control" node_paths=PackedStringArray("artifact_box", "name_label", "charm_container", "desc_label", "ench_label")]
+custom_minimum_size = Vector2(460, 300)
+layout_mode = 3
+anchor_right = 0.329
+anchor_bottom = 0.286
+offset_right = -0.600037
+offset_bottom = -0.300018
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_6nd6k")
+artifact_box = NodePath("ColeccionArtifactBox")
+name_label = NodePath("ArtifactName")
+charm_container = NodePath("HBoxContainer")
+desc_label = NodePath("DescriptionLabel")
+ench_label = NodePath("EnchantLabel")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_l548k")
+metadata/_edit_lock_ = true
+
+[node name="ColeccionArtifactBox" parent="." instance=ExtResource("2_bu4q4")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.043
+anchor_top = 0.044
+anchor_right = 0.326
+anchor_bottom = 0.477
+offset_left = 0.219999
+offset_top = -0.0800009
+offset_right = 0.0399933
+offset_bottom = 0.019989
+
+[node name="ArtifactName" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.337
+anchor_top = 0.063
+anchor_right = 0.957
+anchor_bottom = 0.284
+offset_left = -0.0200043
+offset_top = 0.1
+offset_right = -0.220001
+offset_bottom = 0.0400009
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_xdagl")
+theme_override_font_sizes/font_size = 26
+text = "??????????????????"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.335
+anchor_top = 0.27
+anchor_right = 0.987
+anchor_bottom = 0.453
+offset_left = -0.100006
+offset_right = -0.0200195
+offset_bottom = 0.0999908
+alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.043
+anchor_top = 0.557
+anchor_right = 0.957
+anchor_bottom = 0.717
+offset_left = 0.219999
+offset_top = -0.100006
+offset_right = -0.220001
+offset_bottom = -4.10001
+theme_override_fonts/font = ExtResource("2_xdagl")
+theme_override_font_sizes/font_size = 20
+text = "????????????????????????????????????"
+autowrap_mode = 2
+
+[node name="EnchantLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.043
+anchor_top = 0.73
+anchor_right = 0.957
+anchor_bottom = 0.973
+offset_left = 0.219999
+offset_right = -0.220001
+offset_bottom = -24.9
+theme_override_colors/font_color = Color(0.933333, 0.87451, 0.729412, 1)
+theme_override_fonts/font = ExtResource("2_xdagl")
+theme_override_font_sizes/font_size = 20
+text = "????????????????????????????????????"
+autowrap_mode = 2

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dckwp4gmcx2ro"]
+[gd_scene load_steps=6 format=3 uid="uid://dckwp4gmcx2ro"]
 
 [ext_resource type="Texture2D" uid="uid://e2dydpxpi724" path="res://shop_phase/ui/book/book_normal.svg" id="1_kt5xf"]
 [ext_resource type="Texture2D" uid="uid://jfmtrfhm82tp" path="res://shop_phase/ui/book/book_click.svg" id="2_wbd37"]
 [ext_resource type="Texture2D" uid="uid://no26fq1k5mvs" path="res://shop_phase/ui/book/book_hover.svg" id="3_2vwqi"]
 [ext_resource type="Texture2D" uid="uid://c3hkqkd8gjvqi" path="res://shop_phase/ui/book/book_locked.svg" id="4_35ptk"]
+[ext_resource type="Script" path="res://shop_phase/ui/book/book_button.gd" id="5_wrptk"]
 
 [node name="BookButton" type="TextureButton"]
 anchors_preset = -1
@@ -17,3 +18,6 @@ texture_hover = ExtResource("3_2vwqi")
 texture_disabled = ExtResource("4_35ptk")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("5_wrptk")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

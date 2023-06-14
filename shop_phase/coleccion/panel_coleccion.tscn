@@ -1,0 +1,196 @@
+[gd_scene load_steps=13 format=3 uid="uid://dwfnpmidosbgc"]
+
+[ext_resource type="Texture2D" uid="uid://b1yas6cpbreh3" path="res://shop_phase/sell/sell_base.png" id="1_6xhbk"]
+[ext_resource type="Script" path="res://shop_phase/coleccion/panel_coleccion.gd" id="1_78cyj"]
+[ext_resource type="Texture2D" uid="uid://c8ykfomnwvygf" path="res://shop_phase/reveal/reveal_title.svg" id="2_qa8hj"]
+[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ZeroCool.ttf" id="3_vxbpa"]
+[ext_resource type="Theme" uid="uid://bylvg6kjri6uy" path="res://shop_phase/ui/scroll_theme.tres" id="4_2kiey"]
+[ext_resource type="Texture2D" uid="uid://bt4d746xtvkx0" path="res://shop_phase/inventario_vertical/inventory_subbase.svg" id="5_lno7y"]
+[ext_resource type="Texture2D" uid="uid://bke8ky6c84b7j" path="res://shop_phase/coleccion/found_base.svg" id="6_t7x7b"]
+
+[sub_resource type="Animation" id="Animation_vdfxj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2qm73"]
+resource_name = "close_panel"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_close"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wd7j2"]
+resource_name = "open_panel"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_66n1f"]
+_data = {
+"RESET": SubResource("Animation_vdfxj"),
+"close_panel": SubResource("Animation_2qm73"),
+"open_panel": SubResource("Animation_wd7j2")
+}
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j20ah"]
+texture = ExtResource("5_lno7y")
+
+[node name="PanelColeccion" type="Control" node_paths=PackedStringArray("transitions", "entry_container", "found_label")]
+layout_mode = 3
+anchor_right = 0.457
+anchor_bottom = 0.784
+offset_right = 0.199951
+offset_bottom = -0.200012
+script = ExtResource("1_78cyj")
+transitions = NodePath("AnimationPlayer")
+entry_container = NodePath("ScrollContainer/VBoxContainer")
+found_label = NodePath("FoundBase/FoundLabel")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_66n1f")
+}
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6xhbk")
+expand_mode = 1
+
+[node name="PanelTitle" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.175
+texture = ExtResource("2_qa8hj")
+expand_mode = 1
+
+[node name="TitleLabel" type="Label" parent="PanelTitle"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.289
+anchor_right = 0.693
+anchor_bottom = 0.741
+offset_left = 0.0319977
+offset_top = 7.0
+offset_right = 0.18399
+offset_bottom = 0.00799561
+theme_override_colors/font_color = Color(0.67451, 0.364706, 0.176471, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_vxbpa")
+theme_override_font_sizes/font_size = 28
+text = "COLECCIÓN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.117
+anchor_top = 0.187
+anchor_right = 0.883
+anchor_bottom = 0.826
+offset_left = 5.12
+offset_top = 0.098999
+offset_right = -5.12
+offset_bottom = 0.201965
+theme = ExtResource("4_2kiey")
+theme_override_styles/panel = SubResource("StyleBoxTexture_j20ah")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="FoundBase" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.242
+anchor_top = 0.882
+anchor_right = 0.758
+anchor_bottom = 1.027
+offset_left = 0.119995
+offset_top = 0.113953
+offset_right = -0.119995
+offset_bottom = -0.221069
+texture = ExtResource("6_t7x7b")
+
+[node name="FoundLabel" type="Label" parent="FoundBase"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.358
+anchor_top = 0.218
+anchor_right = 0.897
+anchor_bottom = 0.756
+offset_left = -0.140007
+offset_top = 0.0579987
+offset_right = -0.0100098
+offset_bottom = 0.0359955
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vxbpa")
+theme_override_font_sizes/font_size = 40
+text = "10/10"
+horizontal_alignment = 1
+vertical_alignment = 1

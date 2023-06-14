@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://m6307atx6bvd"]
-
-[ext_resource type="Script" path="res://database/loot_db.gd" id="1_fik1w"]
-
-[node name="LootDB" type="Node"]
-script = ExtResource("1_fik1w")

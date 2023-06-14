@@ -1,3 +1,3 @@
 extends Node
 
-var first_enter_shop = true
+var transition_from_shop = false

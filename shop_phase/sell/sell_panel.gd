@@ -25,7 +25,6 @@ signal artifact_completed(artifact)
 
 var _curr_artifact : Artifact = null
 var _was_completed = false
-var _completed_sell = true
 var _gold_gain = 0
 
 #prepara estado initial
@@ -110,7 +109,6 @@ func _icon_pressed(_cs : CharmSlot):
 	if _charm in _curr_artifact.charms_complete:
 		charm_was_complete.emit()
 	elif _charm in _curr_artifact.charms_valid:
-		_completed_sell = false
 		charm_was_valid.emit()
 	else:
 		var _patience_cost = Database.patience_cost(_curr_artifact.rarity)
@@ -138,14 +136,19 @@ func _find_empty_slot() -> CharmSlot:
 func _is_artifact_sold():
 	if not _find_empty_slot():
 		artifact_sold.emit()
-		print("vendido!")
 		#remember party if completed
 		if not _was_completed and Database.progress_is_artifact_completed(_curr_artifact):
 			artifact_completed.emit(_curr_artifact)
-			print("first_complete")
 		#ver si venta valida o perfecta
-		#update gold price
-		#update text
+		var _completed_sell = true
+		var _charms_in_slots : Array[Charm.CHARMS] = []
+		for _slot in charm_slots.get_children():
+			_slot.slot_lock()
+			_charms_in_slots.append(_slot.get_charm())
+		for _charm in _curr_artifact.charms_complete:
+			if _charm not in _charms_in_slots:
+				_completed_sell = false
+		
 		if _completed_sell:
 			sold_label.text = "¡Has vendido el artefacto a su mejor precio!"
 			_gold_gain = Database.price_sell(_curr_artifact.rarity, false, true)
@@ -165,7 +168,6 @@ func _on_sold_butt_pressed():
 			break
 	_curr_artifact = null
 	_was_completed = false
-	_completed_sell = true
 	_gold_gain = 0
 	transition.play("back_initial")
 

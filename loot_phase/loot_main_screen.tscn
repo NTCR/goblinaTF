@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://vt7nd4u23fgm"]
+[gd_scene load_steps=20 format=3 uid="uid://vt7nd4u23fgm"]
 
 [ext_resource type="Script" path="res://loot_phase/loot_main_screen.gd" id="1_s3hgf"]
 [ext_resource type="PackedScene" uid="uid://bcctqmimp48kn" path="res://general_phase/bg/scrolling_bg.tscn" id="2_dexuf"]
@@ -98,6 +98,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("UI/ClickIndicator:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_ofpd8"]
@@ -217,6 +229,18 @@ tracks/8/keys = {
 "args": [],
 "method": &"start_phase"
 }]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("UI/ClickIndicator:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_cj0ub"]
@@ -344,6 +368,13 @@ _data = {
 "to_shop": SubResource("Animation_cj0ub")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cd5fi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qtvk"]
+bg_color = Color(0.6, 0.6, 0.6, 0.470588)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xvxef"]
+
 [node name="LootMainScreen" type="Node" node_paths=PackedStringArray("transitions", "fadeblack")]
 script = ExtResource("1_s3hgf")
 next_scene = "res://general_phase/transition_shop.tscn"
@@ -355,7 +386,7 @@ libraries = {
 "": SubResource("AnimationLibrary_622ic")
 }
 
-[node name="Gameworld" type="Node" parent="." node_paths=PackedStringArray("bag_ref", "spawn_initial", "spawn_point", "spawn_timer", "bar_speed", "bar_hp", "click_indicator", "clouds", "background", "foreground", "player")]
+[node name="Gameworld" type="Node" parent="." node_paths=PackedStringArray("bag_ref", "spawn_initial", "spawn_point", "spawn_timer", "bar_speed", "bar_hp", "click_indicator", "butt_recover", "clouds", "background", "foreground", "player")]
 script = ExtResource("2_yffuw")
 bag_ref = NodePath("../UI/Bag")
 spawn_initial = NodePath("SpawnInitial")
@@ -364,6 +395,7 @@ spawn_timer = NodePath("SpawnTimer")
 bar_speed = NodePath("../UI/SpeedBar")
 bar_hp = NodePath("../UI/HealthBar")
 click_indicator = NodePath("../UI/ClickIndicator")
+butt_recover = NodePath("../UI/Recover")
 clouds = NodePath("CloudsParallax")
 background = NodePath("ScrollingBG")
 foreground = NodePath("ScrollingFG")
@@ -442,15 +474,26 @@ offset_top = 10.0
 offset_right = 0.399963
 offset_bottom = 0.249992
 
+[node name="Recover" type="Button" parent="UI"]
+visible = false
+offset_left = 136.0
+offset_top = 136.0
+offset_right = 280.0
+offset_bottom = 328.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cd5fi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8qtvk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_xvxef")
+
 [node name="FadeBlack" type="ColorRect" parent="UI"]
 visible = false
 top_level = true
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.998
-offset_right = 30800.0
-offset_bottom = 23405.9
+offset_right = 33600.0
+offset_bottom = 25501.7
 color = Color(0, 0, 0, 1)
 
 [connection signal="hp_depleted" from="Gameworld" to="." method="end_phase"]
 [connection signal="timeout" from="Gameworld/SpawnTimer" to="Gameworld" method="_on_spawn_timer_timeout"]
+[connection signal="pressed" from="UI/Recover" to="Gameworld" method="_on_recover_pressed"]
