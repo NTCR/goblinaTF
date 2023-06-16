@@ -19,8 +19,3 @@ func start():
 
 func set_motion(_value : float):
 	_motion = _value
-
-# Reverses moving direction
-func inverse_motion():
-	set_process(true)
-	_motion *= -1

@@ -198,7 +198,6 @@ func inventory_add_artifact(_artifact : Artifact):
 		inventory.append(_artifact)
 
 func inventory_erase_artifact(_artifact : Artifact):
-	#revisit
 	if _artifact:
 		inventory.erase(_artifact)
 

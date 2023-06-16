@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbfr7jyn50hrv"]
+[gd_scene load_steps=6 format=3 uid="uid://dbfr7jyn50hrv"]
 
 [ext_resource type="Texture2D" uid="uid://dlsv0vbueer3p" path="res://ui/settings/sett_normal.svg" id="1_dewx2"]
 [ext_resource type="Texture2D" uid="uid://c6lv7e1bn8rld" path="res://ui/settings/sett_press.svg" id="2_y08x7"]
 [ext_resource type="Texture2D" uid="uid://c4njtwgy8ekt5" path="res://ui/settings/sett_hover.svg" id="3_auqgq"]
 [ext_resource type="Script" path="res://ui/settings/settings_button.gd" id="4_hwnv3"]
+[ext_resource type="Texture2D" uid="uid://dbpobgsxyi722" path="res://ui/settings/sett_locked.png" id="4_wv3xw"]
 
 [node name="SettingsButton" type="TextureButton"]
 anchors_preset = -1
@@ -14,6 +15,9 @@ offset_bottom = 0.199997
 texture_normal = ExtResource("1_dewx2")
 texture_pressed = ExtResource("2_y08x7")
 texture_hover = ExtResource("3_auqgq")
+texture_disabled = ExtResource("4_wv3xw")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("4_hwnv3")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

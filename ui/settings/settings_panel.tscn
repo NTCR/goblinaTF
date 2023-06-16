@@ -1,0 +1,275 @@
+[gd_scene load_steps=23 format=3 uid="uid://b61ulyrml3nlw"]
+
+[ext_resource type="Texture2D" uid="uid://b501r2dqmxy1m" path="res://shop_phase/reveal/reveal_base.svg" id="1_763ll"]
+[ext_resource type="Script" path="res://ui/settings/settings_panel.gd" id="1_kftnl"]
+[ext_resource type="Texture2D" uid="uid://c8ykfomnwvygf" path="res://shop_phase/reveal/reveal_title.svg" id="2_vlqeh"]
+[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ui/ZeroCool.ttf" id="3_4ht7u"]
+[ext_resource type="Texture2D" uid="uid://bl5iptfhvos61" path="res://ui/settings/volumesett/buttvolume_normal.png" id="4_4vno2"]
+[ext_resource type="Texture2D" uid="uid://cq13rnn7mganf" path="res://ui/settings/volumesett/buttvolume_click.png" id="5_sjg4g"]
+[ext_resource type="Texture2D" uid="uid://cjjgqq6ymxcmc" path="res://ui/settings/volumesett/buttvolume_hover.png" id="6_70bsm"]
+[ext_resource type="Texture2D" uid="uid://nadistfapelq" path="res://ui/settings/buttquit_normal.png" id="7_jenx8"]
+[ext_resource type="Texture2D" uid="uid://bsx04rblou4av" path="res://ui/settings/buttquit_click.png" id="8_iu6w1"]
+[ext_resource type="Texture2D" uid="uid://bdf8y7nyfudgq" path="res://ui/settings/buttquit_hover.png" id="9_fmsw2"]
+[ext_resource type="Texture2D" uid="uid://daysr7weuykdm" path="res://ui/settings/volumesett/plusvol_normal.png" id="10_7j6uo"]
+[ext_resource type="Texture2D" uid="uid://crp0n2ysaja3t" path="res://ui/settings/volumesett/plusvol_click.png" id="11_1go60"]
+[ext_resource type="Texture2D" uid="uid://dxsybdrscgdar" path="res://ui/settings/volumesett/plusvol_hover.png" id="12_5pcmu"]
+[ext_resource type="Texture2D" uid="uid://c6o7jjtx2m55e" path="res://ui/settings/volumesett/plusvol_locked.png" id="13_2jrby"]
+[ext_resource type="Texture2D" uid="uid://cpcjmjuc4qebu" path="res://ui/settings/volumesett/minvolume_normal.png" id="14_i0r3x"]
+[ext_resource type="Texture2D" uid="uid://bkwge8q8wack2" path="res://ui/settings/volumesett/minvolume_click.png" id="15_48g5o"]
+[ext_resource type="Texture2D" uid="uid://biwqgmclfypl8" path="res://ui/settings/volumesett/minvolume_hover.png" id="16_b408x"]
+[ext_resource type="Texture2D" uid="uid://b1c4ns5fyscjc" path="res://ui/settings/volumesett/minvolume_locked.png" id="17_wrm6c"]
+
+[sub_resource type="Animation" id="Animation_q5opw"]
+resource_name = "open_panel"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bgd2t"]
+resource_name = "close_panel"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_close"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_cyrli"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nvmad"]
+_data = {
+"RESET": SubResource("Animation_cyrli"),
+"close_panel": SubResource("Animation_bgd2t"),
+"open_panel": SubResource("Animation_q5opw")
+}
+
+[node name="SettingsPanel" type="CanvasLayer"]
+layer = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nvmad")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.52549, 0.52549, 0.52549, 0.486275)
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("transitions")]
+layout_mode = 3
+anchor_left = 0.294
+anchor_top = 0.152
+anchor_right = 0.706
+anchor_bottom = 0.77
+offset_left = 0.399994
+offset_top = 0.399994
+offset_right = -0.400024
+offset_bottom = -0.500061
+script = ExtResource("1_kftnl")
+transitions = NodePath("../AnimationPlayer")
+metadata/_edit_lock_ = true
+
+[node name="BG" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("1_763ll")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="PanelTitle" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.164
+offset_bottom = -0.340004
+texture = ExtResource("2_vlqeh")
+expand_mode = 1
+
+[node name="TitleLabel" type="Label" parent="Control/PanelTitle"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 8.0
+offset_right = 428.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0.67451, 0.364706, 0.176471, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_4ht7u")
+theme_override_font_sizes/font_size = 28
+text = "AJUSTES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtVolume" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.174
+anchor_top = 0.247
+anchor_right = 0.396
+anchor_bottom = 0.444
+offset_left = -9.22401
+offset_top = -0.0559998
+offset_right = -9.09601
+offset_bottom = 0.287964
+toggle_mode = true
+texture_normal = ExtResource("4_4vno2")
+texture_pressed = ExtResource("5_sjg4g")
+texture_hover = ExtResource("6_70bsm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ButtQuit" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 416.0
+offset_right = 352.0
+offset_bottom = 544.0
+texture_normal = ExtResource("7_jenx8")
+texture_pressed = ExtResource("8_iu6w1")
+texture_hover = ExtResource("9_fmsw2")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ButtUpVol" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 389.0
+offset_top = 144.0
+offset_right = 453.0
+offset_bottom = 208.0
+texture_normal = ExtResource("10_7j6uo")
+texture_pressed = ExtResource("11_1go60")
+texture_hover = ExtResource("12_5pcmu")
+texture_disabled = ExtResource("13_2jrby")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ButtDownVol" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 389.0
+offset_top = 240.0
+offset_right = 453.0
+offset_bottom = 304.0
+texture_normal = ExtResource("14_i0r3x")
+texture_pressed = ExtResource("15_48g5o")
+texture_hover = ExtResource("16_b408x")
+texture_disabled = ExtResource("17_wrm6c")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="VolLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 160.0
+offset_right = 388.0
+offset_bottom = 288.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_4ht7u")
+theme_override_font_sizes/font_size = 60
+text = "6/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="toggled" from="Control/ButtVolume" to="Control" method="_on_butt_volume_toggled"]
+[connection signal="pressed" from="Control/ButtQuit" to="Control" method="_on_butt_quit_pressed"]
+[connection signal="pressed" from="Control/ButtUpVol" to="Control" method="_on_butt_up_vol_pressed"]
+[connection signal="pressed" from="Control/ButtDownVol" to="Control" method="_on_butt_down_vol_pressed"]

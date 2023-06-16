@@ -11,10 +11,10 @@ func start_slot(_c : Charm.CHARMS):
 
 func _prepare_last_loop():
 	connect("frame_changed",Callable(self,"_find_stop"))
-	speed_scale = 0.2
 
 func _find_stop():
 	if frame == _desired_charm:
+		$AnimationPlayer.stop()
 		speed_scale = 0
 		slot_ended.emit()
 		disconnect("frame_changed",Callable(self,"_find_stop"))

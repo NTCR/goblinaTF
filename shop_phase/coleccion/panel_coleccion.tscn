@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwfnpmidosbgc"]
+[gd_scene load_steps=13 format=3]
 
 [ext_resource type="Texture2D" uid="uid://b1yas6cpbreh3" path="res://shop_phase/sell/sell_base.png" id="1_6xhbk"]
 [ext_resource type="Script" path="res://shop_phase/coleccion/panel_coleccion.gd" id="1_78cyj"]
 [ext_resource type="Texture2D" uid="uid://c8ykfomnwvygf" path="res://shop_phase/reveal/reveal_title.svg" id="2_qa8hj"]
-[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ZeroCool.ttf" id="3_vxbpa"]
+[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ui/ZeroCool.ttf" id="3_vxbpa"]
 [ext_resource type="Theme" uid="uid://bylvg6kjri6uy" path="res://shop_phase/ui/scroll_theme.tres" id="4_2kiey"]
 [ext_resource type="Texture2D" uid="uid://bt4d746xtvkx0" path="res://shop_phase/inventario_vertical/inventory_subbase.svg" id="5_lno7y"]
 [ext_resource type="Texture2D" uid="uid://bke8ky6c84b7j" path="res://shop_phase/coleccion/found_base.svg" id="6_t7x7b"]

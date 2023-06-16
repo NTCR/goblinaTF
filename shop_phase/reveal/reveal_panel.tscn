@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://qiskds5qmtxe"]
+[gd_scene load_steps=14 format=3 uid="uid://cjvi1b80igixc"]
 
 [ext_resource type="Script" path="res://shop_phase/reveal/reveal_panel.gd" id="1_obbn5"]
 [ext_resource type="Texture2D" uid="uid://b501r2dqmxy1m" path="res://shop_phase/reveal/reveal_base.svg" id="2_vm3ct"]
 [ext_resource type="Texture2D" uid="uid://c8ykfomnwvygf" path="res://shop_phase/reveal/reveal_title.svg" id="3_00mh3"]
-[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ZeroCool.ttf" id="4_xky22"]
+[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ui/ZeroCool.ttf" id="4_rxx6s"]
 [ext_resource type="PackedScene" uid="uid://daid81smvt7vy" path="res://ui/ok/butt_ok.tscn" id="5_fox4g"]
 [ext_resource type="PackedScene" uid="uid://ug72pfmoc1uy" path="res://shop_phase/inventario_vertical/inventory_artifact_box.tscn" id="6_776fo"]
 [ext_resource type="Texture2D" uid="uid://2k8nvaxx3ul" path="res://shop_phase/reveal/addinv_normal.png" id="7_q8v6l"]
@@ -128,7 +128,7 @@ offset_right = 0.18399
 offset_bottom = 0.00799561
 theme_override_colors/font_color = Color(0.67451, 0.364706, 0.176471, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("4_xky22")
+theme_override_fonts/font = ExtResource("4_rxx6s")
 theme_override_font_sizes/font_size = 28
 text = "¿QUÉ HABÍA?"
 horizontal_alignment = 1
@@ -145,7 +145,7 @@ offset_top = 147.0
 offset_right = 457.0
 offset_bottom = 444.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_xky22")
+theme_override_fonts/font = ExtResource("4_rxx6s")
 theme_override_font_sizes/font_size = 30
 text = "VAYA... 
 NO HABÍA NADA EN LA CAJA"
@@ -170,7 +170,7 @@ offset_top = 470.0
 offset_right = 466.0
 offset_bottom = 550.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_xky22")
+theme_override_fonts/font = ExtResource("4_rxx6s")
 theme_override_font_sizes/font_size = 18
 text = "Consulta tu colección para saber más sobre sus propiedades"
 horizontal_alignment = 1
@@ -189,7 +189,7 @@ offset_bottom = 220.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("4_xky22")
+theme_override_fonts/font = ExtResource("4_rxx6s")
 theme_override_font_sizes/font_size = 30
 text = "NOMBRE NORMAL A NO SER QUE SEA MUY LARGO"
 horizontal_alignment = 1

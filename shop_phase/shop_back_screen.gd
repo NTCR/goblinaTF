@@ -20,13 +20,6 @@ const TASAR_PANEL = preload("res://shop_phase/tasar_vertical/tasar_panel.tscn")
 var _artifact_spawn : Sprite2D = null
 
 func _ready():
-	#DEBUG
-	var _l = Loot.new(Loot.LOOT_TYPES.SQUARE, 2)
-	Database.loot_add(_l)
-	Database.loot_add(_l)
-	Database.loot_add(_l)
-	Database.loot_add(_l)
-	
 	transition.play("enter_storage")
 
 func _reveal_phase():

@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://db3o7k40dii6b"]
+[gd_scene load_steps=13 format=3 uid="uid://b82j1ug254rsh"]
 
 [ext_resource type="Texture2D" uid="uid://dbvfvm1rbuuiw" path="res://shop_phase/inventario_vertical/inventory_base.svg" id="1_prj4m"]
 [ext_resource type="Script" path="res://shop_phase/inventario_vertical/inventory_panel.gd" id="1_xpx2y"]
 [ext_resource type="Texture2D" uid="uid://c8ykfomnwvygf" path="res://shop_phase/reveal/reveal_title.svg" id="2_0dwki"]
-[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ZeroCool.ttf" id="3_glnld"]
 [ext_resource type="Texture2D" uid="uid://bq8i1oenytlcd" path="res://shop_phase/inventario_vertical/gold_indicator.svg" id="4_ev5cu"]
+[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ui/ZeroCool.ttf" id="4_jdq10"]
 [ext_resource type="Texture2D" uid="uid://bt4d746xtvkx0" path="res://shop_phase/inventario_vertical/inventory_subbase.svg" id="5_72yhn"]
 [ext_resource type="Theme" uid="uid://bylvg6kjri6uy" path="res://shop_phase/ui/scroll_theme.tres" id="6_vf23g"]
 
@@ -137,7 +137,7 @@ offset_right = 479.0
 offset_bottom = 83.0
 theme_override_colors/font_color = Color(0.67451, 0.364706, 0.176471, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("3_glnld")
+theme_override_fonts/font = ExtResource("4_jdq10")
 theme_override_font_sizes/font_size = 28
 text = "INVENTARIO"
 horizontal_alignment = 1
@@ -162,7 +162,7 @@ offset_left = 115.0
 offset_top = 25.0
 offset_right = 287.0
 offset_bottom = 84.0
-theme_override_fonts/font = ExtResource("3_glnld")
+theme_override_fonts/font = ExtResource("4_jdq10")
 theme_override_font_sizes/font_size = 40
 text = "9999999"
 horizontal_alignment = 1

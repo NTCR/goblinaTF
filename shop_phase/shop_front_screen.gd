@@ -5,6 +5,7 @@ const COMPLETED_PANEL = preload("res://shop_phase/completed/panel_completed_arti
 
 @export_file var storage_scene
 @export_file var to_loot_scene
+@export_file var end_scene
 @export var transitions : AnimationPlayer
 @export var patience_bar : TextureRect
 @export var reaction_indicator : ReactionIndicator
@@ -24,6 +25,9 @@ func go_storage():
 
 func go_loot():
 	get_tree().change_scene_to_file(to_loot_scene)
+
+func go_endscene():
+	get_tree().change_scene_to_file(end_scene)
 
 func begin_sell():
 	#spawn panel
@@ -64,8 +68,12 @@ func on_artifact_sold():
 func on_artifact_completed(_a : Artifact):
 	var _panel_instance = COMPLETED_PANEL.instantiate()
 	_panel_instance.setup_panel(_a)
-	#veremos que hago con señal close
+	_panel_instance.connect("game_completed",Callable(self,"on_game_completed"))
 	add_child(_panel_instance)
+
+func on_game_completed():
+	SoundtrackManager.all_completed()
+	transitions.play("game_completed")
 
 func _on_patiencer_bar_patience_ran_out():
 	#merchant leaves etc
@@ -85,5 +93,3 @@ func _on_sell_closed():
 		reaction_indicator.on_leave()
 		transitions.play("merchant_leave")
 	transitions.queue("to_loot")
-
-

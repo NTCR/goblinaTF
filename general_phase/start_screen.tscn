@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c8myslnioaoge"]
+[gd_scene load_steps=24 format=3 uid="uid://c8myslnioaoge"]
 
 [ext_resource type="Script" path="res://general_phase/start_screen.gd" id="1_fxfal"]
 [ext_resource type="Texture2D" uid="uid://d0w1da4mg6buk" path="res://title_final.png" id="2_0xkfe"]
@@ -16,9 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://c2tcqrjaih7gx" path="res://ui/load_game/loadgame_click.svg" id="7_dl2fg"]
 [ext_resource type="Texture2D" uid="uid://ch13vf4mbb5dj" path="res://ui/load_game/loadgame_hover.svg" id="8_j1qwq"]
 [ext_resource type="PackedScene" uid="uid://dbfr7jyn50hrv" path="res://ui/settings/settings_button.tscn" id="9_xuyp7"]
-[ext_resource type="Texture2D" uid="uid://d1lfabsg5wbf5" path="res://ui/about/about_base.svg" id="10_l71v8"]
-[ext_resource type="Texture2D" uid="uid://dkb1ur3puaswd" path="res://ui/about/about_click.svg" id="11_5xo2x"]
-[ext_resource type="Texture2D" uid="uid://cfhb7uta2p5s4" path="res://ui/about/about_hover.svg" id="12_iheef"]
+[ext_resource type="PackedScene" uid="uid://bmsjiignpmdij" path="res://ui/about/butt_about.tscn" id="17_c6u2a"]
 [ext_resource type="PackedScene" uid="uid://cb253syigmrae" path="res://loot_phase/player/player.tscn" id="20_jf3wa"]
 [ext_resource type="Texture2D" uid="uid://bd8ae62b0guod" path="res://general_phase/bg/1.png" id="21_ls82o"]
 [ext_resource type="Texture2D" uid="uid://ojdjrkkn4e60" path="res://general_phase/bg/0.png" id="22_76fe8"]
@@ -208,50 +206,50 @@ tracks/14/keys = {
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("ButtSettings:disabled")
+tracks/15/path = NodePath("ButtSettings:modulate")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("ButtSettings:modulate")
+tracks/16/path = NodePath("ButtSettings:disabled")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [false]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("ButtAbout:disabled")
+tracks/17/path = NodePath("ButtAbout:modulate")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("ButtAbout:modulate")
+tracks/18/path = NodePath("ButtAbout:disabled")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_0h1ik"]
@@ -468,26 +466,26 @@ tracks/16/keys = {
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("ButtSettings:disabled")
+tracks/17/path = NodePath("ButtSettings:modulate")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/18/type = "value"
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/path = NodePath("ButtSettings:modulate")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/keys = {
 "times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("ButtSettings:disabled")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/19/type = "value"
 tracks/19/imported = false
@@ -613,17 +611,7 @@ offset_right = -36.2
 offset_bottom = -29.5001
 metadata/_edit_use_anchors_ = true
 
-[node name="ButtAbout" type="TextureButton" parent="."]
-offset_left = 1260.0
-offset_top = 810.0
-offset_right = 1340.0
-offset_bottom = 890.0
-texture_normal = ExtResource("10_l71v8")
-texture_pressed = ExtResource("11_5xo2x")
-texture_hover = ExtResource("12_iheef")
-ignore_texture_size = true
-stretch_mode = 0
-metadata/_edit_use_anchors_ = true
+[node name="ButtAbout" parent="." instance=ExtResource("17_c6u2a")]
 
 [node name="Player" parent="." instance=ExtResource("20_jf3wa")]
 position = Vector2(880, 888)

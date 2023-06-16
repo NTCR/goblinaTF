@@ -1,10 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://yav0vrpaoh3e"]
+[gd_scene load_steps=32 format=3 uid="uid://dc3hr5p2wtek8"]
 
 [ext_resource type="Script" path="res://shop_phase/tasar_vertical/tasar_panel.gd" id="1_3eqx1"]
 [ext_resource type="Texture2D" uid="uid://dwgvxe07vgcyt" path="res://shop_phase/ui/shine_effect.png" id="2_bv58g"]
 [ext_resource type="Texture2D" uid="uid://dbvfvm1rbuuiw" path="res://shop_phase/inventario_vertical/inventory_base.svg" id="2_hpe7b"]
 [ext_resource type="Texture2D" uid="uid://c8ykfomnwvygf" path="res://shop_phase/reveal/reveal_title.svg" id="3_5xip3"]
-[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ZeroCool.ttf" id="4_qxxt8"]
+[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ui/ZeroCool.ttf" id="5_8w885"]
 [ext_resource type="Texture2D" uid="uid://bt4d746xtvkx0" path="res://shop_phase/inventario_vertical/inventory_subbase.svg" id="5_ouujy"]
 [ext_resource type="PackedScene" uid="uid://ug72pfmoc1uy" path="res://shop_phase/inventario_vertical/inventory_artifact_box.tscn" id="6_821po"]
 [ext_resource type="Texture2D" uid="uid://btv1u5315503t" path="res://shop_phase/ui/gold_icon.svg" id="7_vswft"]
@@ -925,7 +925,7 @@ offset_right = 479.0
 offset_bottom = 83.0
 theme_override_colors/font_color = Color(0.67451, 0.364706, 0.176471, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("4_qxxt8")
+theme_override_fonts/font = ExtResource("5_8w885")
 theme_override_font_sizes/font_size = 28
 text = "TASAR"
 horizontal_alignment = 1
@@ -1022,7 +1022,7 @@ offset_top = -0.16
 offset_right = -0.0999756
 offset_bottom = 0.200005
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_qxxt8")
+theme_override_fonts/font = ExtResource("5_8w885")
 theme_override_font_sizes/font_size = 30
 text = "Tasar revelará uno de los encantos del siguiente artefacto:"
 horizontal_alignment = 1
@@ -1038,7 +1038,7 @@ offset_right = 493.0
 offset_bottom = 413.0
 theme_override_colors/font_color = Color(1, 0.341176, 0.27451, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_qxxt8")
+theme_override_fonts/font = ExtResource("5_8w885")
 theme_override_font_sizes/font_size = 20
 text = "NO TIENES 
 SUFICIENTE ORO"
@@ -1065,7 +1065,7 @@ expand_mode = 1
 [node name="PriceLabel" type="Label" parent="Price/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_qxxt8")
+theme_override_fonts/font = ExtResource("5_8w885")
 theme_override_font_sizes/font_size = 40
 text = "2323"
 horizontal_alignment = 1
@@ -1124,7 +1124,7 @@ offset_top = -0.119995
 offset_right = -3.05176e-05
 offset_bottom = -0.0800171
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_qxxt8")
+theme_override_fonts/font = ExtResource("5_8w885")
 theme_override_font_sizes/font_size = 26
 text = "¡recuerda este encanto en tu próxima venta!"
 horizontal_alignment = 1

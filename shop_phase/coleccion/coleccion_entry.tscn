@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6cjywdawek5v"]
+[gd_scene load_steps=5 format=3 uid="uid://bs15b7c2oqjaq"]
 
 [ext_resource type="Script" path="res://shop_phase/coleccion/coleccion_entry.gd" id="1_6nd6k"]
 [ext_resource type="PackedScene" uid="uid://b0wu7x041p7rv" path="res://shop_phase/coleccion/coleccion_artifact_box.tscn" id="2_bu4q4"]
-[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ZeroCool.ttf" id="2_xdagl"]
+[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ui/ZeroCool.ttf" id="3_dmjfj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l548k"]
 bg_color = Color(0.254902, 0.172549, 0.0901961, 1)
@@ -69,7 +69,7 @@ grow_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("2_xdagl")
+theme_override_fonts/font = ExtResource("3_dmjfj")
 theme_override_font_sizes/font_size = 26
 text = "??????????????????"
 horizontal_alignment = 2
@@ -98,7 +98,7 @@ offset_left = 0.219999
 offset_top = -0.100006
 offset_right = -0.220001
 offset_bottom = -4.10001
-theme_override_fonts/font = ExtResource("2_xdagl")
+theme_override_fonts/font = ExtResource("3_dmjfj")
 theme_override_font_sizes/font_size = 20
 text = "????????????????????????????????????"
 autowrap_mode = 2
@@ -114,7 +114,7 @@ offset_left = 0.219999
 offset_right = -0.220001
 offset_bottom = -24.9
 theme_override_colors/font_color = Color(0.933333, 0.87451, 0.729412, 1)
-theme_override_fonts/font = ExtResource("2_xdagl")
+theme_override_fonts/font = ExtResource("3_dmjfj")
 theme_override_font_sizes/font_size = 20
 text = "????????????????????????????????????"
 autowrap_mode = 2

@@ -100,10 +100,3 @@ func _controls_disable():
 
 func _controls_enable():
 	get_tree().call_group("controls","set_disabled",false)
-
-func debujea():
-	Database.gold_gained(25)
-	for _i in range(0,8):
-		var _a : Artifact = Database.draw_artifact(3)
-		Database.inventory_add_artifact(_a)
-

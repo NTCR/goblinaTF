@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://d21s85ap5og6x"]
-
-[ext_resource type="Script" path="res://shop_phase/drag_and_drop/drag_preview.gd" id="1_p3rgb"]
-
-[node name="DragPreview" type="Sprite2D"]
-modulate = Color(1, 1, 1, 0.588235)
-centered = false
-script = ExtResource("1_p3rgb")

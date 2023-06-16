@@ -66,6 +66,10 @@ func _ready():
 	clouds.set_motion(-0.5)
 	clouds.start()
 
+func _physics_process(_delta):
+	if _gear > 0:
+		get_tree().call_group("crates", "move_towards_player", GEAR_SPEED[_gear])
+
 func get_game_bag():
 	return bag_ref
 
@@ -153,9 +157,6 @@ func _set_gear_settings():
 	_move_parallax(GEAR_SPEED[_gear].x)
 	spawn_timer.set_wait_time(GEAR_TIMER[_gear])
 
-func _physics_process(_delta):
-	if _gear > 0:
-		get_tree().call_group("crates", "move_towards_player", GEAR_SPEED[_gear])
 
 func _move_parallax(_speed : float):
 	background.set_motion(-_speed)
@@ -201,3 +202,16 @@ func _on_crate_looted(_crate_ref : Crate):
 	increase_progress()
 
 
+func _on_settings_button_pressed():
+	set_physics_process(false)
+	if _gear > 0:
+		_stop_parallax()
+		player.pause_animation()
+	spawn_timer.paused = true
+
+func _on_settings_button_settings_closed():
+	set_physics_process(true)
+	if _gear > 0:
+		_start_parallax()
+		player.reanude_animation()
+	spawn_timer.paused = false

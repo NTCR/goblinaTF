@@ -11,8 +11,10 @@ func _ready():
 	parallax.start()
 	if TransitionManager.transition_from_shop:
 		transitions.play("to_loot")
+		SoundtrackManager.going_loot()
 	else:
 		transitions.play("to_shop")
+		SoundtrackManager.going_shop()
 
 func to_shop_scene():
 	get_tree().change_scene_to_file(shop_scene)

@@ -11,7 +11,7 @@ signal panel_closed()
 
 func _ready():
 	var _found = 0
-	var _ordered_artifacts : Array[Artifact]
+	var _ordered_artifacts : Array[Artifact] = []
 	for _key in Database.gameartifacts_names():
 		var _a : Artifact = Database.gameartifacts_get_artifact(_key)
 		if Database.progress_is_artifact_discovered(_a):

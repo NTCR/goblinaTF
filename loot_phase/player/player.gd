@@ -8,6 +8,12 @@ extends StaticBody2D
 func _ready():
 	animated_sprite.play("idle")
 
+func pause_animation():
+	animated_sprite.pause()
+
+func reanude_animation():
+	animated_sprite.play()
+
 func idle():
 	animated_sprite.play("idle")
 

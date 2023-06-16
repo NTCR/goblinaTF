@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="GoblinaPrototipo"
+config/name="La Tienda de Goblina"
+config/description="En “La Tienda De Goblina” el jugador ayudará a Goblina a descubrir el encanto detrás de los artefactos que recolectará durante su aventura, y de esta manera, obtener la mejor venta posible. Descubre todos los artefactos y sus encantos para hacer de Goblina a la matriarca del clan Golagola."
 run/main_scene="res://general_phase/start_screen.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://goblina_face.png"
@@ -19,6 +20,7 @@ config/icon="res://goblina_face.png"
 
 TransitionManager="*res://general_phase/transition_manager.gd"
 Database="*res://database/database.gd"
+SoundtrackManager="*res://soundtrack/soundtrack_manager.tscn"
 
 [display]
 

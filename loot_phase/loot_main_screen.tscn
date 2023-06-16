@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://vt7nd4u23fgm"]
+[gd_scene load_steps=18 format=3 uid="uid://vt7nd4u23fgm"]
 
 [ext_resource type="Script" path="res://loot_phase/loot_main_screen.gd" id="1_s3hgf"]
 [ext_resource type="PackedScene" uid="uid://bcctqmimp48kn" path="res://general_phase/bg/scrolling_bg.tscn" id="2_dexuf"]
@@ -368,12 +368,11 @@ _data = {
 "to_shop": SubResource("Animation_cj0ub")
 }
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cd5fi"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qtvk"]
-bg_color = Color(0.6, 0.6, 0.6, 0.470588)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xvxef"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tj17p"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
 
 [node name="LootMainScreen" type="Node" node_paths=PackedStringArray("transitions", "fadeblack")]
 script = ExtResource("1_s3hgf")
@@ -480,9 +479,9 @@ offset_left = 136.0
 offset_top = 136.0
 offset_right = 280.0
 offset_bottom = 328.0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cd5fi")
-theme_override_styles/hover = SubResource("StyleBoxFlat_8qtvk")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_xvxef")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tj17p")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tj17p")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_tj17p")
 
 [node name="FadeBlack" type="ColorRect" parent="UI"]
 visible = false
@@ -490,10 +489,12 @@ top_level = true
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.998
-offset_right = 33600.0
-offset_bottom = 25501.7
+offset_right = 40600.0
+offset_bottom = 30741.2
 color = Color(0, 0, 0, 1)
 
 [connection signal="hp_depleted" from="Gameworld" to="." method="end_phase"]
 [connection signal="timeout" from="Gameworld/SpawnTimer" to="Gameworld" method="_on_spawn_timer_timeout"]
+[connection signal="pressed" from="UI/SettingsButton" to="Gameworld" method="_on_settings_button_pressed"]
+[connection signal="settings_closed" from="UI/SettingsButton" to="Gameworld" method="_on_settings_button_settings_closed"]
 [connection signal="pressed" from="UI/Recover" to="Gameworld" method="_on_recover_pressed"]

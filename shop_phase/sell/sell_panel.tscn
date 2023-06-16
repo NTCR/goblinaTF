@@ -1,12 +1,12 @@
-[gd_scene load_steps=27 format=3 uid="uid://bh7ipidlpmqgu"]
+[gd_scene load_steps=27 format=3 uid="uid://cykxi6ymfk466"]
 
 [ext_resource type="Texture2D" uid="uid://b1yas6cpbreh3" path="res://shop_phase/sell/sell_base.png" id="1_qtw1g"]
 [ext_resource type="Script" path="res://shop_phase/sell/sell_panel.gd" id="1_xvbud"]
 [ext_resource type="Texture2D" uid="uid://c8ykfomnwvygf" path="res://shop_phase/reveal/reveal_title.svg" id="2_0j1gg"]
 [ext_resource type="Texture2D" uid="uid://dwgvxe07vgcyt" path="res://shop_phase/ui/shine_effect.png" id="2_6cbn7"]
-[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ZeroCool.ttf" id="3_lhnbq"]
 [ext_resource type="Texture2D" uid="uid://bt4d746xtvkx0" path="res://shop_phase/inventario_vertical/inventory_subbase.svg" id="4_twfor"]
 [ext_resource type="Texture2D" uid="uid://b06oco7js878c" path="res://shop_phase/sell/explorar_normal.png" id="5_aagqa"]
+[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ui/ZeroCool.ttf" id="5_u5ve5"]
 [ext_resource type="Texture2D" uid="uid://bbal40mm7sxhb" path="res://shop_phase/sell/explorar_click.png" id="6_e56wc"]
 [ext_resource type="Texture2D" uid="uid://bkung56o7q5uc" path="res://shop_phase/sell/explorar_hover.png" id="7_issut"]
 [ext_resource type="PackedScene" uid="uid://ug72pfmoc1uy" path="res://shop_phase/inventario_vertical/inventory_artifact_box.tscn" id="8_u8hjr"]
@@ -701,7 +701,7 @@ offset_right = 0.18399
 offset_bottom = 0.00799561
 theme_override_colors/font_color = Color(0.67451, 0.364706, 0.176471, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("3_lhnbq")
+theme_override_fonts/font = ExtResource("5_u5ve5")
 theme_override_font_sizes/font_size = 28
 text = "VENTA"
 horizontal_alignment = 1
@@ -791,7 +791,7 @@ offset_right = -0.240021
 offset_bottom = 0.111969
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("3_lhnbq")
+theme_override_fonts/font = ExtResource("5_u5ve5")
 theme_override_font_sizes/font_size = 30
 text = "NOMBRE DEL artefacto"
 horizontal_alignment = 1
@@ -860,7 +860,7 @@ offset_top = -0.351959
 offset_right = -0.320007
 offset_bottom = -0.216003
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_lhnbq")
+theme_override_fonts/font = ExtResource("5_u5ve5")
 theme_override_font_sizes/font_size = 30
 text = "¡HAS VENDIDO EL ARTEFACTO A SU MEJOR PRECIO!"
 horizontal_alignment = 1
@@ -888,7 +888,7 @@ expand_mode = 1
 [node name="PriceLabel" type="Label" parent="Sold/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_lhnbq")
+theme_override_fonts/font = ExtResource("5_u5ve5")
 theme_override_font_sizes/font_size = 40
 text = "2323"
 horizontal_alignment = 1
@@ -929,7 +929,7 @@ offset_top = 250.408
 offset_right = 0.240051
 offset_bottom = 284.832
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_lhnbq")
+theme_override_fonts/font = ExtResource("5_u5ve5")
 theme_override_font_sizes/font_size = 28
 text = "Vaya, has agotado la paciencia del mercader y te has tenido que conformar con el precio más bajo. "
 horizontal_alignment = 1
@@ -958,7 +958,7 @@ expand_mode = 1
 [node name="PriceLabel2" type="Label" parent="Leave/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_lhnbq")
+theme_override_fonts/font = ExtResource("5_u5ve5")
 theme_override_font_sizes/font_size = 40
 text = "2323"
 horizontal_alignment = 1

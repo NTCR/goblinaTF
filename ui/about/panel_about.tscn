@@ -1,0 +1,151 @@
+[gd_scene load_steps=9 format=3 uid="uid://dhcskhjnxdlug"]
+
+[ext_resource type="Script" path="res://ui/about/panel_about.gd" id="1_w23i7"]
+[ext_resource type="Texture2D" uid="uid://dbvfvm1rbuuiw" path="res://shop_phase/inventario_vertical/inventory_base.svg" id="2_hewmt"]
+[ext_resource type="Texture2D" uid="uid://c8ykfomnwvygf" path="res://shop_phase/reveal/reveal_title.svg" id="3_2sg6s"]
+[ext_resource type="FontFile" uid="uid://cbxuvuh46x4co" path="res://ui/ZeroCool.ttf" id="4_8l3k2"]
+
+[sub_resource type="Animation" id="Animation_ga1sq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4ks5r"]
+resource_name = "close_panel"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_close"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_yb8sa"]
+resource_name = "open_panel"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f8tin"]
+_data = {
+"RESET": SubResource("Animation_ga1sq"),
+"close_panel": SubResource("Animation_4ks5r"),
+"open_panel": SubResource("Animation_yb8sa")
+}
+
+[node name="PanelAbout" type="TextureRect" node_paths=PackedStringArray("transitions")]
+anchors_preset = -1
+anchor_right = 0.487
+anchor_bottom = 0.61
+offset_right = -0.221069
+offset_bottom = -232.938
+texture = ExtResource("2_hewmt")
+script = ExtResource("1_w23i7")
+transitions = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f8tin")
+}
+
+[node name="PanelTitle" type="TextureRect" parent="."]
+layout_mode = 1
+offset_right = 640.0
+offset_bottom = 128.0
+texture = ExtResource("3_2sg6s")
+expand_mode = 1
+
+[node name="TitleLabel" type="Label" parent="PanelTitle"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.277
+anchor_top = 0.102
+anchor_right = 0.719
+anchor_bottom = 0.695
+offset_left = -0.279999
+offset_top = -0.0560007
+offset_right = -0.160034
+offset_bottom = 0.0399933
+theme_override_colors/font_color = Color(0.67451, 0.364706, 0.176471, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_8l3k2")
+theme_override_font_sizes/font_size = 28
+text = "MÁS INFORMACIÓN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.073
+anchor_top = 0.266
+anchor_right = 0.908
+anchor_bottom = 0.81
+offset_left = 13.061
+offset_top = -27.038
+offset_right = -3.84406
+offset_bottom = 23.17
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_8l3k2")
+theme_override_font_sizes/font_size = 40
+text = "Videojuego creado por 
+JOSEP BURGUÉS CALVO 
+
+este es un proyecto realizado para la  Universitat Oberta de Catalunya en el TFG de videojuegos"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
